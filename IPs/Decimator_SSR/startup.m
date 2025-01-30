@@ -9,4 +9,4 @@ Rst = 10^(-Ast/20);
 
 W = firgr('minorder',[0 Fp Fst 1], [1 1 0 0],[Rp,Rst]);
 
-fvtool(W)
+% fvtool(W)

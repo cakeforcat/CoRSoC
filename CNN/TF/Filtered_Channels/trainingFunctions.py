@@ -42,8 +42,8 @@ print(devices)
 # training model 
 
 buffers = [128, 256, 512, 1024]
-samples = 100
-snr_powers = [0,3, 5, 10, 15, 20]
+samples = 10000
+snr_powers = [0, 3, 5, 10, 15, 20]
 epoch = 150
 
 
@@ -58,11 +58,9 @@ def bin2hdf5(buf = 128, stride = 12, nsamples_per_file = 10000, plot_spect = Fal
         niq2read = -1
     
     # Getting list of raw .bin files
-    bin_folder_fp = "../sdr_wifi/"               # filepath of folder contain .bin files
+    #bin_folder_fp = "../sdr_wifi/"               # filepath of folder contain .bin files
+    bin_folder_fp = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/"#"../sdr_wifi/"
     bin_folder = os.listdir(bin_folder_fp)      # list of files in folder
-    exclude_bin_folder = ['0000_day1.bin', '0000_day2.bin', '1111_day1.bin', '1111_day2.bin'] # since only using section of data 
-    bin_folder = [x for x in bin_folder if x not in exclude_bin_folder]
-    
     
     # Filepath of folder that will contain the converted h5 files
     h5_folder_fp = "./sdr_wifi_h5_filtered/"
@@ -113,41 +111,44 @@ def bin2hdf5(buf = 128, stride = 12, nsamples_per_file = 10000, plot_spect = Fal
                 
                 
 def preprocessing(buf = 128, test_size = 0.1,):
-
-    # Seed used for shuffling dataset
-    seed = 42
     
-    # Filepath containing directory with converted .h5 files
+     # Seed used for shuffling dataset
+    seed = 42
+     
+     # Filepath containing directory with converted .h5 files
     h5_folder_fp = "sdr_wifi_h5_filtered/"
     folder = os.listdir(h5_folder_fp)
-
-    #folder = ['0000_day1.h5', '0000_day2.h5', '1111_day1.h5', '1111_day2.h5']
-
+    
+     #folder = ['0000_day1.h5', '0000_day2.h5', '1111_day1.h5', '1111_day2.h5']
+    
     folder.sort()
-
-    # Generate dummy arrays to be contain entire dataset and dataset labels (can also use list and convert to np.array later)
+    
+     # Generate dummy arrays to be contain entire dataset and dataset labels (can also use list and convert to np.array later)
     dataset_labels = np.zeros((1))
     dataset = np.zeros((1, buf, 2))
+     
+    dataset = []
     
     num_coef = 101
     channelfilter_coef = {}
-
+    
+    
     path = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/"
     #path = ''
-
+    
     channelfilter_coef["ch_1"] = scipy.io.loadmat(path+'weights1.mat')["exp_W1"]
     channelfilter_coef["ch_2"] = scipy.io.loadmat(path+'weights2.mat')["exp_W2"]
     channelfilter_coef["ch_3"] = scipy.io.loadmat(path+'weights3.mat')["exp_W3"]
     channelfilter_coef["ch_4"] = scipy.io.loadmat(path+'weights4.mat')["exp_W4"]
     print("\n\nGot Filters\n\n")
-
+    
     filters = ["ch_1","ch_2","ch_3","ch_4"]
-
-
+    
+    
     for file in folder: 
         start_time = time.time()
         if not os.path.isdir(h5_folder_fp + file):
-
+    
             # Open .h5 folder and extract data
             try:
                 print(h5_folder_fp + file)
@@ -158,21 +159,30 @@ def preprocessing(buf = 128, test_size = 0.1,):
                 #print(data.shape[0])
                 for i in range(data.shape[0]):
                     for filt in filters:
-
+                        
+                        
                         complex_array = data[i, :, 0] + 1j * data[i, :, 1]
-                        channels =  fftconvolve(complex_array, channelfilter_coef[filt][0,:], mode='same')
+                        channels =  fftconvolve(complex_array, channelfilter_coef[filt][0,:], mode='same')                    
                         float_channel = np.stack((channels.real, channels.imag), axis=-1) 
-                        channels = np.expand_dims(float_channel, axis=0)
-                        dataset = np.concatenate((dataset, channels))
-
+                        #channels = np.expand_dims(float_channel, axis=0)
+                        
+                        #dataset = np.concatenate((dataset, channels))
+                        dataset.append(float_channel)
+    
                 # Generates the multi-hot encoded labels from the file name
                 label = list(name.split('_')[0])    # Take part of filename that contains labels
                 label = list(map(int, label))       # Convert string to multi-hot list
                 label = [label] * data.shape[0] # Generate label for each training sample in file
+                #print(label)
+                
+                # if just traing on full channels and empty channels use:
+                    #label = [np.any(label)] * data.shape[0]*4
+                    # and remove flatten()
                 
                 label = np.array(label).flatten()
                 label = np.array(label, dtype='i')  # Convert list of labels to np.array
-
+                #print(label)
+                #for i in range(4):
                 dataset_labels = np.concatenate((dataset_labels, label))    # Append to labels for entire dataset
             except Exception as e:
                 print("error with:", h5_folder_fp + file, "\n", e)
@@ -183,31 +193,32 @@ def preprocessing(buf = 128, test_size = 0.1,):
             
             
     f.close()
-
+    dataset = np.array(dataset)
+    print(dataset.shape)
     # Delete first entry of arrays as they contain zeros
-    dataset = np.delete(dataset, 0, 0)
+    #dataset = np.delete(dataset, 0, 0)
     dataset_labels = np.delete(dataset_labels, 0, 0)
-
+    
     # Shuffle dataset and split into training and testing samples
     X_train, X_test, y_train, y_test = train_test_split(
         dataset, dataset_labels, test_size=test_size, random_state=seed)
-
-
+    
+    
     # Save test set
     f_test = h5py.File('./sdr_wifi_test.hdf5', 'w')
     xtest = f_test.create_dataset('X', (X_test.shape[0], X_test.shape[1], X_test.shape[2]), dtype='f')
     ytest = f_test.create_dataset('y', (y_test.shape[0], ), dtype='i')
     xtest[()] = X_test
     ytest[()] = y_test
-
-
+    
+    
     # Save train set
     f_train = h5py.File('./sdr_wifi_train.hdf5', 'w')
     xtrain = f_train.create_dataset('X', (X_train.shape[0], X_train.shape[1], X_train.shape[2]), dtype='f')
     ytrain = f_train.create_dataset('y', (y_train.shape[0], ), dtype='i')
     xtrain[()] = X_train
     ytrain[()] = y_train
-
+    
     # Close Files
     f_test.close()
     f_train.close()

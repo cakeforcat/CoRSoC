@@ -36,16 +36,16 @@ else:
 
 # training model 
 
-buffers = [128] #[128, 256, 512, 1024]
+buffers = [128, 256, 512, 1024]
 samples = 1000
-snr_powers = [0]#[3, 5, 10, 15, 20]
-epoch = 10
+snr_powers = [0, 3, 5, 10, 15, 20]
+epoch = 150
 
 
 
 
 class CNNModel(nn.Module):
-    def __init__(self, n_channels=2, n_classes=10):
+    def __init__(self, n_channels=2, n_classes=1):
         super(CNNModel, self).__init__()
         
         self.conv1 = nn.Conv1d(in_channels=n_channels, out_channels=16, kernel_size=2)
@@ -97,11 +97,10 @@ def bin2hdf5(buf = 128, stride = 12, nsamples_per_file = 10000, plot_spect = Fal
 
     
     # Getting list of raw .bin files
-    bin_folder_fp = "../../sdr_wifi/"               # filepath of folder contain .bin files
+    #bin_folder_fp = "../sdr_wifi/"               # filepath of folder contain .bin files
+    bin_folder_fp = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/"#"../sdr_wifi/"               # filepath of folder contain .bin files
+                  # filepath of folder contain .bin files
     bin_folder = os.listdir(bin_folder_fp)      # list of files in folder
-    exclude_bin_folder = ['0000_day1.bin', '0000_day2.bin', '1111_day1.bin', '1111_day2.bin'] # since only using section of data 
-    bin_folder = [x for x in bin_folder if x not in exclude_bin_folder]
-    
     
     # Filepath of folder that will contain the converted h5 files
     h5_folder_fp = "./sdr_wifi_h5_filtered/"
@@ -110,7 +109,6 @@ def bin2hdf5(buf = 128, stride = 12, nsamples_per_file = 10000, plot_spect = Fal
     
     # Number of complex values to skip over before reading
     offset = 0
-    
     
     # Iterate through each .bin file and add contents to .h5 file
     for file in bin_folder:
@@ -166,6 +164,8 @@ def preprocessing(buf = 128, test_size = 0.1,):
     # Generate dummy arrays to be contain entire dataset and dataset labels (can also use list and convert to np.array later)
     dataset_labels = np.zeros((1))
     dataset = np.zeros((1, buf, 2))
+
+    dataset = []
     
     num_coef = 101
     channelfilter_coef = {}
@@ -190,49 +190,51 @@ def preprocessing(buf = 128, test_size = 0.1,):
             # Open .h5 folder and extract data
             try:
                 print(h5_folder_fp + file)
-                with h5py.File(h5_folder_fp + file, 'r') as f:
-                    name = os.path.splitext(file)[0]
-                    data = f[name][()]
-        
-                    #print(data.shape[0])
-                    for i in range(data.shape[0]):
-                        for filt in filters:
-                                         
-                            # IQ smaples to complex numbers 
-                            complex_array = data[i, :, 0] + 1j * data[i, :, 1]
-                            # filter with complex filters 
-                            channels =  fftconvolve(complex_array, channelfilter_coef[filt][0,:], mode='same')
-                            #convert back to float 
-                            float_channel = np.stack((channels.real, channels.imag), axis=-1) 
-                            # expand dim to shape (1,128,2)
-                            channels = np.expand_dims(float_channel, axis=0)
-
-                            dataset = np.concatenate((dataset, channels))
- 
-                    # Append samples from current file to dataset
-
-                    # Generates the multi-hot encoded labels from the file name
-                    label = list(name.split('_')[0])    # Take part of filename that contains labels
-                    label = list(map(int, label))       # Convert string to multi-hot list
-                    label = [label] * data.shape[0] # Generate label for each training sample in file
- 
-                    label = np.array(label).flatten()
-                    label = np.array(label, dtype='i')  # Convert list of labels to np.array
-                    #print(label)
-                    #for i in range(4):
-                    dataset_labels = np.concatenate((dataset_labels, label))    # Append to labels for entire dataset
+                f = h5py.File(h5_folder_fp + file, 'r')
+                name = os.path.splitext(file)[0]
+                data = f[name][()]
+    
+                #print(data.shape[0])
+                for i in range(data.shape[0]):
+                    for filt in filters:
+                        
+                        
+                        complex_array = data[i, :, 0] + 1j * data[i, :, 1]
+                        channels =  fftconvolve(complex_array, channelfilter_coef[filt][0,:], mode='same')                    
+                        float_channel = np.stack((channels.real, channels.imag), axis=-1) 
+                        #channels = np.expand_dims(float_channel, axis=0)
+                        
+                        #dataset = np.concatenate((dataset, channels))
+                        dataset.append(float_channel)
+    
+                # Generates the multi-hot encoded labels from the file name
+                label = list(name.split('_')[0])    # Take part of filename that contains labels
+                label = list(map(int, label))       # Convert string to multi-hot list
+                label = [label] * data.shape[0] # Generate label for each training sample in file
+                #print(label)
+                
+                # if just traing on full channels and empty channels use:
+                    #label = [np.any(label)] * data.shape[0]*4
+                    # and remove flatten()
+                
+                label = np.array(label).flatten()
+                label = np.array(label, dtype='i')  # Convert list of labels to np.array
+                #print(label)
+                #for i in range(4):
+                dataset_labels = np.concatenate((dataset_labels, label))    # Append to labels for entire dataset
             except Exception as e:
                 print("error with:", h5_folder_fp + file, "\n", e)
             end_time = time.time()
-        
+    
             print(f"Time taken for convolution: {end_time - start_time:.6f} seconds")
             print("File Finished: ",file)
             
-                
-        f.close()
-
+            
+    f.close()
+    dataset = np.array(dataset)
+    print(dataset.shape)
     # Delete first entry of arrays as they contain zeros
-    dataset = np.delete(dataset, 0, 0)
+    #dataset = np.delete(dataset, 0, 0)
     dataset_labels = np.delete(dataset_labels, 0, 0)
 
     # Shuffle dataset and split into training and testing samples
@@ -258,7 +260,6 @@ def preprocessing(buf = 128, test_size = 0.1,):
     # Close Files
     f_test.close()
     f_train.close()
-
                 
 
 
@@ -495,7 +496,7 @@ def testModel(modelType, modelPath):
         
 
 for buf in buffers:
-    # bin2hdf5(buf=buf, nsamples_per_file = samples, setniq2read = True)
-    # preprocessing(buf=buf)
+    bin2hdf5(buf=buf, nsamples_per_file = samples, setniq2read = True)
+    preprocessing(buf=buf)
     for snr in snr_powers:
         trainModel(buf=buf, snr= snr, epoch = epoch)

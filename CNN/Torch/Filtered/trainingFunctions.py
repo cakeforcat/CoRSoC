@@ -51,9 +51,9 @@ class CNNModel(nn.Module):
         self.conv1 = nn.Conv1d(in_channels=n_channels, out_channels=16, kernel_size=2)
         self.conv2 = nn.Conv1d(16, 16, kernel_size=3)
         self.pool1 = nn.MaxPool1d(kernel_size=2, stride=2)
-        # self.conv3 = nn.Conv1d(16, 32, kernel_size=5)
-        # self.conv4 = nn.Conv1d(32, 32, kernel_size=5)
-        # self.pool2 = nn.MaxPool1d(kernel_size=2, stride=2)
+        self.conv3 = nn.Conv1d(16, 32, kernel_size=5)
+        self.conv4 = nn.Conv1d(32, 32, kernel_size=5)
+        self.pool2 = nn.MaxPool1d(kernel_size=2, stride=2)
         self.flatten = nn.Flatten()
         self.leaky_relu = nn.LeakyReLU(0.1)
         
@@ -71,9 +71,9 @@ class CNNModel(nn.Module):
         x = self.leaky_relu(self.conv1(x))
         x = self.leaky_relu(self.conv2(x))
         x = self.pool1(x)
-        # x = self.leaky_relu(self.conv3(x))
-        # x = self.leaky_relu(self.conv4(x))
-        # x = self.pool2(x)
+        x = self.leaky_relu(self.conv3(x))
+        x = self.leaky_relu(self.conv4(x))
+        x = self.pool2(x)
         x = self.flatten(x)
         return x
         
@@ -153,11 +153,6 @@ def bin2hdf5(buf = 128, stride = 12, nsamples_per_file = 10000, plot_spect = Fal
                 
 def preprocessing(buf = 128, test_size = 0.1,):
 
-    # Size of input to 1D CNN or number of complex samples being fed to 1D CNN (should be same as bin2hdf5.py)
-    #buf = 1024#128
-    
-    # Percentage of dataset that will be used for testing
-    #test_size = 0.1
     
     # Seed used for shuffling dataset
     seed = 42
@@ -165,8 +160,6 @@ def preprocessing(buf = 128, test_size = 0.1,):
     # Filepath containing directory with converted .h5 files
     h5_folder_fp = "sdr_wifi_h5_filtered/"
     folder = os.listdir(h5_folder_fp)
-
-    #folder = ['0000_day1.h5', '0000_day2.h5', '1111_day1.h5', '1111_day2.h5']
 
     folder.sort()
 
@@ -180,7 +173,6 @@ def preprocessing(buf = 128, test_size = 0.1,):
 
     path = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/"
     #path = ''
-
 
     channelfilter_coef["ch_1"] = scipy.io.loadmat(path+'weights1.mat')["exp_W1"]
     channelfilter_coef["ch_2"] = scipy.io.loadmat(path+'weights2.mat')["exp_W2"]
@@ -223,10 +215,7 @@ def preprocessing(buf = 128, test_size = 0.1,):
                     label = list(name.split('_')[0])    # Take part of filename that contains labels
                     label = list(map(int, label))       # Convert string to multi-hot list
                     label = [label] * data.shape[0] # Generate label for each training sample in file
-                    #print(label)
-                    
-
-                    
+ 
                     label = np.array(label).flatten()
                     label = np.array(label, dtype='i')  # Convert list of labels to np.array
                     #print(label)
@@ -278,7 +267,7 @@ def calculate_mean_power(signals):
     Calculate the mean power of all signals in the dataset.
 
     Parameters:
-        signals (numpy array): Array of shape (3000, 128, 2) representing 3000 2D signals.
+        signals (numpy array): Array of 2D signals.
 
     Returns:
         float: Mean power of all signals.
@@ -295,7 +284,7 @@ def add_noise_to_signals(signals, snr_db, add_noise= True):
     Add noise to a dataset of signals to achieve a specified SNR.
 
     Parameters:
-        signals (numpy array): Array of shape (3000, 128, 2).
+        signals (numpy array): Array of shape.
         snr_db (float): Desired signal-to-noise ratio in dB.
 
     Returns:
@@ -329,8 +318,6 @@ def trainModel(buf, snr, epoch = 1):
     if not os.path.isdir(results):
         os.mkdir(results)
         os.chmod(results, 0o777)  # Sets full permissions
-
-    
     
     seed = 42
     
@@ -339,18 +326,6 @@ def trainModel(buf, snr, epoch = 1):
     dset = h5py.File(dset_fp, 'r')
     X = dset['X'][()]
     y = dset['y'][()]
-    
-    print(dset.keys())
-    
-    print("\n\n\n\n")
-    print(dset)
-    
-    print("\n\n\n\n")
-    #print(X)
-    
-    print("Sum of X: ",np.sum(X))
-    
-    
 
     #Model parameters
     n_classes = 1       #number of classes for SDR case
@@ -396,24 +371,15 @@ def trainModel(buf, snr, epoch = 1):
        val_total = 0
 
        for inputs, labels in train_loader:
-           
-           # print(inputs[0])
-           # print(inputs[1])
-           
-           # plot_fft(inputs[0,:,1])
-           # print(inputs[0,:,1])
-           # print(labels[0])
-           
+
            optimizer.zero_grad()
            outputs = model(inputs.transpose(2,1))  # Adjust shape for Conv1d
-           # Simulated target tensor (batch_size=1, single label)
-           
+           # Simulated target tensor (batch_size=1, single label)       
             
             # Ensure correct shape
            outputs = outputs.squeeze(1)  # Converts shape from [batch_size, 1] to [batch_size]
             
             # Compute loss
-          
            loss = criterion(outputs, labels)
            loss.backward()
            optimizer.step()
@@ -421,11 +387,6 @@ def trainModel(buf, snr, epoch = 1):
 
            # Calculate accuracy
            predictions = torch.sigmoid(outputs) > 0.5
-           #print(torch.sigmoid(outputs))
-           #print("predictions shape: ", predictions.size())
-           # print("label: ", labels.sum().item())
-           # print("predidction: ", predictions.sum().item())
-           
            correct += (predictions == labels).sum().item()
            
            total += labels.size(0)
@@ -440,7 +401,6 @@ def trainModel(buf, snr, epoch = 1):
           outputs = outputs.squeeze(1)  # Converts shape from [batch_size, 1] to [batch_size]
            
            # Compute loss
-         
           loss = criterion(outputs, labels)
           val_running_loss += loss.item()
 
@@ -472,13 +432,6 @@ def trainModel(buf, snr, epoch = 1):
 
     history_df = pd.DataFrame({'epoch': range(1, num_epochs + 1), 'accuracy': epoch_accuracy, 'loss': epoch_loss})
     history_df.to_csv(f'./results/training_history_{modelType}.csv', index=False)
-
-   
-  
-
-    # Convert the history to a DataFrame and save as CSV
-    # history_df = pd.DataFrame(history.history)
-    # history_df.to_csv('./results/training_history_'+modelType+'.csv', index=False)
     
     testModel(modelType, f'./results/best_model_{modelType}.pt')
 
@@ -505,9 +458,6 @@ def testModel(modelType, modelPath):
     best_accuracy = 0
     patience = 50
     counter = 0
-     
-    # print(model)
-    # summary(model,(2,128))
 
     running_loss = 0.0
     correct = 0
@@ -530,7 +480,6 @@ def testModel(modelType, modelPath):
 
         # Calculate accuracy
         predictions = torch.sigmoid(outputs) > 0.5
-        # print(type(predictions))
         correct += (predictions == labels).sum().item()
         total += labels.size(0)
  
@@ -538,56 +487,11 @@ def testModel(modelType, modelPath):
         epoch_loss = running_loss / len(test_loader)
         epoch_accuracy = correct / total
 
-
         print(f'Epoch {epoch+1}/{num_epochs}, Loss: {epoch_loss:.8f}, Accuracy: {epoch_accuracy:.8f}')
 
 
     # Set the model to evaluation mode
     model.eval()
-
-    #Test model
-    # score = model.evaluate(x=X, y=y, verbose=1)
-    # print('Loss: ' + str(score[0]))
-    # print('Acc: ' + str(score[1]))
-
-    # with open('./results/test_results'+modelType+'.txt', 'w') as f:
-    #     f.write(f"Test Loss: {score[0]}\n")
-    #     f.write(f"Test Accuracy: {score[1]}\n")
-
-def plot_fft(signal):
-    
-    fs = 20e6
-    
-    n = len(signal)
-    fft_result = np.fft.fft(signal)
-    fft_freq = np.fft.fftfreq(n, 1/fs)
-    
-    # Plot time domain signal and FFT
-    plt.figure(figsize=(12, 6))
-    
-    # Time domain plot
-    plt.subplot(2, 1, 1)
-    plt.plot(0.1, signal)  # Convert time to milliseconds
-    plt.title('Time Domain Signal')
-    plt.xlabel('Time (ms)')
-    plt.ylabel('Amplitude')
-    plt.grid(True)
-    
-    # Frequency domain plot
-    plt.subplot(2, 1, 2)
-    # Plot only the positive frequencies up to Nyquist frequency
-    positive_freq_mask = fft_freq >= 0
-    plt.plot(fft_freq[positive_freq_mask] / 1e6, 
-             2 * np.abs(fft_result[positive_freq_mask]) / n)  # Normalize and convert to MHz
-    plt.title('Frequency Spectrum')
-    plt.xlabel('Frequency (MHz)')
-    plt.ylabel('Magnitude')
-    plt.grid(True)
-    
-    plt.tight_layout()
-    plt.show()
-        
-        
         
 
 for buf in buffers:

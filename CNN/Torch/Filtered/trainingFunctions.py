@@ -37,10 +37,10 @@ else:
 
 # training model 
 
-buffers = [128, 256, 512, 1024]
-samples = 10
-snr_powers = [0, 3, 5, 10, 15, 20]
-epoch = 5
+buffers = [512, 1024]#[128, 256, 512, 1024]
+samples = 1000
+snr_powers = [np.inf, 3]#, 5, 10, 15, 20]
+epoch = 10
 
 
 
@@ -310,6 +310,183 @@ def add_noise_to_signals(signals, snr_db, add_noise= True):
     noisy_signals = signals + noise
     return noisy_signals
 
+# def add_noise_at_snr(samples, labels, target_snr_db, noise_floor_db=None):
+#     """
+#     Add noise to signal samples to achieve a specific SNR in dB.
+    
+#     Parameters:
+#     -----------
+#     samples : numpy.ndarray
+#         Array of shape (n, 2, 128) containing IQ samples
+#     labels : numpy.ndarray
+#         Array of shape (n) containing binary labels (0: no signal, 1: signal present)
+#     target_snr_db : float
+#         Desired Signal-to-Noise Ratio in dB
+#     noise_floor_db : float, optional
+#         Known noise floor in dB. If None, it will be calculated from noise-only samples
+        
+#     Returns:
+#     --------
+#     numpy.ndarray
+#         New array of same shape as samples with noise added to signal samples
+#     dict
+#         Statistics about the noise addition process
+#     """
+#     # Make a copy of the input samples to avoid modifying the original
+#     noisy_samples = samples.copy()
+    
+#     if np.isinf(target_snr_db):
+#         stats = {
+#             'num_signal_samples': np.sum(labels == 1),
+#             'noise_floor_db': noise_floor_db if noise_floor_db is not None else 'Not calculated',
+#             'target_snr_db': np.inf,
+#             'added_noise_power_db': -np.inf,
+#             'message': 'No noise added (infinite SNR requested)'
+#         }
+#         return noisy_samples, stats
+    
+#     # Get signal samples
+#     signal_indices = np.where(labels == 1)[0]
+    
+#     if len(signal_indices) == 0:
+#         raise ValueError("No signal samples found in the dataset")
+    
+#     # Calculate noise floor if not provided
+#     if noise_floor_db is None:
+#         noise_indices = np.where(labels == 0)[0]
+#         if len(noise_indices) == 0:
+#             raise ValueError("No noise-only samples found to calculate noise floor")
+#         noise_samples = samples[noise_indices]
+#         i_noise = noise_samples[:, :, 0]
+#         q_noise = noise_samples[:, :, 1]
+#         noise_power = np.mean(i_noise**2 + q_noise**2)
+#         noise_floor_db = 10 * np.log10(noise_power)
+    
+#     # Convert noise floor from dB to linear scale
+#     noise_power = 10**(noise_floor_db/10)
+    
+#     # Process each signal sample
+#     for idx in signal_indices:
+#         # Calculate signal power
+#         i_signal = samples[idx, :, 0]
+#         q_signal = samples[idx, :, 1]
+#         signal_power = np.mean(i_signal**2 + q_signal**2)
+#         current_snr_db = 10 * np.log10(signal_power / noise_power)
+        
+#         # Calculate required noise power to achieve target SNR
+#         required_noise_power = signal_power / (10**(target_snr_db/10))
+        
+#         # Generate complex Gaussian noise
+#         noise_scaling = np.sqrt(required_noise_power/2)  # Divide by 2 for I and Q components
+#         noise_i = np.random.normal(0, noise_scaling, size=128)
+#         noise_q = np.random.normal(0, noise_scaling, size=128)
+        
+#         # Add noise to signal
+#         noisy_samples[idx, :, 0] = i_signal + noise_i
+#         noisy_samples[idx, :, 1] = q_signal + noise_q
+    
+#     # Calculate statistics
+#     stats = {
+#         'num_signal_samples': len(signal_indices),
+#         'noise_floor_db': noise_floor_db,
+#         'target_snr_db': target_snr_db,
+#         'original_signal_power_db': 10 * np.log10(signal_power),
+#         'added_noise_power_db': 10 * np.log10(required_noise_power)
+#     }
+    
+#     return noisy_samples, stats
+
+
+def add_noise_at_snr(samples, labels, target_snr_db, noise_floor_db=None):
+    """
+    Add noise to signal samples to achieve a specific SNR in dB.
+    Handles infinite SNR by returning original signals unchanged.
+    
+    Parameters:
+    -----------
+    samples : numpy.ndarray
+        Array of shape (n, 2, 128) containing IQ samples
+    labels : numpy.ndarray
+        Array of shape (n) containing binary labels (0: no signal, 1: signal present)
+    target_snr_db : float
+        Desired Signal-to-Noise Ratio in dB. Use np.inf for no noise addition
+    noise_floor_db : float, optional
+        Known noise floor in dB. If None, it will be calculated from noise-only samples
+        
+    Returns:
+    --------
+    numpy.ndarray
+        New array of same shape as samples with noise added to signal samples
+    dict
+        Statistics about the noise addition process
+    """
+    # Make a copy of the input samples to avoid modifying the original
+    noisy_samples = samples.copy()
+    sample_length = samples.shape[2]  # Get the actual length of samples
+    
+    # If SNR is infinite, return original samples with stats
+    if np.isinf(target_snr_db):
+        stats = {
+            'num_signal_samples': np.sum(labels == 1),
+            'noise_floor_db': noise_floor_db if noise_floor_db is not None else 'Not calculated',
+            'target_snr_db': np.inf,
+            'added_noise_power_db': -np.inf,
+            'message': 'No noise added (infinite SNR requested)'
+        }
+        return noisy_samples, stats
+    
+    # Get signal samples
+    signal_indices = np.where(labels == 1)[0]
+    
+    if len(signal_indices) == 0:
+        raise ValueError("No signal samples found in the dataset")
+    
+    # Calculate noise floor if not provided
+    if noise_floor_db is None:
+        noise_indices = np.where(labels == 0)[0]
+        if len(noise_indices) == 0:
+            raise ValueError("No noise-only samples found to calculate noise floor")
+        noise_samples = samples[noise_indices]
+        i_noise = noise_samples[:, 0, :]
+        q_noise = noise_samples[:, 1, :]
+        noise_power = np.mean(i_noise**2 + q_noise**2)
+        noise_floor_db = 10 * np.log10(noise_power)
+    
+    # Convert noise floor from dB to linear scale
+    noise_power = 10**(noise_floor_db/10)
+    
+    # Process each signal sample
+    for idx in signal_indices:
+        # Get the signal vectors
+        i_signal = samples[idx, 0, :]  # Shape should be (sample_length,)
+        q_signal = samples[idx, 1, :]  # Shape should be (sample_length,)
+        
+        # Calculate signal power
+        signal_power = np.mean(i_signal**2 + q_signal**2)
+        current_snr_db = 10 * np.log10(signal_power / noise_power)
+        
+        # Calculate required noise power to achieve target SNR
+        required_noise_power = signal_power / (10**(target_snr_db/10))
+        
+        # Generate complex Gaussian noise
+        noise_scaling = np.sqrt(required_noise_power/2)  # Divide by 2 for I and Q components
+        noise_i = np.random.normal(0, noise_scaling, size=sample_length)
+        noise_q = np.random.normal(0, noise_scaling, size=sample_length)
+        
+        # Add noise to signal, maintaining correct shapes
+        noisy_samples[idx, 0, :] = i_signal + noise_i
+        noisy_samples[idx, 1, :] = q_signal + noise_q
+    
+    # Calculate statistics
+    stats = {
+        'num_signal_samples': len(signal_indices),
+        'noise_floor_db': noise_floor_db,
+        'target_snr_db': target_snr_db,
+        'original_signal_power_db': 10 * np.log10(signal_power),
+        'added_noise_power_db': 10 * np.log10(required_noise_power)
+    }
+    
+    return noisy_samples, stats
 
 
 def trainModel(buf, snr, epoch = 1):
@@ -331,7 +508,9 @@ def trainModel(buf, snr, epoch = 1):
     n_classes = 1       #number of classes for SDR case
     dim = X.shape[1]    #Number of I/Q samples being taken as input
     n_channels = 2      #One channel for I and the other for Q
-    X_noisey = add_noise_to_signals(X, snr, snr)
+    X_noisey = add_noise_at_snr(X, y, snr)[0]
+    
+    print(f'X.Shape: {X_noisey.shape}, y.shape: {len(y)}')
     
     # Shuffle dataset and split into training and testing samples
     X_train, X_test, y_train, y_test = train_test_split(

@@ -16,6 +16,9 @@ import pandas as pd
 from scipy.signal import fftconvolve
 import time
 import scipy
+from scipy.signal import butter, lfilter
+import traceback  # Import the traceback module
+
 
 def plot_iq_fft(iq_signal, sample_rate, title="IQ Signal FFT"):
     """
@@ -75,7 +78,7 @@ def bin2hdf5(buf = 128, stride = 12, nsamples_per_file = 10000, plot_spect = Fal
     #               # filepath of folder contain .bin files
     # bin_folder = os.listdir(bin_folder_fp)      # list of files in folder
     
-    bin_folder =['1010_day1.bin','0101_day1.bin']# "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/1010_day1.bin"#"../sdr_wifi/"               # filepath of folder contain .bin files
+    bin_folder =['1010_day1.bin']#,'0101_day1.bin']# "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/1010_day1.bin"#"../sdr_wifi/"               # filepath of folder contain .bin files
     
     
     # Filepath of folder that will contain the converted h5 files
@@ -138,6 +141,7 @@ def preprocessing(buf = 128, test_size = 0.1,):
     print("\n\nGot Filters\n\n")
 
     filters = ["ch_1","ch_2","ch_3","ch_4"]
+    
 
 
     for file in folder: 
@@ -156,13 +160,18 @@ def preprocessing(buf = 128, test_size = 0.1,):
                     for filt in filters:
                         
                         complex_array = data[i, :, 0] + 1j * data[i, :, 1]
+                        channels =  fftconvolve(complex_array, channelfilter_coef[filt][0,:], mode='same')  
                         label = list(name.split('_')[0]) 
                         
-                        fig, ax = plot_iq_fft(complex_array, 20e6, title="IQ Spectrum of channel "+str(label))
+                        fig, ax = plot_iq_fft(channels, 20e6, title="IQ Spectrum of channel "+str(label))
                         plt.show()
+                        fig, ax = centre(channels, filt, 2**12)
+                        plt.show()
+                        
  
             except Exception as e:
                 print("error with:", h5_folder_fp + file, "\n", e)
+                traceback.print_exc()  # Print the full traceback
             end_time = time.time()
     
             print(f"Time taken for convolution: {end_time - start_time:.6f} seconds")
@@ -170,6 +179,53 @@ def preprocessing(buf = 128, test_size = 0.1,):
             
             
     f.close()
+    
+# Design a low-pass filter to isolate the 5 MHz channel (edges at -2.5 MHz to 2.5 MHz)
+def butter_lowpass(cutoff, fs, order=5):
+    nyq = 0.5 * fs
+    normal_cutoff = cutoff / nyq
+    b, a = butter(order, normal_cutoff, btype='low', analog=False)
+    return b, a
 
-bin2hdf5(buf=2**10, nsamples_per_file = 2, setniq2read = True)
-preprocessing(buf=2**10)
+# Plotting the spectrum
+def plot_spectrum(sig, fs):
+    freqs = np.fft.fftfreq(len(sig), 1/fs)
+    spectrum = np.fft.fft(sig)
+    #fig, ax = plt.figure(figsize=(10, 4))
+    fig, ax = plt.subplots(figsize=(10, 4))
+    ax.plot(np.fft.fftshift(freqs)/1e6, 20 * np.log10(np.abs(np.fft.fftshift(spectrum))))
+    ax.set_title('Filtered Channel Centered at 0 Hz')
+    ax.set_xlabel('Frequency (MHz)')
+    ax.set_ylabel('Magnitude (dB)')
+    ax.grid(True)
+
+    plt.tight_layout()
+    
+    return fig, ax
+
+def centre(signal, channel_no, buf):
+    # Parameters
+    fs = 20e6  # Sampling rate: 20 MS/s
+    t = np.linspace(0, (buf/fs), buf) # Time vector for 1 second of data
+    channel_dic = {"ch_1": -7.5e6, "ch_2": -2.5e6, "ch_3": 2.5e6, "ch_4": 7.5e6}
+    
+    # Choose the channel to center at 0 Hz (example: Channel 3 at 2.5 MHz)
+    f_shift = channel_dic[channel_no]  # Frequency to shift
+    
+    # Frequency shift to baseband
+    shifted_signal = signal * np.exp(-2j * np.pi * f_shift * t)
+    
+    cutoff_freq = 2.5e6  # 2.5 MHz cutoff
+    b, a = butter_lowpass(cutoff_freq, fs)
+    filtered_signal = lfilter(b, a, shifted_signal)
+    
+    #plot_spectrum(signal, fs, 'Original Signal Spectrum')
+    #plot_spectrum(shifted_signal, fs, 'Shifted Signal Spectrum (before filtering)')
+    fig, ax = plot_spectrum(filtered_signal, fs)
+    
+    return fig, ax
+
+
+
+bin2hdf5(buf=2**12, nsamples_per_file = 2, setniq2read = True)
+preprocessing(buf=2**12)

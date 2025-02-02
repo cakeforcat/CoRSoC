@@ -16,6 +16,7 @@ import pandas as pd
 from scipy.signal import fftconvolve
 import time
 import scipy
+from scipy import signal
 from scipy.signal import butter, lfilter
 import traceback  # Import the traceback module
 
@@ -165,8 +166,13 @@ def preprocessing(buf = 128, test_size = 0.1,):
                         
                         fig, ax = plot_iq_fft(channels, 20e6, title="IQ Spectrum of channel "+str(label))
                         plt.show()
+                        
+                        resampled, fig, ax = resample_baseband_iq(channels, fs_in=20e6, fs_out=16e6)
+                        plt.show()
+                        
                         fig, ax = centre(channels, filt, 2**12)
                         plt.show()
+                        
                         
  
             except Exception as e:
@@ -205,9 +211,11 @@ def plot_spectrum(sig, fs):
 
 def centre(signal, channel_no, buf):
     # Parameters
-    fs = 20e6  # Sampling rate: 20 MS/s
+    # fs = 20e6  # Sampling rate: 20 MS/s
+    fs = 16e6
     t = np.linspace(0, (buf/fs), buf) # Time vector for 1 second of data
-    channel_dic = {"ch_1": -7.5e6, "ch_2": -2.5e6, "ch_3": 2.5e6, "ch_4": 7.5e6}
+    # channel_dic = {"ch_1": -7.5e6, "ch_2": -2.5e6, "ch_3": 2.5e6, "ch_4": 7.5e6}
+    channel_dic = {"ch_1": -6e6, "ch_2": -2e6, "ch_3": 2e6, "ch_4": 6e6}
     
     # Choose the channel to center at 0 Hz (example: Channel 3 at 2.5 MHz)
     f_shift = channel_dic[channel_no]  # Frequency to shift
@@ -215,15 +223,65 @@ def centre(signal, channel_no, buf):
     # Frequency shift to baseband
     shifted_signal = signal * np.exp(-2j * np.pi * f_shift * t)
     
-    cutoff_freq = 2.5e6  # 2.5 MHz cutoff
+    # cutoff_freq = 2.5e6  # 2.5 MHz cutoff
+    cutoff_freq = 2e6
     b, a = butter_lowpass(cutoff_freq, fs)
     filtered_signal = lfilter(b, a, shifted_signal)
     
     #plot_spectrum(signal, fs, 'Original Signal Spectrum')
     #plot_spectrum(shifted_signal, fs, 'Shifted Signal Spectrum (before filtering)')
-    fig, ax = plot_spectrum(filtered_signal, fs)
+    fig, ax = plot_iq_fft(filtered_signal, fs, title='Centred Signal')
     
     return fig, ax
+
+def resample_baseband_iq(iq_samples, fs_in=5e6, fs_out=4e6):
+    """
+    Resample zero-centered baseband IQ samples while preserving frequency content
+    symmetrically around 0 Hz.
+    
+    Parameters:
+    -----------
+    iq_samples : numpy.ndarray
+        Complex IQ samples to resample
+    fs_in : float
+        Input sampling frequency in Hz (default: 5e6)
+    fs_out : float
+        Output sampling frequency in Hz (default: 4e6)
+    
+    Returns:
+    --------
+    numpy.ndarray
+        Resampled IQ samples
+    """
+    # Calculate the greatest common divisor for up/down sampling factors
+    gcd = np.gcd(int(fs_in), int(fs_out))
+    up_factor = int(fs_out / gcd)
+    down_factor = int(fs_in / gcd)
+    
+    # Design a lowpass FIR filter
+    # For baseband signal, cutoff needs to be at ±2 MHz (half of output bandwidth)
+    cutoff_freq = fs_out/2  # 2 MHz for 4 MHz bandwidth
+    nyq = max(fs_in * up_factor, fs_out * down_factor) / 2
+    
+    # Use a narrower transition width for better frequency response
+    width = 0.05 * cutoff_freq  # Transition width (100 kHz)
+    ripple_db = 80  # Increased stop band attenuation
+    
+    # Calculate filter taps - use more taps for sharper cutoff
+    n_taps = int(8 * ripple_db * fs_in / width)
+    if n_taps % 2 == 0:
+        n_taps += 1  # Ensure odd number of taps
+    
+    # Create symmetric filter around 0 Hz
+    taps = signal.firwin(n_taps, cutoff_freq / nyq, window='hamming')
+    
+    # Perform the resampling using polyphase filtering
+    resampled = signal.resample_poly(iq_samples, up_factor, down_factor, window=taps)
+    
+    
+    fig, ax = plot_iq_fft(resampled, fs_out, title="Resampled signal")
+    
+    return resampled, fig, ax
 
 
 

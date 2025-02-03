@@ -6,6 +6,48 @@ from brevitas.export import export_qonnx
 import brevitas.nn as qnn
 from torch import nn
 
+from brevitas.export import export_qonnx
+from qonnx.util.cleanup import cleanup as qonnx_cleanup
+from qonnx.core.modelwrapper import ModelWrapper
+from finn.transformation.qonnx.convert_qonnx_to_finn import ConvertQONNXtoFINN
+from qonnx.transformation.infer_shapes import InferShapes
+from qonnx.transformation.fold_constants import FoldConstants
+from qonnx.transformation.general import GiveReadableTensorNames, GiveUniqueNodeNames, RemoveStaticGraphInputs
+
+from finn.transformation.streamline import Streamline
+from qonnx.transformation.lower_convs_to_matmul import LowerConvsToMatMul
+from qonnx.transformation.bipolar_to_xnor import ConvertBipolarMatMulToXnorPopcount
+import finn.transformation.streamline.absorb as absorb
+from finn.transformation.streamline.reorder import MakeMaxPoolNHWC, MoveScalarLinearPastInvariants
+from qonnx.transformation.infer_data_layouts import InferDataLayouts
+from qonnx.transformation.general import RemoveUnusedTensors
+
+import finn.transformation.fpgadataflow.convert_to_hw_layers as to_hw
+from finn.transformation.fpgadataflow.create_dataflow_partition import (
+    CreateDataflowPartition,
+)
+from finn.transformation.move_reshape import RemoveCNVtoFCFlatten
+#from finn.transformation.fpgadataflow.specialize_layers import SpecializeLayers
+from qonnx.custom_op.registry import getCustomOp
+from qonnx.transformation.infer_data_layouts import InferDataLayouts
+
+"""
+from finn.util.basic import pynq_part_map
+# change this if you have a different PYNQ board, see list above
+pynq_board = "zcu111"
+fpga_part = pynq_part_map[pynq_board]
+target_clk_ns = 10
+requires Linux
+"""
+import finn.util.basic as finn_basic
+finn_basic.make_build_dir(prefix='C:\\Users\\topof\\OneDrive\\Desktop\\CES_Y5\\Group_Project\\git\\CoRSoC\\CNN\\Filtered_Channels')
+
+from finn.util.basic import make_build_dir
+from finn.util.visualization import showInNetron
+import os
+    
+build_dir = os.environ["FINN_BUILD_DIR"]
+
 class QCNNModel(nn.Module):
     def __init__(self, n_channels=2, n_classes=1):
         with torch.no_grad():
@@ -62,11 +104,61 @@ def quantize_model(fdir: str, bits: float, max: float, sign: bool):
 def to_onnx(qmodel: OrderedDict, odir: str):
     out = QCNNModel()
     out.load_state_dict(qmodel)
-    export_qonnx(out, torch.randn(1,2,128), odir)
+    export_qonnx(out, torch.randn(1, 2, 128), odir + ".onnx")
+
+    qonnx_cleanup(odir + ".onnx", out_file=odir + ".onnx")
+    model = ModelWrapper(odir + ".onnx")
+    model = model.transform(ConvertQONNXtoFINN())
+    model = model.transform(InferShapes())
+    model = model.transform(FoldConstants())
+    model = model.transform(GiveUniqueNodeNames())
+    model = model.transform(GiveReadableTensorNames())
+    model = model.transform(RemoveStaticGraphInputs())
+    model.save(odir + "_tidy.onnx")
+
+    model = ModelWrapper(odir + "_tidy.onnx")
+    model = model.transform(MoveScalarLinearPastInvariants())
+    model = model.transform(Streamline())
+    model = model.transform(MakeMaxPoolNHWC())
+    model = model.transform(absorb.AbsorbTransposeIntoMultiThreshold())
+    model = model.transform(ConvertBipolarMatMulToXnorPopcount())
+    model = model.transform(Streamline())
+    # absorb final add-mul nodes into TopK
+    model = model.transform(absorb.AbsorbScalarMulAddIntoTopK())
+    model = model.transform(InferDataLayouts())
+    model = model.transform(RemoveUnusedTensors())
+    model.save(odir + "_streamlined.onnx")
+
+    model = ModelWrapper(odir + "_streamlined.onnx")
+    model = model.transform(to_hw.InferBinaryMatrixVectorActivation())
+    model = model.transform(to_hw.InferQuantizedMatrixVectorActivation())
+    # TopK to LabelSelect
+    model = model.transform(to_hw.InferLabelSelectLayer())
+    # input quantization (if any) to standalone thresholding
+    model = model.transform(to_hw.InferThresholdingLayer())
+    model = model.transform(to_hw.InferConvInpGen())
+    model = model.transform(to_hw.InferStreamingMaxPool())
+    # get rid of Reshape(-1, 1) operation between hw nodes
+    model = model.transform(RemoveCNVtoFCFlatten())
+    # get rid of Tranpose -> Tranpose identity seq
+    model = model.transform(absorb.AbsorbConsecutiveTransposes())
+    # infer tensor data layouts
+    model = model.transform(InferDataLayouts())
+    parent_model = model.transform(CreateDataflowPartition())
+    parent_model.save(odir + "_dataflow_parent.onnx")
+    sdp_node = parent_model.get_nodes_by_op_type("StreamingDataflowPartition")[0]
+    sdp_node = getCustomOp(sdp_node)
+    dataflow_model_filename = sdp_node.get_nodeattr("model")
+    # save the dataflow partition with a different name for easier access
+    # and specialize the layers to HLS variants
+    dataflow_model = ModelWrapper(dataflow_model_filename)
+    #dataflow_model = dataflow_model.transform(SpecializeLayers(fpga_part)) - requires linux
+    dataflow_model.save(odir + "_dataflow_model.onnx")
 
 
-qmodel = quantize_model("CNN\\Filtered_Channels\\best_model__snr_0_buf_128.pt",8,1,True)
-to_onnx(qmodel, "CNN\\Filtered_Channels\\best_model__snr_0_buf_128.onnx")
+
+qmodel = quantize_model(build_dir + "best_model__snr_0_buf_128.pt",8,1,True)
+to_onnx(qmodel, build_dir + "best_model__snr_0_buf_128")
 
 
 

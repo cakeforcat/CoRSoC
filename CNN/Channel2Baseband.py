@@ -79,7 +79,7 @@ def bin2hdf5(buf = 128, stride = 12, nsamples_per_file = 10000, plot_spect = Fal
     #               # filepath of folder contain .bin files
     # bin_folder = os.listdir(bin_folder_fp)      # list of files in folder
     
-    bin_folder =['1010_day1.bin']#,'0101_day1.bin']# "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/1010_day1.bin"#"../sdr_wifi/"               # filepath of folder contain .bin files
+    bin_folder =['1010_day1.bin','0101_day1.bin']# "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/1010_day1.bin"#"../sdr_wifi/"               # filepath of folder contain .bin files
     
     
     # Filepath of folder that will contain the converted h5 files
@@ -161,17 +161,25 @@ def preprocessing(buf = 128, test_size = 0.1,):
                     for filt in filters:
                         
                         complex_array = data[i, :, 0] + 1j * data[i, :, 1]
+                        
+                        
+                        
                         channels =  fftconvolve(complex_array, channelfilter_coef[filt][0,:], mode='same')  
                         label = list(name.split('_')[0]) 
                         
-                        fig, ax = plot_iq_fft(channels, 20e6, title="IQ Spectrum of channel "+str(label))
+                        fig, ax = plot_iq_fft(complex_array, 20e6, title="IQ Spectrum of channel "+str(label))
                         plt.show()
                         
-                        resampled, fig, ax = resample_baseband_iq(channels, fs_in=20e6, fs_out=16e6)
+                        fig, ax = plot_iq_fft(channels, 20e6, title="Filtered IQ Spectrum of channel "+str(label))
                         plt.show()
                         
-                        fig, ax = centre(channels, filt, 2**12)
+                        centred, fig, ax = centre(channels, filt, buf)
                         plt.show()
+                        
+                        resampled, fig, ax = resample_baseband_iq(centred, fs_in=20e6, fs_out=8e6)
+                        plt.show()
+                        
+                        
                         
                         
  
@@ -224,7 +232,7 @@ def centre(signal, channel_no, buf):
     shifted_signal = signal * np.exp(-2j * np.pi * f_shift * t)
     
     # cutoff_freq = 2.5e6  # 2.5 MHz cutoff
-    cutoff_freq = 2e6
+    cutoff_freq = 4e6
     b, a = butter_lowpass(cutoff_freq, fs)
     filtered_signal = lfilter(b, a, shifted_signal)
     
@@ -232,7 +240,7 @@ def centre(signal, channel_no, buf):
     #plot_spectrum(shifted_signal, fs, 'Shifted Signal Spectrum (before filtering)')
     fig, ax = plot_iq_fft(filtered_signal, fs, title='Centred Signal')
     
-    return fig, ax
+    return filtered_signal, fig, ax
 
 def resample_baseband_iq(iq_samples, fs_in=5e6, fs_out=4e6):
     """
@@ -278,6 +286,7 @@ def resample_baseband_iq(iq_samples, fs_in=5e6, fs_out=4e6):
     # Perform the resampling using polyphase filtering
     resampled = signal.resample_poly(iq_samples, up_factor, down_factor, window=taps)
     
+    print(f'F_s out: {fs_out}')
     
     fig, ax = plot_iq_fft(resampled, fs_out, title="Resampled signal")
     
@@ -285,5 +294,5 @@ def resample_baseband_iq(iq_samples, fs_in=5e6, fs_out=4e6):
 
 
 
-bin2hdf5(buf=2**12, nsamples_per_file = 2, setniq2read = True)
-preprocessing(buf=2**12)
+bin2hdf5(buf=2**7, nsamples_per_file = 2, setniq2read = True)
+preprocessing(buf=2**7)

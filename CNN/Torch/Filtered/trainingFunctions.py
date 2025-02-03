@@ -98,8 +98,8 @@ def bin2hdf5(buf = 128, stride = 12, nsamples_per_file = 10000, plot_spect = Fal
 
     
     # Getting list of raw .bin files
-    #bin_folder_fp = "../sdr_wifi/"               # filepath of folder contain .bin files
-    bin_folder_fp = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/"#"../sdr_wifi/"               # filepath of folder contain .bin files
+    bin_folder_fp = "/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main/sdr_wifi/"               # filepath of folder contain .bin files
+    #bin_folder_fp = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/"#"../sdr_wifi/"               # filepath of folder contain .bin files
                   # filepath of folder contain .bin files
     bin_folder = os.listdir(bin_folder_fp)      # list of files in folder
     
@@ -170,8 +170,8 @@ def preprocessing(buf = 128, test_size = 0.1,):
 
     channelfilter_coef = {}
 
-    path = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/"
-    #path = ''
+    #path = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/"
+    path = '/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main'
 
     channelfilter_coef["ch_1"] = scipy.io.loadmat(path+'weights1.mat')["exp_W1"]
     channelfilter_coef["ch_2"] = scipy.io.loadmat(path+'weights2.mat')["exp_W2"]
@@ -642,7 +642,7 @@ def trainModel(buf, snr, epoch = 1):
    # Save training history to CSV
     history_df.to_csv(f'./results/training_history_{modelType}.csv', index=False)
     
-    testModel(modelType, f'./results/best_model_{modelType}.pt')
+    #testModel(modelType, f'./results/best_model_{modelType}.pt')
 
 def testModel(modelType, modelPath):
 
@@ -744,8 +744,8 @@ def calculate_metrics(y_true, y_pred):
         'f1_score': f1
     }
 
-for buf in buffers:
-    bin2hdf5(buf=buf, nsamples_per_file = samples, setniq2read = True)
-    preprocessing(buf=buf)
-    for snr in snr_powers:
-        trainModel(buf=buf, snr= snr, epoch = epoch)
+# for buf in buffers:
+    #bin2hdf5(buf=buf, nsamples_per_file = samples, setniq2read = True)
+    #preprocessing(buf=buf)
+for snr in snr_powers:
+    trainModel(buf=128, snr= snr, epoch = epoch)

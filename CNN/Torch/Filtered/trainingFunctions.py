@@ -19,28 +19,34 @@ from torch.utils.data import DataLoader, TensorDataset
 import pandas as pd
 from scipy.signal import fftconvolve
 import time
-from torchsummary import summary
+#from torchsummary import summary
 import scipy
+import scipy.io
 from sklearn import metrics
+from scipy.signal import fftconvolve
+import time
+import scipy
+from scipy import signal
+from scipy.signal import butter, lfilter
 
 
-# Check if MPS (Apple Silicon GPU) is available
-if torch.backends.mps.is_available():
-    print("MPS device is available.")
-    mps_device = torch.device("mps") 
-    # Create a tensor on the MPS device
-    x = torch.ones(1, device=mps_device)
-    print(x) 
-else:
-    print("MPS device not found.")
+# # Check if MPS (Apple Silicon GPU) is available
+# if torch.backends.mps.is_available():
+#     print("MPS device is available.")
+#     mps_device = torch.device("mps") 
+#     # Create a tensor on the MPS device
+#     x = torch.ones(1, device=mps_device)
+#     print(x) 
+# else:
+#     print("MPS device not found.")
 
 
 # training model 
 
-buffers = [512, 1024]#[128, 256, 512, 1024]
-samples = 1000
-snr_powers = [np.inf, 3]#, 5, 10, 15, 20]
-epoch = 10
+buffers = [128, 256, 512, 1024]
+samples = 100000
+snr_powers = [np.inf, 3, 5, 10, 15, 20]
+epoch = 100
 
 
 
@@ -171,8 +177,10 @@ def preprocessing(buf = 128, test_size = 0.1,):
     channelfilter_coef = {}
 
     #path = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/"
-    path = '/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main'
-
+    #path = '/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main/'
+    
+    path = '/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main/torch/filtered/'
+    
     channelfilter_coef["ch_1"] = scipy.io.loadmat(path+'weights1.mat')["exp_W1"]
     channelfilter_coef["ch_2"] = scipy.io.loadmat(path+'weights2.mat')["exp_W2"]
     channelfilter_coef["ch_3"] = scipy.io.loadmat(path+'weights3.mat')["exp_W3"]
@@ -180,6 +188,9 @@ def preprocessing(buf = 128, test_size = 0.1,):
     print("\n\nGot Filters\n\n")
 
     filters = ["ch_1","ch_2","ch_3","ch_4"]
+    
+    b, a = butter_lowpass()
+    resample_filt = resample_filter()
 
 
     for file in folder: 
@@ -199,8 +210,31 @@ def preprocessing(buf = 128, test_size = 0.1,):
                         
                         
                         complex_array = data[i, :, 0] + 1j * data[i, :, 1]
-                        channels =  fftconvolve(complex_array, channelfilter_coef[filt][0,:], mode='same')                    
-                        float_channel = np.stack((channels.real, channels.imag), axis=-1) 
+                        
+                        
+                        
+                        channels =  fftconvolve(complex_array, channelfilter_coef[filt][0,:], mode='same')  
+                        label = list(name.split('_')[0]) 
+                        
+                       # fig, ax = plot_iq_fft(complex_array, 20e6, title="IQ Spectrum of channel "+str(label))
+                        #plt.show()
+                        
+                        #fig, ax = plot_iq_fft(channels, 20e6, title="Filtered IQ Spectrum of channel "+str(label))
+                        #plt.show()
+                        
+                        
+                        #centred, fig, ax = centre_iq(channels, filt, buf, lp_filter=(a,b))
+                        centred = centre_iq(channels, filt, buf, lp_filter=(a,b))
+                        
+                        # plt.show()
+                        
+                        
+                        
+                        #resampled, fig, ax = resample_iq(centred, fs_in=20e6, fs_out=8e6, lp_filter=resample_filt)
+                        resampled = resample_iq(centred, fs_in=20e6, fs_out=8e6, lp_filter=resample_filt)
+                        #plt.show()
+                        
+                        float_channel = np.stack((resampled.real, resampled.imag), axis=-1) 
                         #channels = np.expand_dims(float_channel, axis=0)
                         
                         #dataset = np.concatenate((dataset, channels))
@@ -259,142 +293,268 @@ def preprocessing(buf = 128, test_size = 0.1,):
     # Close Files
     f_test.close()
     f_train.close()
+    
+# Design a low-pass filter at cut off 
+def butter_lowpass(cutoff=4e6, fs=16e6, order=5):
+    nyq = 0.5 * fs
+    normal_cutoff = cutoff / nyq
+    b, a = butter(order, normal_cutoff, btype='low', analog=False)
+    return b, a
+
+# Plotting the spectrum
+def plot_spectrum(sig, fs):
+    freqs = np.fft.fftfreq(len(sig), 1/fs)
+    spectrum = np.fft.fft(sig)
+    #fig, ax = plt.figure(figsize=(10, 4))
+    fig, ax = plt.subplots(figsize=(10, 4))
+    ax.plot(np.fft.fftshift(freqs)/1e6, 20 * np.log10(np.abs(np.fft.fftshift(spectrum))))
+    ax.set_title('Filtered Channel Centered at 0 Hz')
+    ax.set_xlabel('Frequency (MHz)')
+    ax.set_ylabel('Magnitude (dB)')
+    ax.grid(True)
+
+    plt.tight_layout()
+    
+    return fig, ax
+
+def centre_iq(signal, channel_no, buf, fs=20e6, cutoff_freq=5e6, lp_filter= None):
+    # Parameters
+    # fs = 20e6  # Sampling rate: 20 MS/s
+    #fs = 16e6
+    t = np.linspace(0, (buf/fs), buf) # Time vector for 1 second of data
+    channel_dic = {"ch_1": -7.5e6, "ch_2": -2.5e6, "ch_3": 2.5e6, "ch_4": 7.5e6}
+    #channel_dic = {"ch_1": -6e6, "ch_2": -2e6, "ch_3": 2e6, "ch_4": 6e6}
+    
+    # Choose the channel to center at 0 Hz (example: Channel 3 at 2.5 MHz)
+    f_shift = channel_dic[channel_no]  # Frequency to shift
+    
+    # Frequency shift to baseband
+    shifted_signal = signal * np.exp(-2j * np.pi * f_shift * t)
+    
+    # cutoff_freq = 2.5e6  # 2.5 MHz cutoff
+    #cutoff_freq = 4e6
+    #b, a = butter_lowpass(cutoff_freq, fs)
+    filtered_signal = lfilter(lp_filter[1], lp_filter[0], shifted_signal)
+    
+    #plot_spectrum(signal, fs, 'Original Signal Spectrum')
+    #plot_spectrum(shifted_signal, fs, 'Shifted Signal Spectrum (before filtering)')
+    #fig, ax = plot_iq_fft(filtered_signal, fs, title='Centred Signal')
+    
+    return filtered_signal#, fig, ax
+
+def resample_filter(fs_in=20e6, fs_out=8e6):
+    
+    # Calculate the greatest common divisor for up/down sampling factors
+    gcd = np.gcd(int(fs_in), int(fs_out))
+    up_factor = int(fs_out / gcd)
+    down_factor = int(fs_in / gcd)
+    
+    cutoff_freq = fs_out/2  # 2 MHz for 4 MHz bandwidth
+    nyq = max(fs_in * up_factor, fs_out * down_factor) / 2
+    
+    # Use a narrower transition width for better frequency response
+    width = 0.05 * cutoff_freq  # Transition width (100 kHz)
+    ripple_db = 80  # Increased stop band attenuation
+    
+    # # Calculate filter taps - use more taps for sharper cutoff
+    # n_taps = int(8 * ripple_db * fs_in / width)
+    # if n_taps % 2 == 0:
+    #     n_taps += 1  # Ensure odd number of taps
+    
+    n_taps = 150
+    # Create symmetric filter around 0 Hz
+    taps = signal.firwin(n_taps, cutoff_freq / nyq, window='hamming')
+    
+    return taps
+    
+
+def resample_iq(iq_samples, fs_in=20e6, fs_out=8e6, lp_filter = None):
+    """
+    Resample zero-centered baseband IQ samples while preserving frequency content
+    symmetrically around 0 Hz.
+    
+    Parameters:
+    -----------
+    iq_samples : numpy.ndarray
+        Complex IQ samples to resample
+    fs_in : float
+        Input sampling frequency in Hz (default: 5e6)
+    fs_out : float
+        Output sampling frequency in Hz (default: 4e6)
+    
+    Returns:
+    --------
+    numpy.ndarray
+        Resampled IQ samples
+    """
+    # Calculate the greatest common divisor for up/down sampling factors
+    gcd = np.gcd(int(fs_in), int(fs_out))
+    up_factor = int(fs_out / gcd)
+    down_factor = int(fs_in / gcd)
+    
+    # # Design a lowpass FIR filter
+    # # For baseband signal, cutoff needs to be at ±2 MHz (half of output bandwidth)
+    # cutoff_freq = fs_out/2  # 2 MHz for 4 MHz bandwidth
+    # nyq = max(fs_in * up_factor, fs_out * down_factor) / 2
+    
+    # # Use a narrower transition width for better frequency response
+    # width = 0.05 * cutoff_freq  # Transition width (100 kHz)
+    # ripple_db = 80  # Increased stop band attenuation
+    
+    # # Calculate filter taps - use more taps for sharper cutoff
+    # n_taps = int(8 * ripple_db * fs_in / width)
+    # if n_taps % 2 == 0:
+    #     n_taps += 1  # Ensure odd number of taps
+    
+    # # Create symmetric filter around 0 Hz
+    # taps = signal.firwin(n_taps, cutoff_freq / nyq, window='hamming')
+    
+    taps = lp_filter
+    
+    # Perform the resampling using polyphase filtering
+    resampled = signal.resample_poly(iq_samples, up_factor, down_factor, window=taps)
+    
+   # print(f'F_s out: {fs_out}')
+    
+   # fig, ax = plot_iq_fft(resampled, fs_out, title="Resampled signal")
+    
+    return resampled#, fig, ax
                 
 
 
-def calculate_mean_power(signals):
-    """
-    Calculate the mean power of all signals in the dataset.
-
-    Parameters:
-        signals (numpy array): Array of 2D signals.
-
-    Returns:
-        float: Mean power of all signals.
-    """
-    # Compute power of each signal (sum of squares of I/Q components)
-    power_per_signal = np.mean(np.sum(signals**2, axis=2), axis=1)  # Shape: (3000,)
-    
-    # Calculate the mean power across all signals
-    mean_power = np.mean(power_per_signal)
-    return mean_power
-
-def add_noise_to_signals(signals, snr_db, add_noise= True):
-    """
-    Add noise to a dataset of signals to achieve a specified SNR.
-
-    Parameters:
-        signals (numpy array): Array of shape.
-        snr_db (float): Desired signal-to-noise ratio in dB.
-
-    Returns:
-        numpy array: Signals with added noise.
-    """
-    
-    if not add_noise:
-        return signals
-    
-    # Calculate mean power of all signals
-    mean_power = calculate_mean_power(signals)
-
-    # Convert SNR from dB to linear scale
-    snr_linear = 10**(snr_db / 10)
-
-    # Calculate noise power
-    noise_power = mean_power / snr_linear
-
-    # Generate noise for each signal
-    noise = np.sqrt(noise_power) * np.random.normal(size=signals.shape)
-
-    # Add noise to the signals
-    noisy_signals = signals + noise
-    return noisy_signals
-
-# def add_noise_at_snr(samples, labels, target_snr_db, noise_floor_db=None):
+# def calculate_mean_power(signals):
 #     """
-#     Add noise to signal samples to achieve a specific SNR in dB.
-    
+#     Calculate the mean power of all signals in the dataset.
+
 #     Parameters:
-#     -----------
-#     samples : numpy.ndarray
-#         Array of shape (n, 2, 128) containing IQ samples
-#     labels : numpy.ndarray
-#         Array of shape (n) containing binary labels (0: no signal, 1: signal present)
-#     target_snr_db : float
-#         Desired Signal-to-Noise Ratio in dB
-#     noise_floor_db : float, optional
-#         Known noise floor in dB. If None, it will be calculated from noise-only samples
-        
+#         signals (numpy array): Array of 2D signals.
+
 #     Returns:
-#     --------
-#     numpy.ndarray
-#         New array of same shape as samples with noise added to signal samples
-#     dict
-#         Statistics about the noise addition process
+#         float: Mean power of all signals.
 #     """
-#     # Make a copy of the input samples to avoid modifying the original
-#     noisy_samples = samples.copy()
+#     # Compute power of each signal (sum of squares of I/Q components)
+#     power_per_signal = np.mean(np.sum(signals**2, axis=2), axis=1)  # Shape: (3000,)
     
-#     if np.isinf(target_snr_db):
-#         stats = {
-#             'num_signal_samples': np.sum(labels == 1),
-#             'noise_floor_db': noise_floor_db if noise_floor_db is not None else 'Not calculated',
-#             'target_snr_db': np.inf,
-#             'added_noise_power_db': -np.inf,
-#             'message': 'No noise added (infinite SNR requested)'
-#         }
-#         return noisy_samples, stats
+#     # Calculate the mean power across all signals
+#     mean_power = np.mean(power_per_signal)
+#     return mean_power
+
+# def add_noise_to_signals(signals, snr_db, add_noise= True):
+#     """
+#     Add noise to a dataset of signals to achieve a specified SNR.
+
+#     Parameters:
+#         signals (numpy array): Array of shape.
+#         snr_db (float): Desired signal-to-noise ratio in dB.
+
+#     Returns:
+#         numpy array: Signals with added noise.
+#     """
     
-#     # Get signal samples
-#     signal_indices = np.where(labels == 1)[0]
+#     if not add_noise:
+#         return signals
     
-#     if len(signal_indices) == 0:
-#         raise ValueError("No signal samples found in the dataset")
+#     # Calculate mean power of all signals
+#     mean_power = calculate_mean_power(signals)
+
+#     # Convert SNR from dB to linear scale
+#     snr_linear = 10**(snr_db / 10)
+
+#     # Calculate noise power
+#     noise_power = mean_power / snr_linear
+
+#     # Generate noise for each signal
+#     noise = np.sqrt(noise_power) * np.random.normal(size=signals.shape)
+
+#     # Add noise to the signals
+#     noisy_signals = signals + noise
+#     return noisy_signals
+
+def add_noise_at_snr(samples, labels, target_snr_db, noise_floor_db=None):
+    """
+    Add noise to signal samples to achieve a specific SNR in dB.
     
-#     # Calculate noise floor if not provided
-#     if noise_floor_db is None:
-#         noise_indices = np.where(labels == 0)[0]
-#         if len(noise_indices) == 0:
-#             raise ValueError("No noise-only samples found to calculate noise floor")
-#         noise_samples = samples[noise_indices]
-#         i_noise = noise_samples[:, :, 0]
-#         q_noise = noise_samples[:, :, 1]
-#         noise_power = np.mean(i_noise**2 + q_noise**2)
-#         noise_floor_db = 10 * np.log10(noise_power)
-    
-#     # Convert noise floor from dB to linear scale
-#     noise_power = 10**(noise_floor_db/10)
-    
-#     # Process each signal sample
-#     for idx in signal_indices:
-#         # Calculate signal power
-#         i_signal = samples[idx, :, 0]
-#         q_signal = samples[idx, :, 1]
-#         signal_power = np.mean(i_signal**2 + q_signal**2)
-#         current_snr_db = 10 * np.log10(signal_power / noise_power)
+    Parameters:
+    -----------
+    samples : numpy.ndarray
+        Array of shape (n, 2, 128) containing IQ samples
+    labels : numpy.ndarray
+        Array of shape (n) containing binary labels (0: no signal, 1: signal present)
+    target_snr_db : float
+        Desired Signal-to-Noise Ratio in dB
+    noise_floor_db : float, optional
+        Known noise floor in dB. If None, it will be calculated from noise-only samples
         
-#         # Calculate required noise power to achieve target SNR
-#         required_noise_power = signal_power / (10**(target_snr_db/10))
-        
-#         # Generate complex Gaussian noise
-#         noise_scaling = np.sqrt(required_noise_power/2)  # Divide by 2 for I and Q components
-#         noise_i = np.random.normal(0, noise_scaling, size=128)
-#         noise_q = np.random.normal(0, noise_scaling, size=128)
-        
-#         # Add noise to signal
-#         noisy_samples[idx, :, 0] = i_signal + noise_i
-#         noisy_samples[idx, :, 1] = q_signal + noise_q
+    Returns:
+    --------
+    numpy.ndarray
+        New array of same shape as samples with noise added to signal samples
+    dict
+        Statistics about the noise addition process
+    """
+    # Make a copy of the input samples to avoid modifying the original
+    noisy_samples = samples.copy()
     
-#     # Calculate statistics
-#     stats = {
-#         'num_signal_samples': len(signal_indices),
-#         'noise_floor_db': noise_floor_db,
-#         'target_snr_db': target_snr_db,
-#         'original_signal_power_db': 10 * np.log10(signal_power),
-#         'added_noise_power_db': 10 * np.log10(required_noise_power)
-#     }
+    if np.isinf(target_snr_db):
+        stats = {
+            'num_signal_samples': np.sum(labels == 1),
+            'noise_floor_db': noise_floor_db if noise_floor_db is not None else 'Not calculated',
+            'target_snr_db': np.inf,
+            'added_noise_power_db': -np.inf,
+            'message': 'No noise added (infinite SNR requested)'
+        }
+        return noisy_samples, stats
     
-#     return noisy_samples, stats
+    # Get signal samples
+    signal_indices = np.where(labels == 1)[0]
+    
+    if len(signal_indices) == 0:
+        raise ValueError("No signal samples found in the dataset")
+    
+    # Calculate noise floor if not provided
+    if noise_floor_db is None:
+        noise_indices = np.where(labels == 0)[0]
+        if len(noise_indices) == 0:
+            raise ValueError("No noise-only samples found to calculate noise floor")
+        noise_samples = samples[noise_indices]
+        i_noise = noise_samples[:, :, 0]
+        q_noise = noise_samples[:, :, 1]
+        noise_power = np.mean(i_noise**2 + q_noise**2)
+        noise_floor_db = 10 * np.log10(noise_power)
+    
+    # Convert noise floor from dB to linear scale
+    noise_power = 10**(noise_floor_db/10)
+    
+    # Process each signal sample
+    for idx in signal_indices:
+        # Calculate signal power
+        i_signal = samples[idx, :, 0]
+        q_signal = samples[idx, :, 1]
+        signal_power = np.mean(i_signal**2 + q_signal**2)
+        current_snr_db = 10 * np.log10(signal_power / noise_power)
+        
+        # Calculate required noise power to achieve target SNR
+        required_noise_power = signal_power / (10**(target_snr_db/10))
+        
+        # Generate complex Gaussian noise
+        noise_scaling = np.sqrt(required_noise_power/2)  # Divide by 2 for I and Q components
+        noise_i = np.random.normal(0, noise_scaling, size=128)
+        noise_q = np.random.normal(0, noise_scaling, size=128)
+        
+        # Add noise to signal
+        noisy_samples[idx, :, 0] = i_signal + noise_i
+        noisy_samples[idx, :, 1] = q_signal + noise_q
+    
+    # Calculate statistics
+    stats = {
+        'num_signal_samples': len(signal_indices),
+        'noise_floor_db': noise_floor_db,
+        'target_snr_db': target_snr_db,
+        'original_signal_power_db': 10 * np.log10(signal_power),
+        'added_noise_power_db': 10 * np.log10(required_noise_power)
+    }
+    
+    return noisy_samples, stats
 
 
 def add_noise_at_snr(samples, labels, target_snr_db, noise_floor_db=None):
@@ -538,7 +698,7 @@ def trainModel(buf, snr, epoch = 1):
     counter = 0
     
     print(model)
-    summary(model,(2,dim))
+    #summary(model,(2,dim))
     
     history_df = pd.DataFrame(columns=['epoch', 'accuracy','loss','precision', 'recall', 'F1-Score'])
 
@@ -744,8 +904,8 @@ def calculate_metrics(y_true, y_pred):
         'f1_score': f1
     }
 
-# for buf in buffers:
-    #bin2hdf5(buf=buf, nsamples_per_file = samples, setniq2read = True)
-    #preprocessing(buf=buf)
-for snr in snr_powers:
-    trainModel(buf=128, snr= snr, epoch = epoch)
+for buf in buffers:
+    bin2hdf5(buf=buf, nsamples_per_file = samples, setniq2read = True)
+    preprocessing(buf=buf)
+    for snr in snr_powers:
+        trainModel(buf=buf, snr= snr, epoch = epoch)

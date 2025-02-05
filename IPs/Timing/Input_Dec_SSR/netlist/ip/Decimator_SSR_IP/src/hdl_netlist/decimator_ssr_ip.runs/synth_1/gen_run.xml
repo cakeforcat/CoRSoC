@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xczu28dr-ffvg1517-2-e" LaunchTime="1738796274">
+  <File Type="PA-TCL" Name="decimator_ssr_ip.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="decimator_ssr_ip_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="decimator_ssr_ip_reports.tcl"/>
+  <File Type="RDS-RDS" Name="decimator_ssr_ip.vds"/>
+  <File Type="RDS-UTIL" Name="decimator_ssr_ip_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="decimator_ssr_ip_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="decimator_ssr_ip.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="decimator_ssr_ip_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="decimator_ssr_ip_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/sysgen/conv_pkg.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="ImportPath" Val="$PPRDIR/../sysgen/conv_pkg.v"/>
+        <Attr Name="ImportTime" Val="1738796089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sysgen/convert_type.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../sysgen/convert_type.v"/>
+        <Attr Name="ImportTime" Val="1738796089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sysgen/decimator_ssr_ip_entity_declarations.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../sysgen/decimator_ssr_ip_entity_declarations.v"/>
+        <Attr Name="ImportTime" Val="1738796089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sysgen/synth_reg.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../sysgen/synth_reg.v"/>
+        <Attr Name="ImportTime" Val="1738796089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sysgen/synth_reg_w_init.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../sysgen/synth_reg_w_init.v"/>
+        <Attr Name="ImportTime" Val="1738796089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sysgen/xlclockdriver_rd.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../sysgen/xlclockdriver_rd.v"/>
+        <Attr Name="ImportTime" Val="1738796089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sysgen/decimator_ssr_ip.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../sysgen/decimator_ssr_ip.v"/>
+        <Attr Name="ImportTime" Val="1738796089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="decimator_ssr_ip"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/sysgen/decimator_ssr_ip_clock.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../sysgen/decimator_ssr_ip_clock.xdc"/>
+        <Attr Name="ImportTime" Val="1738796089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/constrs_1/imports/sysgen/decimator_ssr_ip.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../sysgen/decimator_ssr_ip.xdc"/>
+        <Attr Name="ImportTime" Val="1738796089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="decimator_ssr_ip_fir_compiler_v7_2_i0"/>
+</GenRun>

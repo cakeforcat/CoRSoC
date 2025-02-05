@@ -39,11 +39,7 @@ fpga_part = pynq_part_map[pynq_board]
 target_clk_ns = 10
 requires Linux
 """
-import finn.util.basic as finn_basic
-finn_basic.make_build_dir(prefix='C:\\Users\\topof\\OneDrive\\Desktop\\CES_Y5\\Group_Project\\git\\CoRSoC\\CNN\\Filtered_Channels')
 
-from finn.util.basic import make_build_dir
-from finn.util.visualization import showInNetron
 import os
     
 build_dir = os.environ["FINN_BUILD_DIR"]
@@ -155,10 +151,8 @@ def to_onnx(qmodel: OrderedDict, odir: str):
     #dataflow_model = dataflow_model.transform(SpecializeLayers(fpga_part)) - requires linux
     dataflow_model.save(odir + "_dataflow_model.onnx")
 
-
-
 qmodel = quantize_model(build_dir + "best_model__snr_0_buf_128.pt",8,1,True)
-to_onnx(qmodel, build_dir + "best_model__snr_0_buf_128")
+to_onnx(qmodel,build_dir + "best_model__snr_0_buf_128")
 
 
 

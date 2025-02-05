@@ -19,7 +19,7 @@
 				"docker-build"
 			],
 			"python": {
-				"file": "CNN/Filtered_Channels/quantize.py"
+				"file": "CNN/Filtered_Channels/example_brevitas2FINN.py"
 			}
 		}
 	]

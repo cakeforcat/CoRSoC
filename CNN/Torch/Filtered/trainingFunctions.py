@@ -43,9 +43,9 @@ from scipy.signal import butter, lfilter
 
 # training model 
 
-buffers = [128, 256, 512, 1024]
-samples = 100000
-snr_powers = [np.inf, 3, 5, 10, 15, 20]
+buffers = [1024]#[128, 256, 512, 1024]
+samples = 12500#100000
+snr_powers = [3,5]#[np.inf, 3, 5, 10, 15, 20]
 epoch = 100
 
 
@@ -321,7 +321,7 @@ def centre_iq(signal, channel_no, buf, fs=20e6, cutoff_freq=5e6, lp_filter= None
     # Parameters
     # fs = 20e6  # Sampling rate: 20 MS/s
     #fs = 16e6
-    t = np.linspace(0, (buf/fs), buf) # Time vector for 1 second of data
+    t = np.linspace(0, (buf/fs), buf) # number of samples buf sin time setps of buf/fs
     channel_dic = {"ch_1": -7.5e6, "ch_2": -2.5e6, "ch_3": 2.5e6, "ch_4": 7.5e6}
     #channel_dic = {"ch_1": -6e6, "ch_2": -2e6, "ch_3": 2e6, "ch_4": 6e6}
     
@@ -473,93 +473,6 @@ def resample_iq(iq_samples, fs_in=20e6, fs_out=8e6, lp_filter = None):
 def add_noise_at_snr(samples, labels, target_snr_db, noise_floor_db=None):
     """
     Add noise to signal samples to achieve a specific SNR in dB.
-    
-    Parameters:
-    -----------
-    samples : numpy.ndarray
-        Array of shape (n, 2, 128) containing IQ samples
-    labels : numpy.ndarray
-        Array of shape (n) containing binary labels (0: no signal, 1: signal present)
-    target_snr_db : float
-        Desired Signal-to-Noise Ratio in dB
-    noise_floor_db : float, optional
-        Known noise floor in dB. If None, it will be calculated from noise-only samples
-        
-    Returns:
-    --------
-    numpy.ndarray
-        New array of same shape as samples with noise added to signal samples
-    dict
-        Statistics about the noise addition process
-    """
-    # Make a copy of the input samples to avoid modifying the original
-    noisy_samples = samples.copy()
-    
-    if np.isinf(target_snr_db):
-        stats = {
-            'num_signal_samples': np.sum(labels == 1),
-            'noise_floor_db': noise_floor_db if noise_floor_db is not None else 'Not calculated',
-            'target_snr_db': np.inf,
-            'added_noise_power_db': -np.inf,
-            'message': 'No noise added (infinite SNR requested)'
-        }
-        return noisy_samples, stats
-    
-    # Get signal samples
-    signal_indices = np.where(labels == 1)[0]
-    
-    if len(signal_indices) == 0:
-        raise ValueError("No signal samples found in the dataset")
-    
-    # Calculate noise floor if not provided
-    if noise_floor_db is None:
-        noise_indices = np.where(labels == 0)[0]
-        if len(noise_indices) == 0:
-            raise ValueError("No noise-only samples found to calculate noise floor")
-        noise_samples = samples[noise_indices]
-        i_noise = noise_samples[:, :, 0]
-        q_noise = noise_samples[:, :, 1]
-        noise_power = np.mean(i_noise**2 + q_noise**2)
-        noise_floor_db = 10 * np.log10(noise_power)
-    
-    # Convert noise floor from dB to linear scale
-    noise_power = 10**(noise_floor_db/10)
-    
-    # Process each signal sample
-    for idx in signal_indices:
-        # Calculate signal power
-        i_signal = samples[idx, :, 0]
-        q_signal = samples[idx, :, 1]
-        signal_power = np.mean(i_signal**2 + q_signal**2)
-        current_snr_db = 10 * np.log10(signal_power / noise_power)
-        
-        # Calculate required noise power to achieve target SNR
-        required_noise_power = signal_power / (10**(target_snr_db/10))
-        
-        # Generate complex Gaussian noise
-        noise_scaling = np.sqrt(required_noise_power/2)  # Divide by 2 for I and Q components
-        noise_i = np.random.normal(0, noise_scaling, size=128)
-        noise_q = np.random.normal(0, noise_scaling, size=128)
-        
-        # Add noise to signal
-        noisy_samples[idx, :, 0] = i_signal + noise_i
-        noisy_samples[idx, :, 1] = q_signal + noise_q
-    
-    # Calculate statistics
-    stats = {
-        'num_signal_samples': len(signal_indices),
-        'noise_floor_db': noise_floor_db,
-        'target_snr_db': target_snr_db,
-        'original_signal_power_db': 10 * np.log10(signal_power),
-        'added_noise_power_db': 10 * np.log10(required_noise_power)
-    }
-    
-    return noisy_samples, stats
-
-
-def add_noise_at_snr(samples, labels, target_snr_db, noise_floor_db=None):
-    """
-    Add noise to signal samples to achieve a specific SNR in dB.
     Handles infinite SNR by returning original signals unchanged.
     
     Parameters:
@@ -637,6 +550,7 @@ def add_noise_at_snr(samples, labels, target_snr_db, noise_floor_db=None):
         noisy_samples[idx, 0, :] = i_signal + noise_i
         noisy_samples[idx, 1, :] = q_signal + noise_q
     
+    
     # Calculate statistics
     stats = {
         'num_signal_samples': len(signal_indices),
@@ -663,12 +577,28 @@ def trainModel(buf, snr, epoch = 1):
     dset = h5py.File(dset_fp, 'r')
     X = dset['X'][()]
     y = dset['y'][()]
+    
+    X_noisey =[] 
+    
+    no_samples = X.shape[0] 
+    
+    X_noisey = np.ndarray(X.shape)
+    
+    for i in range(5):
+        
+        start = 0 if not i else int(i*no_samples/5)
+        end = int((i+1)*(no_samples/5))
+        
+        print(f'Start: {start}, End: {end}')
+        
+        X_noisey[start:end] = add_noise_at_snr(X[start:end], y[start:end], np.inf)[0]
+  
 
     #Model parameters
     n_classes = 1       #number of classes for SDR case
     dim = X.shape[1]    #Number of I/Q samples being taken as input
     n_channels = 2      #One channel for I and the other for Q
-    X_noisey = add_noise_at_snr(X, y, snr)[0]
+ 
     
     print(f'X.Shape: {X_noisey.shape}, y.shape: {len(y)}')
     
@@ -694,7 +624,7 @@ def trainModel(buf, snr, epoch = 1):
     # Training loop
     num_epochs = epoch
     best_accuracy = 0
-    patience = 50
+    patience = 20
     counter = 0
     
     print(model)
@@ -907,5 +837,5 @@ def calculate_metrics(y_true, y_pred):
 for buf in buffers:
     bin2hdf5(buf=buf, nsamples_per_file = samples, setniq2read = True)
     preprocessing(buf=buf)
-    for snr in snr_powers:
-        trainModel(buf=buf, snr= snr, epoch = epoch)
+    # for snr in snr_powers:
+    trainModel(buf=buf, snr=[np.inf,3,5,10,15], epoch = epoch)

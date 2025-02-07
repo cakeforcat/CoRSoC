@@ -1,13 +1,15 @@
+clear all
+
 % Clock domain
-fs = 16e6;
+fs = 64e6;
 
 % Test tone
-f = 0.2*16e6;
+f = 16e6;
 
 % Parameters
 N = 2048;
 n = 0:N-1;
-
+    
 % Windows
 Hamming = 0.54 - 0.46 * cos(2*pi*n/N);
 Norm_Ham = sum(Hamming);

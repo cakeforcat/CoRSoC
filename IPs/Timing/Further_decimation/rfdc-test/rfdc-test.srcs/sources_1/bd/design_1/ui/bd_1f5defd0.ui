@@ -1,0 +1,70 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.441941",
+   "Default View_TopLeft":"634,-50",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace port sysref_in -pg 1 -lvl 0 -x -50 -y 380 -defaultsOSRD
+preplace port adc0_clk -pg 1 -lvl 0 -x -50 -y 20 -defaultsOSRD
+preplace port vin0_01 -pg 1 -lvl 0 -x -50 -y 320 -defaultsOSRD
+preplace port adc1_clk -pg 1 -lvl 0 -x -50 -y 50 -defaultsOSRD
+preplace port vin1_01 -pg 1 -lvl 0 -x -50 -y 350 -defaultsOSRD
+preplace port dac0_clk -pg 1 -lvl 0 -x -50 -y 80 -defaultsOSRD
+preplace port vout00 -pg 1 -lvl 0 -x -50 -y 440 -defaultsOSRD -left
+preplace inst usp_rf_data_converter_0 -pg 1 -lvl 3 -x 1180 -y 350 -defaultsOSRD
+preplace inst proc_sys_reset_99M -pg 1 -lvl 1 -x 320 -y 480 -defaultsOSRD
+preplace inst axi_interconnect_0 -pg 1 -lvl 2 -x 820 -y 200 -defaultsOSRD
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x 320 -y 160 -defaultsOSRD
+preplace inst Decimator_0 -pg 1 -lvl 4 -x 1630 -y 230 -defaultsOSRD
+preplace inst axi_dma -pg 1 -lvl 9 -x 3350 -y 210 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 10 -x 3650 -y 210 -defaultsOSRD
+preplace inst proc_sys_reset_adc0_64M -pg 1 -lvl 4 -x 1630 -y 440 -defaultsOSRD
+preplace inst axis_data_fifo_up -pg 1 -lvl 8 -x 2990 -y 190 -defaultsOSRD
+preplace inst fir_compiler_0 -pg 1 -lvl 5 -x 2030 -y 230 -defaultsOSRD
+preplace inst axis_data_fifo_down -pg 1 -lvl 7 -x 2650 -y 280 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 6 -x 2360 -y 440 -defaultsOSRD
+preplace inst proc_sys_reset_16M -pg 1 -lvl 8 -x 2990 -y 470 -defaultsOSRD
+preplace inst axis_subset_converter_0 -pg 1 -lvl 6 -x 2360 -y 250 -defaultsOSRD
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 1 660 160n
+preplace netloc proc_sys_reset_1_peripheral_aresetn 1 1 9 680 360 1000 100 N 100 1850 300 2210 330 2530 370 N 370 3190 310 3510
+preplace netloc usp_rf_data_converter_0_clk_adc0 1 0 10 30 260 670 370 1010 110 1400 110 1840 160 2200 170 2520 190 2800 280 3180 110 3510
+preplace netloc usp_rf_data_converter_0_clk_dac0 1 2 2 1020 600 1340
+preplace netloc usp_rf_data_converter_0_m00_axis_tdata 1 3 1 1350 210n
+preplace netloc usp_rf_data_converter_0_m00_axis_tvalid 1 3 1 1360 230n
+preplace netloc usp_rf_data_converter_0_m01_axis_tdata 1 3 1 1420 190n
+preplace netloc usp_rf_data_converter_0_m01_axis_tvalid 1 3 1 1370 210n
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 2 10 270 620
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 8 30 580 610 580 960 610 1410 550 N 550 N 550 N 550 2770
+preplace netloc clk_wiz_0_clk_out1 1 6 2 2520 380 2810J
+preplace netloc clk_wiz_0_locked 1 0 8 20 620 NJ 620 NJ 620 1420J 540 NJ 540 NJ 540 2510 510 N
+preplace netloc proc_sys_reset_16M_peripheral_aresetn 1 7 2 2820 290 3160
+preplace netloc adc0_clk_1 1 0 3 NJ 20 NJ 20 1020J
+preplace netloc adc1_clk_1 1 0 3 -20J 40 NJ 40 990J
+preplace netloc axi_dma_M_AXI_S2MM 1 9 1 N 190
+preplace netloc axi_interconnect_0_M00_AXI 1 2 1 970 170n
+preplace netloc axi_interconnect_0_M01_AXI 1 2 7 960 90 NJ 90 NJ 90 N 90 N 90 N 90 3190
+preplace netloc axi_smc_M00_AXI 1 0 11 30 50 NJ 50 NJ 50 NJ 50 N 50 N 50 N 50 N 50 NJ 50 N 50 3780
+preplace netloc axis_data_fifo_1_M_AXIS 1 8 1 N 190
+preplace netloc dac0_clk_1 1 0 3 -20J 60 NJ 60 980J
+preplace netloc sysref_in_1 1 0 3 NJ 380 NJ 380 1020J
+preplace netloc usp_rf_data_converter_0_m00_axis 1 3 1 1410 190n
+preplace netloc usp_rf_data_converter_0_m01_axis 1 3 1 1340 170n
+preplace netloc usp_rf_data_converter_0_vout00 1 0 4 -30 590 N 590 N 590 1360
+preplace netloc vin0_01_1 1 0 3 -30J 340 NJ 340 960J
+preplace netloc vin1_01_1 1 0 3 NJ 350 NJ 350 NJ
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 N 120
+preplace netloc Decimator_0_m_axis 1 4 1 NJ 220
+preplace netloc fir_compiler_0_M_AXIS_DATA 1 5 1 N 230
+preplace netloc axis_subset_converter_0_M_AXIS 1 6 1 N 250
+preplace netloc axis_data_fifo_down_M_AXIS 1 7 1 2770 160n
+levelinfo -pg 1 -50 320 820 1180 1630 2030 2360 2650 2990 3350 3650 3800
+pagesize -pg 1 -db -bbox -sgen -170 -720 3800 1490
+"
+}
+{
+   "da_axi4_cnt":"3",
+   "da_axi4_s2mm_cnt":"3",
+   "da_rf_converter_usp_cnt":"1",
+   "da_zynq_ultra_ps_e_cnt":"1"
+}

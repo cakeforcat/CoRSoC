@@ -1,0 +1,38 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.721112",
+   "Default View_TopLeft":"-423,-7",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace portBus Din -pg 1 -lvl 0 -x 0 -y 50 -defaultsOSRD
+preplace portBus Dout -pg 1 -lvl 2 -x 260 -y 250 -defaultsOSRD
+preplace portBus Dout1 -pg 1 -lvl 2 -x 260 -y 350 -defaultsOSRD
+preplace portBus Dout2 -pg 1 -lvl 2 -x 260 -y 450 -defaultsOSRD
+preplace portBus Dout3 -pg 1 -lvl 2 -x 260 -y 550 -defaultsOSRD
+preplace portBus Dout4 -pg 1 -lvl 2 -x 260 -y 650 -defaultsOSRD
+preplace portBus Dout5 -pg 1 -lvl 2 -x 260 -y 50 -defaultsOSRD
+preplace portBus Dout6 -pg 1 -lvl 2 -x 260 -y 150 -defaultsOSRD
+preplace portBus Dout7 -pg 1 -lvl 2 -x 260 -y 750 -defaultsOSRD
+preplace inst xlslice_10 -pg 1 -lvl 1 -x 130 -y 250 -defaultsOSRD
+preplace inst xlslice_11 -pg 1 -lvl 1 -x 130 -y 350 -defaultsOSRD
+preplace inst xlslice_12 -pg 1 -lvl 1 -x 130 -y 450 -defaultsOSRD
+preplace inst xlslice_13 -pg 1 -lvl 1 -x 130 -y 550 -defaultsOSRD
+preplace inst xlslice_14 -pg 1 -lvl 1 -x 130 -y 650 -defaultsOSRD
+preplace inst xlslice_8 -pg 1 -lvl 1 -x 130 -y 50 -defaultsOSRD
+preplace inst xlslice_9 -pg 1 -lvl 1 -x 130 -y 150 -defaultsOSRD
+preplace inst xlslice_15 -pg 1 -lvl 1 -x 130 -y 750 -defaultsOSRD
+preplace netloc usp_rf_data_converter_0_m00_axis_tdata 1 0 1 20 50n
+preplace netloc xlslice_10_Dout 1 1 1 NJ 250
+preplace netloc xlslice_11_Dout 1 1 1 NJ 350
+preplace netloc xlslice_12_Dout 1 1 1 NJ 450
+preplace netloc xlslice_13_Dout 1 1 1 NJ 550
+preplace netloc xlslice_14_Dout 1 1 1 NJ 650
+preplace netloc xlslice_8_Dout 1 1 1 NJ 50
+preplace netloc xlslice_9_Dout 1 1 1 NJ 150
+preplace netloc xlslice_15_Dout 1 1 1 NJ 750
+levelinfo -pg 1 0 130 260
+pagesize -pg 1 -db -bbox -sgen -120 0 390 800
+"
+}
+

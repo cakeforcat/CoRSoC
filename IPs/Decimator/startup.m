@@ -1,3 +1,5 @@
+clear all
+
 % Clock domain
 fclk = 64e6; % fs
 

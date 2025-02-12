@@ -163,7 +163,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE.FREQ_HZ">99999001</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE.FREQ_HZ">64000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -370,7 +370,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE.CLK_DOMAIN">design_1_zynq_ultra_ps_e_0_0_pl_clk0</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE.CLK_DOMAIN">design_1_usp_rf_data_converter_0_0_clk_adc0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -2064,7 +2064,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_S2MM.FREQ_HZ">99999001</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_S2MM.FREQ_HZ">64000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -2253,7 +2253,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_S2MM.CLK_DOMAIN">design_1_zynq_ultra_ps_e_0_0_pl_clk0</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_S2MM.CLK_DOMAIN">design_1_usp_rf_data_converter_0_0_clk_adc0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -2669,7 +2669,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXIS_S2MM.FREQ_HZ">99999001</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXIS_S2MM.FREQ_HZ">64000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -2687,7 +2687,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXIS_S2MM.CLK_DOMAIN">design_1_zynq_ultra_ps_e_0_0_pl_clk0</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXIS_S2MM.CLK_DOMAIN">design_1_usp_rf_data_converter_0_0_clk_adc0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -3366,7 +3366,7 @@ immediate dependency {} format bool minimum {} maximum {}} value true}}}}}}</spi
           <spirit:name>FREQ_HZ</spirit:name>
           <spirit:displayName>M_AXI_S2MM_CLK clock frequency</spirit:displayName>
           <spirit:description>M_AXI_S2MM_CLK clock frequency</spirit:description>
-          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.M_AXI_S2MM_CLK.FREQ_HZ">99999001</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.M_AXI_S2MM_CLK.FREQ_HZ">64000000</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_TOLERANCE_HZ</spirit:name>
@@ -3388,7 +3388,7 @@ immediate dependency {} format bool minimum {} maximum {}} value true}}}}}}</spi
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_S2MM_CLK.CLK_DOMAIN">design_1_zynq_ultra_ps_e_0_0_pl_clk0</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_S2MM_CLK.CLK_DOMAIN">design_1_usp_rf_data_converter_0_0_clk_adc0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -3443,7 +3443,7 @@ immediate dependency {} format bool minimum {} maximum {}} value true}}}}}}</spi
           <spirit:name>FREQ_HZ</spirit:name>
           <spirit:displayName>S_AXI_LITE_ACLK clock frequency</spirit:displayName>
           <spirit:description>S_AXI_LITE_ACLK clock frequency</spirit:description>
-          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.FREQ_HZ">99999001</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.FREQ_HZ">64000000</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_TOLERANCE_HZ</spirit:name>
@@ -3465,7 +3465,7 @@ immediate dependency {} format bool minimum {} maximum {}} value true}}}}}}</spi
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.CLK_DOMAIN">design_1_zynq_ultra_ps_e_0_0_pl_clk0</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.CLK_DOMAIN">design_1_usp_rf_data_converter_0_0_clk_adc0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -5077,11 +5077,11 @@ Note: This value must be greater than or equal to the largest expected packet to
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Feb 06 12:48:28 UTC 2025</spirit:value>
+            <spirit:value>Wed Feb 12 15:20:32 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2d323112</spirit:value>
+            <spirit:value>9:db5594ba</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -5095,11 +5095,11 @@ Note: This value must be greater than or equal to the largest expected packet to
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Feb 06 12:41:38 UTC 2025</spirit:value>
+            <spirit:value>Wed Feb 12 15:14:27 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2d323112</spirit:value>
+            <spirit:value>9:db5594ba</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -5140,7 +5140,7 @@ Note: This value must be greater than or equal to the largest expected packet to
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:914abd1c</spirit:value>
+            <spirit:value>9:25c488e2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -5156,11 +5156,11 @@ Note: This value must be greater than or equal to the largest expected packet to
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Feb 06 12:41:38 UTC 2025</spirit:value>
+            <spirit:value>Wed Feb 12 15:14:27 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:914abd1c</spirit:value>
+            <spirit:value>9:25c488e2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -5204,7 +5204,7 @@ Note: This value must be greater than or equal to the largest expected packet to
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2d323112</spirit:value>
+            <spirit:value>9:db5594ba</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -5220,11 +5220,11 @@ Note: This value must be greater than or equal to the largest expected packet to
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Feb 06 12:41:38 UTC 2025</spirit:value>
+            <spirit:value>Wed Feb 12 15:14:27 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2d323112</spirit:value>
+            <spirit:value>9:db5594ba</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -8920,16 +8920,16 @@ Note: This value must be greater than or equal to the largest expected packet to
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S2MM_STS_RESET_OUT_N.POLARITY" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.CLK_DOMAIN" xilinx:valueSource="default_prop" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.FREQ_HZ" xilinx:valueSource="user_prop" xilinx:valuePermission="bd"/>
-        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.HAS_TKEEP" xilinx:valuePermission="bd"/>
-        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.HAS_TLAST" xilinx:valuePermission="bd"/>
-        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.HAS_TREADY" xilinx:valuePermission="bd"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.HAS_TKEEP" xilinx:valueSource="propagated" xilinx:valuePermission="bd"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.HAS_TLAST" xilinx:valueSource="constant_prop" xilinx:valuePermission="bd"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.HAS_TREADY" xilinx:valueSource="propagated" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.HAS_TSTRB" xilinx:valueSource="constant" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.LAYERED_METADATA" xilinx:valueSource="constant_prop" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.PHASE" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.TDATA_NUM_BYTES" xilinx:valuePermission="bd"/>
-        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.TDEST_WIDTH" xilinx:valuePermission="bd"/>
-        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.TID_WIDTH" xilinx:valuePermission="bd"/>
-        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.TUSER_WIDTH" xilinx:valuePermission="bd"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.TDEST_WIDTH" xilinx:valueSource="constant_prop" xilinx:valuePermission="bd"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.TID_WIDTH" xilinx:valueSource="constant_prop" xilinx:valuePermission="bd"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_S2MM.TUSER_WIDTH" xilinx:valueSource="constant_prop" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_STS.CLK_DOMAIN" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_STS.FREQ_HZ" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXIS_STS.HAS_TKEEP" xilinx:valuePermission="bd"/>

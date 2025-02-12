@@ -1,6 +1,6 @@
 -------------------------------------
 | Tool Version : Vivado v.2024.1
-| Date         : Fri Feb  7 22:36:43 2025
+| Date         : Wed Feb 12 15:34:54 2025
 | Host         : DESKTOP-M1FI91A
 | Design       : design_1
 | Device       : xczu28dr-ffvg1517-2-E-
@@ -20,9 +20,9 @@ Number of global clocks: 4
 	Number of BUFG_PS: 1
 	Number of BUFG_FABRIC: 0
 	Running suboptimal placement checker for 2 BUFG_GT clocks (and their loads)...
+		WARNING: suboptimal BUFG_GT clock net design_1_i/usp_rf_data_converter_0/inst/i_design_1_usp_rf_data_converter_0_0_bufg_gt_ctrl/clk_adc0, source in region X5Y0 has locked load in region (1, 0)
 		No sub-optimality found
-		No sub-optimality found
-	Running suboptimal placement checker for 2 clocks (and their loads) which do not have the CLOCK_LOW_FANOUT property but have a fanout less than 2000...
+	Running suboptimal placement checker for 3 clocks (and their loads) which do not have the CLOCK_LOW_FANOUT property but have a fanout less than 2000...
 Pre-CRP Checker took 0 secs
 
 ********************************
@@ -31,7 +31,7 @@ Clock Net Route Info (CRP Input)
 Clock 1: design_1_i/usp_rf_data_converter_0/inst/i_design_1_usp_rf_data_converter_0_0_bufg_gt_ctrl/clk_adc0
 	Clock source type: BUFG_GT
 	Clock source region: X5Y0
-	Clock regions with locked loads: X5Y0 X5Y1 X5Y2 X5Y3 X5Y4 X5Y5 
+	Clock regions with locked loads: X1Y0 X5Y0 X5Y1 X5Y2 X5Y3 X5Y4 X5Y5 
 	initial rect ((1, 0), (5, 5))
 
 Clock 2: design_1_i/zynq_ultra_ps_e_0/inst/pl_clk0

@@ -9,8 +9,7 @@
       "scoped": "true",
       "synth_flow_mode": "None",
       "tool_version": "2024.1",
-      "validated": "true",
-      "gen_directory": "."
+      "validated": "true"
     },
     "design_tree": {
       "clk_map": {

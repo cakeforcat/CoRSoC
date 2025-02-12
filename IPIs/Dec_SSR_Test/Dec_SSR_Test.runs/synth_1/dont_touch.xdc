@@ -31,30 +31,6 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_ax
 # IP: bd/design_1/ip/design_1_proc_sys_reset_1_0/design_1_proc_sys_reset_1_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_proc_sys_reset_1_0 || ORIG_REF_NAME==design_1_proc_sys_reset_1_0} -quiet] -quiet
 
-# IP: bd/design_1/ip/design_1_xlslice_0_8/design_1_xlslice_0_8.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_0_8 || ORIG_REF_NAME==design_1_xlslice_0_8} -quiet] -quiet
-
-# IP: bd/design_1/ip/design_1_xlslice_1_0/design_1_xlslice_1_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_1_0 || ORIG_REF_NAME==design_1_xlslice_1_0} -quiet] -quiet
-
-# IP: bd/design_1/ip/design_1_xlslice_2_0/design_1_xlslice_2_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_2_0 || ORIG_REF_NAME==design_1_xlslice_2_0} -quiet] -quiet
-
-# IP: bd/design_1/ip/design_1_xlslice_3_0/design_1_xlslice_3_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_3_0 || ORIG_REF_NAME==design_1_xlslice_3_0} -quiet] -quiet
-
-# IP: bd/design_1/ip/design_1_xlslice_4_0/design_1_xlslice_4_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_4_0 || ORIG_REF_NAME==design_1_xlslice_4_0} -quiet] -quiet
-
-# IP: bd/design_1/ip/design_1_xlslice_5_0/design_1_xlslice_5_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_5_0 || ORIG_REF_NAME==design_1_xlslice_5_0} -quiet] -quiet
-
-# IP: bd/design_1/ip/design_1_xlslice_6_0/design_1_xlslice_6_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_6_0 || ORIG_REF_NAME==design_1_xlslice_6_0} -quiet] -quiet
-
-# IP: bd/design_1/ip/design_1_xlslice_0_0/design_1_xlslice_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_0_0 || ORIG_REF_NAME==design_1_xlslice_0_0} -quiet] -quiet
-
 # IP: bd/design_1/ip/design_1_xlslice_0_10/design_1_xlslice_0_10.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_0_10 || ORIG_REF_NAME==design_1_xlslice_0_10} -quiet] -quiet
 
@@ -79,8 +55,32 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xl
 # IP: bd/design_1/ip/design_1_xlslice_7_1/design_1_xlslice_7_1.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_7_1 || ORIG_REF_NAME==design_1_xlslice_7_1} -quiet] -quiet
 
-# IP: bd/design_1/ip/design_1_Decimator_SSR_0_1/design_1_Decimator_SSR_0_1.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_Decimator_SSR_0_1 || ORIG_REF_NAME==design_1_Decimator_SSR_0_1} -quiet] -quiet
+# IP: bd/design_1/ip/design_1_xlslice_0_0/design_1_xlslice_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_0_0 || ORIG_REF_NAME==design_1_xlslice_0_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_xlslice_0_8/design_1_xlslice_0_8.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_0_8 || ORIG_REF_NAME==design_1_xlslice_0_8} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_xlslice_1_0/design_1_xlslice_1_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_1_0 || ORIG_REF_NAME==design_1_xlslice_1_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_xlslice_2_0/design_1_xlslice_2_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_2_0 || ORIG_REF_NAME==design_1_xlslice_2_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_xlslice_3_0/design_1_xlslice_3_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_3_0 || ORIG_REF_NAME==design_1_xlslice_3_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_xlslice_4_0/design_1_xlslice_4_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_4_0 || ORIG_REF_NAME==design_1_xlslice_4_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_xlslice_5_0/design_1_xlslice_5_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_5_0 || ORIG_REF_NAME==design_1_xlslice_5_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_xlslice_6_0/design_1_xlslice_6_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlslice_6_0 || ORIG_REF_NAME==design_1_xlslice_6_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_Decimator_SSR_1_0/design_1_Decimator_SSR_1_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_Decimator_SSR_1_0 || ORIG_REF_NAME==design_1_Decimator_SSR_1_0} -quiet] -quiet
 
 # IP: bd/design_1/ip/design_1_auto_cc_0/design_1_auto_cc_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_auto_cc_0 || ORIG_REF_NAME==design_1_auto_cc_0} -quiet] -quiet
@@ -94,4 +94,4 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_au
 # IP: bd/design_1/ip/design_1_s00_mmu_0/design_1_s00_mmu_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_s00_mmu_0 || ORIG_REF_NAME==design_1_s00_mmu_0} -quiet] -quiet
 
-# XDC: c:/CoRSoC/Decimator_SSR_timing/rfdc-test/rfdc-test.gen/sources_1/bd/design_1/design_1_ooc.xdc
+# XDC: c:/Users/andre/CoRSoC/IPIs/Dec_SSR_Test/Dec_SSR_Test.gen/sources_1/bd/design_1/design_1_ooc.xdc

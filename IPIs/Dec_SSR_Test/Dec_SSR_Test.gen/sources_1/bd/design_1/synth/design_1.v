@@ -2,7 +2,7 @@
 //Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-//Date        : Thu Feb  6 18:11:53 2025
+//Date        : Wed Feb 12 19:12:49 2025
 //Host        : DESKTOP-M1FI91A running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -474,14 +474,14 @@ module design_1
         .m_axis_tvalid(Decimator_SSR_0_m_axis_TVALID),
         .s_axis_im_tvalid(usp_rf_data_converter_0_m01_axis_tvalid),
         .s_axis_re_tvalid(usp_rf_data_converter_0_m00_axis_tvalid));
-  design_1_proc_sys_reset_0_0 proc_sys_reset_0
+  design_1_proc_sys_reset_0_0 proc_sys_reset_99M
        (.aux_reset_in(1'b1),
         .dcm_locked(1'b1),
         .ext_reset_in(zynq_ultra_ps_e_0_pl_resetn0),
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(proc_sys_reset_0_peripheral_aresetn),
         .slowest_sync_clk(zynq_ultra_ps_e_0_pl_clk0));
-  design_1_proc_sys_reset_1_0 proc_sys_reset_1
+  design_1_proc_sys_reset_1_0 proc_sys_reset_adc0
        (.aux_reset_in(1'b1),
         .dcm_locked(1'b1),
         .ext_reset_in(zynq_ultra_ps_e_0_pl_resetn0),
@@ -1640,8 +1640,8 @@ module input_dec_ssr_imp_14N9LN5
   input [0:0]s_axis_im_tvalid;
   input [0:0]s_axis_re_tvalid;
 
-  wire [31:0]Decimator_SSR_0_m_axis_TDATA;
-  wire [0:0]Decimator_SSR_0_m_axis_TVALID;
+  wire [31:0]Decimator_SSR_1_m_axis_TDATA;
+  wire [0:0]Decimator_SSR_1_m_axis_TVALID;
   wire [127:0]Din_1;
   wire [15:0]dec_ssr_im_input_Dout;
   wire [15:0]dec_ssr_im_input_Dout1;
@@ -1665,16 +1665,16 @@ module input_dec_ssr_imp_14N9LN5
   wire [0:0]usp_rf_data_converter_0_m01_axis_tvalid;
 
   assign Din_1 = Din[127:0];
-  assign m_axis_tdata[31:0] = Decimator_SSR_0_m_axis_TDATA;
-  assign m_axis_tvalid[0] = Decimator_SSR_0_m_axis_TVALID;
+  assign m_axis_tdata[31:0] = Decimator_SSR_1_m_axis_TDATA;
+  assign m_axis_tvalid[0] = Decimator_SSR_1_m_axis_TVALID;
   assign usp_rf_data_converter_0_clk_adc0 = clk;
   assign usp_rf_data_converter_0_m00_axis_tvalid = s_axis_re_tvalid[0];
   assign usp_rf_data_converter_0_m01_axis_tdata = Din1[127:0];
   assign usp_rf_data_converter_0_m01_axis_tvalid = s_axis_im_tvalid[0];
-  design_1_Decimator_SSR_0_1 Decimator_SSR_0
+  design_1_Decimator_SSR_1_0 Decimator_SSR_0
        (.clk(usp_rf_data_converter_0_clk_adc0),
-        .m_axis_tdata(Decimator_SSR_0_m_axis_TDATA),
-        .m_axis_tvalid(Decimator_SSR_0_m_axis_TVALID),
+        .m_axis_tdata(Decimator_SSR_1_m_axis_TDATA),
+        .m_axis_tvalid(Decimator_SSR_1_m_axis_TVALID),
         .s_axis_im_tdata_0(dec_ssr_im_input_Dout),
         .s_axis_im_tdata_1(dec_ssr_im_input_Dout1),
         .s_axis_im_tdata_2(dec_ssr_im_input_Dout2),
@@ -1683,7 +1683,7 @@ module input_dec_ssr_imp_14N9LN5
         .s_axis_im_tdata_5(dec_ssr_im_input_Dout5),
         .s_axis_im_tdata_6(dec_ssr_im_input_Dout6),
         .s_axis_im_tdata_7(dec_ssr_im_input_Dout7),
-        .s_axis_im_tvalid(usp_rf_data_converter_0_m01_axis_tvalid),
+        .s_axis_im_tvalid(usp_rf_data_converter_0_m00_axis_tvalid),
         .s_axis_re_tdata_0(dec_ssr_re_input_Dout),
         .s_axis_re_tdata_1(dec_ssr_re_input_Dout1),
         .s_axis_re_tdata_2(dec_ssr_re_input_Dout2),
@@ -1692,7 +1692,7 @@ module input_dec_ssr_imp_14N9LN5
         .s_axis_re_tdata_5(dec_ssr_re_input_Dout5),
         .s_axis_re_tdata_6(dec_ssr_re_input_Dout6),
         .s_axis_re_tdata_7(dec_ssr_re_input_Dout7),
-        .s_axis_re_tvalid(usp_rf_data_converter_0_m00_axis_tvalid));
+        .s_axis_re_tvalid(usp_rf_data_converter_0_m01_axis_tvalid));
   dec_ssr_im_input_imp_N1LJJA dec_ssr_im_input
        (.Din(usp_rf_data_converter_0_m01_axis_tdata),
         .Dout(dec_ssr_im_input_Dout),

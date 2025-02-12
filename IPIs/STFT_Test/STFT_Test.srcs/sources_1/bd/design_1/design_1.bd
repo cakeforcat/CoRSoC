@@ -7,7 +7,8 @@
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2024.1"
+      "tool_version": "2024.1",
+      "validated": "true"
     },
     "design_tree": {
       "usp_rf_data_converter_0": "",
@@ -21,7 +22,9 @@
         "m00_couplers": {
           "auto_cc": ""
         },
-        "m01_couplers": {}
+        "m01_couplers": {
+          "auto_cc": ""
+        }
       },
       "zynq_ultra_ps_e_0": "",
       "axi_dma": "",
@@ -706,11 +709,61 @@
                 "direction": "I"
               }
             },
+            "components": {
+              "auto_cc": {
+                "vlnv": "xilinx.com:ip:axi_clock_converter:2.1",
+                "ip_revision": "30",
+                "xci_name": "design_1_auto_cc_1",
+                "xci_path": "ip\\design_1_auto_cc_1\\design_1_auto_cc_1.xci",
+                "inst_hier_path": "axi_interconnect_0/m01_couplers/auto_cc",
+                "interface_ports": {
+                  "S_AXI": {
+                    "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+                    "mode": "Slave",
+                    "bridges": [
+                      "M_AXI"
+                    ]
+                  }
+                }
+              }
+            },
             "interface_nets": {
-              "m01_couplers_to_m01_couplers": {
+              "auto_cc_to_m01_couplers": {
+                "interface_ports": [
+                  "M_AXI",
+                  "auto_cc/M_AXI"
+                ]
+              },
+              "m01_couplers_to_auto_cc": {
                 "interface_ports": [
                   "S_AXI",
-                  "M_AXI"
+                  "auto_cc/S_AXI"
+                ]
+              }
+            },
+            "nets": {
+              "M_ACLK_1": {
+                "ports": [
+                  "M_ACLK",
+                  "auto_cc/m_axi_aclk"
+                ]
+              },
+              "M_ARESETN_1": {
+                "ports": [
+                  "M_ARESETN",
+                  "auto_cc/m_axi_aresetn"
+                ]
+              },
+              "S_ACLK_1": {
+                "ports": [
+                  "S_ACLK",
+                  "auto_cc/s_axi_aclk"
+                ]
+              },
+              "S_ARESETN_1": {
+                "ports": [
+                  "S_ARESETN",
+                  "auto_cc/s_axi_aresetn"
                 ]
               }
             }
@@ -4212,10 +4265,7 @@
         "ports": [
           "proc_sys_reset_99M/peripheral_aresetn",
           "axi_interconnect_0/ARESETN",
-          "axi_interconnect_0/S00_ARESETN",
-          "axi_smc/aresetn",
-          "axi_dma/axi_resetn",
-          "axi_interconnect_0/M01_ARESETN"
+          "axi_interconnect_0/S00_ARESETN"
         ]
       },
       "proc_sys_reset_1_peripheral_aresetn": {
@@ -4223,7 +4273,10 @@
           "proc_sys_reset_adc0/peripheral_aresetn",
           "usp_rf_data_converter_0/s_axi_aresetn",
           "axi_interconnect_0/M00_ARESETN",
-          "system_ila_0/resetn"
+          "system_ila_0/resetn",
+          "axi_interconnect_0/M01_ARESETN",
+          "axi_dma/axi_resetn",
+          "axi_smc/aresetn"
         ]
       },
       "usp_rf_data_converter_0_clk_adc0": {
@@ -4237,7 +4290,11 @@
           "system_ila_0/clk",
           "zynq_ultra_ps_e_0/saxihp0_fpd_aclk",
           "STFT_0/clk",
-          "Decimator_0/clk"
+          "Decimator_0/clk",
+          "axi_smc/aclk",
+          "axi_dma/s_axi_lite_aclk",
+          "axi_dma/m_axi_s2mm_aclk",
+          "axi_interconnect_0/M01_ACLK"
         ]
       },
       "usp_rf_data_converter_0_clk_dac0": {
@@ -4276,12 +4333,8 @@
           "axi_interconnect_0/ACLK",
           "axi_interconnect_0/S00_ACLK",
           "proc_sys_reset_99M/slowest_sync_clk",
-          "axi_dma/m_axi_s2mm_aclk",
-          "axi_smc/aclk",
-          "axi_interconnect_0/M01_ACLK",
           "zynq_ultra_ps_e_0/maxihpm0_fpd_aclk",
-          "zynq_ultra_ps_e_0/maxihpm1_fpd_aclk",
-          "axi_dma/s_axi_lite_aclk"
+          "zynq_ultra_ps_e_0/maxihpm1_fpd_aclk"
         ]
       },
       "zynq_ultra_ps_e_0_pl_resetn0": {

@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/CoRSoC/STFT_timing/rfdc-test/rfdc-test.runs/synth_1'
+HD_PWD='C:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x372AD4F56E61B22A",
+      "boundary_crc": "0x372AD4F511236E02",
       "design_src": "SBD",
       "device": "xczu28dr-ffvg1517-2-e",
       "name": "bd_6e42",
@@ -9,8 +9,7 @@
       "scoped": "true",
       "synth_flow_mode": "None",
       "tool_version": "2024.1",
-      "validated": "true",
-      "gen_directory": "."
+      "validated": "true"
     },
     "design_tree": {
       "clk_map": {
@@ -56,7 +55,7 @@
             "value_src": "const_prop"
           },
           "CLK_DOMAIN": {
-            "value": "design_1_zynq_ultra_ps_e_0_0_pl_clk0",
+            "value": "design_1_usp_rf_data_converter_0_0_clk_adc0",
             "value_src": "default_prop"
           },
           "DATA_WIDTH": {
@@ -64,7 +63,7 @@
             "value_src": "auto_prop"
           },
           "FREQ_HZ": {
-            "value": "99999001",
+            "value": "64000000",
             "value_src": "user_prop"
           },
           "HAS_BRESP": {
@@ -191,7 +190,7 @@
             "value_src": "default"
           },
           "CLK_DOMAIN": {
-            "value": "design_1_zynq_ultra_ps_e_0_0_pl_clk0",
+            "value": "design_1_usp_rf_data_converter_0_0_clk_adc0",
             "value_src": "default_prop"
           },
           "DATA_WIDTH": {
@@ -199,7 +198,7 @@
             "value_src": "ip"
           },
           "FREQ_HZ": {
-            "value": "99999001",
+            "value": "64000000",
             "value_src": "user_prop"
           },
           "HAS_BRESP": {
@@ -307,11 +306,11 @@
             "value_src": "constant"
           },
           "CLK_DOMAIN": {
-            "value": "design_1_zynq_ultra_ps_e_0_0_pl_clk0",
+            "value": "design_1_usp_rf_data_converter_0_0_clk_adc0",
             "value_src": "default_prop"
           },
           "FREQ_HZ": {
-            "value": "99999001",
+            "value": "64000000",
             "value_src": "user_prop"
           },
           "FREQ_TOLERANCE_HZ": {

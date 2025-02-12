@@ -9,8 +9,7 @@
       "scoped": "true",
       "synth_flow_mode": "None",
       "tool_version": "2024.1",
-      "validated": "true",
-      "gen_directory": "."
+      "validated": "true"
     },
     "design_tree": {
       "ila_lib": "",
@@ -50,7 +49,7 @@
           },
           "CLK_DOMAIN": {
             "value": "design_1_usp_rf_data_converter_0_0_clk_adc0",
-            "value_src": "default_prop"
+            "value_src": "default"
           },
           "DATA_WIDTH": {
             "value": "32",
@@ -181,7 +180,7 @@
           },
           "CLK_DOMAIN": {
             "value": "design_1_usp_rf_data_converter_0_0_clk_adc0",
-            "value_src": "default_prop"
+            "value_src": "default"
           },
           "DATA_WIDTH": {
             "value": "32",

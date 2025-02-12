@@ -60,18 +60,18 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="design_1_zynq_ultra_ps_e_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_usp_rf_data_converter_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_1_zynq_ultra_ps_e_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_proc_sys_reset_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_1_auto_cc_1"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_xbar_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_1_axi_smc_2"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_1_auto_cc_1"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_Decimator_0_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_1_axi_smc_2"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_proc_sys_reset_1_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_axi_dma_2"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_1_axis_data_fifo_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_1_axis_subset_converter_0_1"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_axis_data_fifo_0_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_1_axis_subset_converter_0_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_1_axis_data_fifo_1_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_proc_sys_reset_2_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_clk_wiz_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_1_fir_compiler_0_0"/>

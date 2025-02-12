@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "C:/CoRSoC/Further_decimation/rfdc-test/rfdc-test.runs/impl_1/design_1_wrapper.tcl"
+  variable script "C:/Users/andre/CoRSoC/IPIs/Further_Dec_Test/Further_Dec_Test.runs/impl_1/design_1_wrapper.tcl"
   variable category "vivado_impl"
 }
 
@@ -105,7 +105,7 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
-  set_param bd.open.in_stealth_mode 4
+  set_param bd.open.in_stealth_mode 1
   set_param runs.launchOptions { -jobs 8  }
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xczu28dr-ffvg1517-2-e
@@ -114,23 +114,23 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/CoRSoC/Further_decimation/rfdc-test/rfdc-test.cache/wt [current_project]
-  set_property parent.project_path C:/CoRSoC/Further_decimation/rfdc-test/rfdc-test.xpr [current_project]
+  set_property webtalk.parent_dir C:/Users/andre/CoRSoC/IPIs/Further_Dec_Test/Further_Dec_Test.cache/wt [current_project]
+  set_property parent.project_path C:/Users/andre/CoRSoC/IPIs/Further_Dec_Test/Further_Dec_Test.xpr [current_project]
   set_property ip_repo_paths {
-  C:/Users/andre/Year5/19520/IP/Input_Decimator/netlist/ip
-  C:/Users/andre/Year5/19520/IP/STFT/netlist/ip
-  C:/Users/andre/Year5/19520/IP/Input_Decimator_SSR/netlist/ip
+  C:/Users/andre/CoRSoC/IPs/Decimator/netlist/ip
+  C:/Users/andre/CoRSoC/IPs/Decimator_SSR/netlist/ip
+  C:/Users/andre/CoRSoC/IPs/STFT/netlist/ip
 } [current_project]
   update_ip_catalog
-  set_property ip_output_repo C:/CoRSoC/Further_decimation/rfdc-test/rfdc-test.cache/ip [current_project]
+  set_property ip_output_repo C:/Users/andre/CoRSoC/IPIs/Further_Dec_Test/Further_Dec_Test.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/CoRSoC/Further_decimation/rfdc-test/rfdc-test.runs/synth_1/design_1_wrapper.dcp
+  add_files -quiet C:/Users/andre/CoRSoC/IPIs/Further_Dec_Test/Further_Dec_Test.runs/synth_1/design_1_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-  add_files C:/CoRSoC/Further_decimation/rfdc-test/rfdc-test.srcs/sources_1/bd/design_1/design_1.bd
+  add_files C:/Users/andre/CoRSoC/IPIs/Further_Dec_Test/Further_Dec_Test.srcs/sources_1/bd/design_1/design_1.bd
   set_param project.isImplRun false
 OPTRACE "read constraints: implementation" START { }
 OPTRACE "read constraints: implementation" END { }

@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/CoRSoC/Further_decimation/rfdc-test/rfdc-test.runs/impl_1'
+HD_PWD='C:/Users/andre/CoRSoC/IPIs/Further_Dec_Test/Further_Dec_Test.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

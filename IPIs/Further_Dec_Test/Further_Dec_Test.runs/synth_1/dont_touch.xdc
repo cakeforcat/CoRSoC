@@ -19,9 +19,6 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_ax
 # IP: bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_zynq_ultra_ps_e_0_0 || ORIG_REF_NAME==design_1_zynq_ultra_ps_e_0_0} -quiet] -quiet
 
-# IP: bd/design_1/ip/design_1_Decimator_0_1/design_1_Decimator_0_1.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_Decimator_0_1 || ORIG_REF_NAME==design_1_Decimator_0_1} -quiet] -quiet
-
 # IP: bd/design_1/ip/design_1_axi_dma_2/design_1_axi_dma_2.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_dma_2 || ORIG_REF_NAME==design_1_axi_dma_2} -quiet] -quiet
 
@@ -49,6 +46,9 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_pr
 # IP: bd/design_1/ip/design_1_axis_subset_converter_0_1/design_1_axis_subset_converter_0_1.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axis_subset_converter_0_1 || ORIG_REF_NAME==design_1_axis_subset_converter_0_1} -quiet] -quiet
 
+# IP: bd/design_1/ip/design_1_Decimator_0_2/design_1_Decimator_0_2.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_Decimator_0_2 || ORIG_REF_NAME==design_1_Decimator_0_2} -quiet] -quiet
+
 # IP: bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_auto_ds_0 || ORIG_REF_NAME==design_1_auto_ds_0} -quiet] -quiet
 
@@ -61,4 +61,4 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_au
 # IP: bd/design_1/ip/design_1_auto_cc_1/design_1_auto_cc_1.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_auto_cc_1 || ORIG_REF_NAME==design_1_auto_cc_1} -quiet] -quiet
 
-# XDC: c:/CoRSoC/Further_decimation/rfdc-test/rfdc-test.gen/sources_1/bd/design_1/design_1_ooc.xdc
+# XDC: c:/Users/andre/CoRSoC/IPIs/Further_Dec_Test/Further_Dec_Test.gen/sources_1/bd/design_1/design_1_ooc.xdc

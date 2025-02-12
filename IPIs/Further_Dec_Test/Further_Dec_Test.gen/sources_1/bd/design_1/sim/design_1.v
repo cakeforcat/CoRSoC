@@ -2,7 +2,7 @@
 //Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-//Date        : Mon Feb 10 17:36:26 2025
+//Date        : Wed Feb 12 18:29:34 2025
 //Host        : DESKTOP-M1FI91A running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -202,7 +202,7 @@ module design_1
   assign vin1_01_1_V_P = vin1_01_v_p;
   assign vout00_v_n = usp_rf_data_converter_0_vout00_V_N;
   assign vout00_v_p = usp_rf_data_converter_0_vout00_V_P;
-  design_1_Decimator_0_1 Decimator_0
+  design_1_Decimator_0_2 Decimator_0
        (.clk(usp_rf_data_converter_0_clk_adc0),
         .m_axis_tdata(Decimator_0_m_axis_TDATA),
         .m_axis_tvalid(Decimator_0_m_axis_TVALID),

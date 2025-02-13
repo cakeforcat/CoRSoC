@@ -56,7 +56,7 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param bd.open.in_stealth_mode 2
+set_param bd.open.in_stealth_mode 4
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xczu28dr-ffvg1517-2-e
 
@@ -89,6 +89,16 @@ set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_proc_sys_reset_0_0/design_1_proc_sys_reset_0_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_proc_sys_reset_0_0/design_1_proc_sys_reset_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_xbar_0/design_1_xbar_0_ooc.xdc]
+set_property used_in_synthesis false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_pc_0/design_1_auto_pc_0_ooc.xdc]
+set_property used_in_synthesis false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_0/design_1_auto_cc_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_0/design_1_auto_cc_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_0/design_1_auto_cc_0_ooc.xdc]
+set_property used_in_synthesis false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_1/design_1_auto_cc_1_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_1/design_1_auto_cc_1_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_1/design_1_auto_cc_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_axi_dma_2/design_1_axi_dma_2.xdc]
@@ -116,19 +126,9 @@ set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_system_ila_0_0/bd_0/bd_f60c_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_system_ila_0_0/design_1_system_ila_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_STFT_0_1/constrs/stft_ip.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_Decimator_0_2/decimator_ip_dist_mem_gen_v8_0_i0/decimator_ip_dist_mem_gen_v8_0_i0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_Decimator_0_2/decimator_ip_fir_compiler_v7_2_i0/constraints/fir_compiler_v7_2.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_Decimator_0_2/decimator_ip_dist_mem_gen_v8_0_i0/decimator_ip_dist_mem_gen_v8_0_i0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_Decimator_0_2/constrs/decimator_ip.xdc]
-set_property used_in_synthesis false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_pc_0/design_1_auto_pc_0_ooc.xdc]
-set_property used_in_synthesis false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_0/design_1_auto_cc_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_0/design_1_auto_cc_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_0/design_1_auto_cc_0_ooc.xdc]
-set_property used_in_synthesis false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_1/design_1_auto_cc_1_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_1/design_1_auto_cc_1_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_auto_cc_1/design_1_auto_cc_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/design_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/STFT_Test/STFT_Test.gen/sources_1/bd/design_1/ip/design_1_usp_rf_data_converter_0_0/data/startup.elf]
 

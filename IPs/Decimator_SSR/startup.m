@@ -1,3 +1,5 @@
+clear all
+
 Fclk = 64e6;
 SSRin = 8;
 Fp  = (1/8)*1;        % passband-edge normalized frequency

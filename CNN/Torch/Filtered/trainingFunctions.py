@@ -44,9 +44,9 @@ from scipy.signal import butter, lfilter
 # training model 
 
 buffers = [1024]#[128, 256, 512, 1024]
-samples = 12500#100000
+samples = 10#12500#100000
 snr_powers = [3,5]#[np.inf, 3, 5, 10, 15, 20]
-epoch = 100
+epoch = 10
 
 
 
@@ -57,12 +57,12 @@ class CNNModel(nn.Module):
         
         self.conv1 = nn.Conv1d(in_channels=n_channels, out_channels=16, kernel_size=2)
         self.conv2 = nn.Conv1d(16, 16, kernel_size=3)
-        self.pool1 = nn.MaxPool1d(kernel_size=2, stride=2)
+        self.pool1 = nn.AvgPool1d(kernel_size=2, stride=2)
         self.conv3 = nn.Conv1d(16, 32, kernel_size=5)
         self.conv4 = nn.Conv1d(32, 32, kernel_size=5)
-        self.pool2 = nn.MaxPool1d(kernel_size=2, stride=2)
+        self.pool2 = nn.AvgPool1d(kernel_size=2, stride=2)
         self.flatten = nn.Flatten()
-        self.leaky_relu = nn.LeakyReLU(0.1)
+        self.relu = nn.ReLU()
         
         # Determine the correct flattened size dynamically
         with torch.no_grad():
@@ -72,21 +72,21 @@ class CNNModel(nn.Module):
         
         self.dense1 = nn.Linear(flattened_size, 64)
         self.out = nn.Linear(64, n_classes)
-        self.leaky_relu = nn.LeakyReLU(0.1)
+        self.relu = nn.LeakyReLU(0.1)
         
     def _get_conv_output(self, x):
-        x = self.leaky_relu(self.conv1(x))
-        x = self.leaky_relu(self.conv2(x))
+        x = self.relu(self.conv1(x))
+        x = self.relu(self.conv2(x))
         x = self.pool1(x)
-        x = self.leaky_relu(self.conv3(x))
-        x = self.leaky_relu(self.conv4(x))
+        x = self.relu(self.conv3(x))
+        x = self.relu(self.conv4(x))
         x = self.pool2(x)
         x = self.flatten(x)
         return x
         
     def forward(self, x):
         x = self._get_conv_output(x)
-        x = self.leaky_relu(self.dense1(x))
+        x = self.relu(self.dense1(x))
         x = self.out(x)
         return x
 
@@ -104,8 +104,8 @@ def bin2hdf5(buf = 128, stride = 12, nsamples_per_file = 10000, plot_spect = Fal
 
     
     # Getting list of raw .bin files
-    bin_folder_fp = "/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main/sdr_wifi/"               # filepath of folder contain .bin files
-    #bin_folder_fp = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/"#"../sdr_wifi/"               # filepath of folder contain .bin files
+    #bin_folder_fp = "/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main/sdr_wifi/"               # filepath of folder contain .bin files
+    bin_folder_fp = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/deepsense-spectrum-sensing-datasets-main/sdr_wifi/"#"../sdr_wifi/"               # filepath of folder contain .bin files
                   # filepath of folder contain .bin files
     bin_folder = os.listdir(bin_folder_fp)      # list of files in folder
     
@@ -176,10 +176,10 @@ def preprocessing(buf = 128, test_size = 0.1,):
 
     channelfilter_coef = {}
 
-    #path = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/"
+    path = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/Code/"
     #path = '/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main/'
     
-    path = '/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main/torch/filtered/'
+   # path = '/users/kfb20135/project5/deepsense-spectrum-sensing-datasets-main/torch/filtered/'
     
     channelfilter_coef["ch_1"] = scipy.io.loadmat(path+'weights1.mat')["exp_W1"]
     channelfilter_coef["ch_2"] = scipy.io.loadmat(path+'weights2.mat')["exp_W2"]

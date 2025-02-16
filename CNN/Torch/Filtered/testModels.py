@@ -377,17 +377,56 @@ def generate_bpsk_signal(num_channels=1, num_samples=1024, bandwidth=8e6, sample
 
 def testModel(modelType, modelPath):
 
-    # #Open dataset .h5 file either for training or testing
+    # # #Open dataset .h5 file either for training or testing
     # dset_fp = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/colab/sdr_wifi_test.hdf5"#'./sdr_wifi_' + "test" + '.hdf5'
     # dset = h5py.File(dset_fp, 'r')
     # X = dset['X'][()]
     # y = dset['y'][()]
     # dim = X.shape[1]
     
-    dim = 52
+    # h5_folder = '/Users/frankconway/Downloads/2018.01/GOLD_XYZ_OSC.0001_1024.hdf5'
+
+    # f = h5py.File(h5_folder, 'r')
+
+    # X = f['X'][:,0:410,:]
+
+    dim = 128
     
-    X = generate_bpsk_signal(100,dim,snr_db=-900)
-    y = np.ones(100)
+    
+    
+    # X_complex = scipy.io.loadmat('/Users/frankconway/Downloads/noise_g0.0dB_att10dB_freq867.4MHz_0.mat')["IQ_samples"]
+    
+    # print(X_complex.shape)
+    
+    # n = 8192000 // 410  # Floor division to make sure it's divisible
+
+    # n = 100
+    # # Trim the vector
+    # X_complex = X_complex[:, :n * 410]
+
+    # # Reshape to (n, 402)
+    # X_complex = X_complex.reshape(n, 410)
+    
+    X = generate_bpsk_signal(1000,128,4e6,4e6)
+    
+    # print(X_complex.shape)
+    
+    # X_float = []
+    
+    # for i in range(n):
+        
+    #     X_float.append(np.stack((X_complex[i].real, X_complex[i].imag), axis=-1))
+    
+    # X = np.array(X_float)
+    
+    # print(X.shape)
+    
+    y = np.ones(1000)
+    
+    # #X = generate_bpsk_signal(100,dim,snr_db=-900)
+    
+    # X = generate_empty_channel(100,dim,noise_power_db=-9000)
+    # y = np.zeros(100)
     
     
     #Load a pretrained model
@@ -528,14 +567,16 @@ def plot_iq_fft(iq_signal, sample_rate, title="IQ Signal FFT"):
     plt.tight_layout()
     return fig, ax
 
+modelPath = "/Users/frankconway/Library/CloudStorage/OneDrive-Personal/Strathclyde/Strathclyde/Year5/Project/colab/CoRSoC/CNN/Pluto/results/best_model_test.pt"
 
-#testModel(modelType, modelPath)
 
-chan = generate_bpsk_signal(1, 1024)
+testModel("modelType", modelPath)
 
-complex_array = chan[0, :, 0] + 1j * chan[0, :, 1]
+#  chan = generate_bpsk_signal(1, 1024)
 
-plot_iq_fft(complex_array,8e6)
+# complex_array = chan[0, :, 0] + 1j * chan[0, :, 1]
+
+# plot_iq_fft(complex_array,8e6)
 
 
 

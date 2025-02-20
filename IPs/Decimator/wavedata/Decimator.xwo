@@ -1,0 +1,31 @@
+{
+	'objects' => [
+		{
+			'name' => '/Decimator/Decimator_IP/s_axis_re_tdata/Out1'
+		},
+		{
+			'name' => '/Decimator/Decimator_IP/Digital FIR Filter/Out1'
+		},
+		{
+			'name' => '/Decimator/Decimator_IP/FIR Compiler 7.1/Out2'
+		},
+		{
+			'name' => '/Decimator/Decimator_IP/FIR Compiler 7.1/Out3'
+		},
+		{
+			'name' => '/Decimator/Decimator_IP/Delay10/Out1'
+		},
+		{
+			'name' => '/Decimator/Decimator_IP/Delay9/Out1'
+		},
+		{
+			'name' => '/Decimator/Decimator_IP/Clock'
+		},
+		{
+			'name' => '/Decimator/Decimator_IP/FIR Compiler 7.1/Out4'
+		},
+		{
+			'name' => '/Decimator/Decimator_IP/s_axis_im_tdata/Out1'
+		},
+	],
+}

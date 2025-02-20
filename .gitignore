@@ -51,12 +51,12 @@
 */*.runs/synth*/*.xdc
 !*/*.runs/synth*/*utilization*.rpt
 
-*.runs/synth*/*.xml
-*.runs/synth*/*.txt
-*.runs/synth*/*.sh
-*.runs/synth*/*.tcl
-*.runs/synth*/*.bat
-*.runs/synth*/*.xdc
+**.runs/synth*/*.xml
+**.runs/synth*/*.txt
+**.runs/synth*/*.sh
+**.runs/synth*/*.tcl
+**.runs/synth*/*.bat
+**.runs/synth*/*.xdc
 !*.runs/synth*/*utilization*.rpt
 
 ### project impl

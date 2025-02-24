@@ -21,30 +21,30 @@ entity dsp_stream_ip_struct is
 end dsp_stream_ip_struct;
 architecture structural of dsp_stream_ip_struct is 
   signal ce_net : std_logic;
-  signal axi_fifo_m_axis_tvalid_net : std_logic_vector( 1-1 downto 0 );
+  signal convert3_dout_net : std_logic_vector( 1-1 downto 0 );
   signal reinterpret1_output_port_net : std_logic_vector( 16-1 downto 0 );
-  signal s_axis_tdata_net : std_logic_vector( 32-1 downto 0 );
-  signal m_axis_tready_net : std_logic_vector( 1-1 downto 0 );
-  signal axi_fifo_m_axis_tlast_net : std_logic_vector( 1-1 downto 0 );
-  signal s_axis_tlast_net : std_logic_vector( 1-1 downto 0 );
+  signal axi_fifo_m_axis_tuser_net : std_logic_vector( 1-1 downto 0 );
+  signal reinterpret_output_port_net : std_logic_vector( 16-1 downto 0 );
+  signal delay3_q_net : std_logic;
   signal axi_fifo_s_axis_tready_net : std_logic_vector( 1-1 downto 0 );
+  signal s_axis_tdata_net : std_logic_vector( 32-1 downto 0 );
+  signal delay_q_net : std_logic;
+  signal delay2_q_net : std_logic;
+  signal convert1_dout_net : std_logic_vector( 16-1 downto 0 );
+  signal axi_fifo_m_axis_tvalid_net : std_logic_vector( 1-1 downto 0 );
+  signal s_axis_tlast_net : std_logic_vector( 1-1 downto 0 );
+  signal m_axis_tready_net : std_logic_vector( 1-1 downto 0 );
+  signal convert2_dout_net : std_logic_vector( 1-1 downto 0 );
+  signal rom_data_net : std_logic_vector( 16-1 downto 0 );
+  signal s_aclk_net : std_logic;
+  signal axi_fifo_m_axis_tdata_net : std_logic_vector( 16-1 downto 0 );
+  signal axi_fifo_m_axis_tlast_net : std_logic_vector( 1-1 downto 0 );
   signal s_axis_tuser_net : std_logic_vector( 1-1 downto 0 );
   signal s_axis_tvalid_net : std_logic_vector( 1-1 downto 0 );
-  signal s_aclk_net : std_logic;
-  signal convert3_dout_net : std_logic_vector( 1-1 downto 0 );
-  signal delay3_q_net : std_logic;
-  signal convert5_dout_net : std_logic_vector( 1-1 downto 0 );
-  signal rom_data_net : std_logic_vector( 16-1 downto 0 );
-  signal reinterpret_output_port_net : std_logic_vector( 16-1 downto 0 );
   signal counter_op_net : std_logic_vector( 5-1 downto 0 );
-  signal delay_q_net : std_logic;
-  signal axi_fifo_m_axis_tuser_net : std_logic_vector( 1-1 downto 0 );
-  signal delay2_q_net : std_logic;
-  signal convert2_dout_net : std_logic_vector( 1-1 downto 0 );
-  signal delay4_q_net : std_logic_vector( 1-1 downto 0 );
-  signal convert1_dout_net : std_logic_vector( 16-1 downto 0 );
   signal convert4_dout_net : std_logic_vector( 1-1 downto 0 );
-  signal axi_fifo_m_axis_tdata_net : std_logic_vector( 16-1 downto 0 );
+  signal delay4_q_net : std_logic_vector( 1-1 downto 0 );
+  signal convert5_dout_net : std_logic_vector( 1-1 downto 0 );
 begin
   m_axis_tdata <= reinterpret1_output_port_net;
   m_axis_tlast <= axi_fifo_m_axis_tlast_net;
@@ -356,8 +356,8 @@ end dsp_stream_ip;
 architecture structural of dsp_stream_ip is 
   attribute core_generation_info : string;
   attribute core_generation_info of structural : architecture is "dsp_stream_ip,sysgen_core_2024_1,{,compilation=IP Catalog,block_icon_display=Default,family=zynq,part=xc7z020,speed=-1,package=clg400,synthesis_language=vhdl,hdl_library=xil_defaultlib,synthesis_strategy=Vivado Synthesis Defaults,implementation_strategy=Vivado Implementation Defaults,testbench=0,interface_doc=0,ce_clr=0,clock_period=0.00333333,system_simulink_period=3.33333e-09,waveform_viewer=0,axilite_interface=0,ip_catalog_plugin=0,hwcosim_burst_mode=0,simulation_time=3.33333e-06,axi_fifo=1,convert=5,counter=1,delay=4,reinterpret=2,sprom=1,}";
-  signal clk_1_net : std_logic;
   signal ce_1_net : std_logic;
+  signal clk_1_net : std_logic;
 begin
   dsp_stream_ip_default_clock_driver : entity xil_defaultlib.dsp_stream_ip_default_clock_driver 
   port map (

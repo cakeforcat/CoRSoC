@@ -6,4 +6,5 @@ N = fs/f0; % Number of samples
 n = 0:N-1; % Discrete-time index
 
 % Generate samples
-sig = sin(2*pi*f0*n/fs); 
+sig0 = cos(2*pi*f0*n/fs); % Real part
+sig1 = sin(2*pi*f0*n/fs); % Complex part

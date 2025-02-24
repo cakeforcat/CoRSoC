@@ -212,7 +212,7 @@
     "components": {
       "STFT_1": {
         "vlnv": "CoRSoC:VMC:STFT:1.0",
-        "ip_revision": "370957977",
+        "ip_revision": "370965229",
         "xci_name": "STFT_bd_STFT_1_0",
         "xci_path": "ip\\STFT_bd_STFT_1_0\\STFT_bd_STFT_1_0.xci",
         "inst_hier_path": "STFT_1"

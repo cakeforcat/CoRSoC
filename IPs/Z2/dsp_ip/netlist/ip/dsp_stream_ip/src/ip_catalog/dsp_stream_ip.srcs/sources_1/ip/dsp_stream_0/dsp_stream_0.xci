@@ -3,7 +3,7 @@
   "ip_inst": {
     "xci_name": "dsp_stream_0",
     "component_reference": "CoRSoC:VMC:dsp_stream:1.0",
-    "ip_revision": "370958804",
+    "ip_revision": "370963581",
     "gen_directory": "../../../../dsp_stream_ip.gen/sources_1/ip/dsp_stream_0",
     "parameters": {
       "component_parameters": {
@@ -25,7 +25,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
-        "IPREVISION": [ { "value": "370958804" } ],
+        "IPREVISION": [ { "value": "370963581" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../dsp_stream_ip.gen/sources_1/ip/dsp_stream_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

@@ -4,7 +4,7 @@
     "xci_name": "dsp_stream_bd_dsp_stream_1_0",
     "cell_name": "dsp_stream_1",
     "component_reference": "CoRSoC:VMC:dsp_stream:1.0",
-    "ip_revision": "370958804",
+    "ip_revision": "370963581",
     "gen_directory": "../../../../../../dsp_stream_ip.gen/sources_1/bd/dsp_stream_bd/ip/dsp_stream_bd_dsp_stream_1_0",
     "parameters": {
       "component_parameters": {
@@ -26,7 +26,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "370958804" } ],
+        "IPREVISION": [ { "value": "370963581" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../dsp_stream_ip.gen/sources_1/bd/dsp_stream_bd/ip/dsp_stream_bd_dsp_stream_1_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

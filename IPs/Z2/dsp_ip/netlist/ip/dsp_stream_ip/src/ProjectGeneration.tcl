@@ -25,7 +25,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	set IP_LifeCycle_Menu {1}
 	set IP_Logo {sysgen_icon_100.png}
 	set IP_Name {dsp_stream}
-	set IP_Revision {370958804}
+	set IP_Revision {370963581}
 	set IP_Socket_IP {0}
 	set IP_Socket_IP_Proj_Path {}
 	set IP_Vendor_Text {CoRSoC}
@@ -56,7 +56,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	set SynthesisTool {Vivado}
 	set TargetDir {C:/Users/andre/CoRSoC/IPs/Z2/dsp_ip/netlist/ip/dsp_stream_ip/src}
 	set TopLevelModule {dsp_stream_ip}
-	set TopLevelSimulinkHandle 76.0002
+	set TopLevelSimulinkHandle 76.0006
 	set VHDLLib {xil_defaultlib}
 	set TopLevelPortInterface {}
 	dict set TopLevelPortInterface s_axis_tvalid Name {s_axis_tvalid}

@@ -242,7 +242,7 @@ lappend params_list CONFIG.run_time_configurable_transform_length {false}
 lappend params_list CONFIG.scaling_options {scaled}
 lappend params_list CONFIG.super_sample_rates {1}
 lappend params_list CONFIG.systolicfft_inv {false}
-lappend params_list CONFIG.target_clock_frequency {64}
+lappend params_list CONFIG.target_clock_frequency {50}
 lappend params_list CONFIG.target_data_throughput {50}
 lappend params_list CONFIG.throttle_scheme {nonrealtime}
 lappend params_list CONFIG.transform_length {2048}

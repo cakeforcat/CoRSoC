@@ -3,7 +3,7 @@
   "ip_inst": {
     "xci_name": "STFT_0",
     "component_reference": "CoRSoC:VMC:STFT:1.0",
-    "ip_revision": "370957977",
+    "ip_revision": "370965229",
     "gen_directory": "../../../../stft_ip.gen/sources_1/ip/STFT_0",
     "parameters": {
       "component_parameters": {
@@ -25,7 +25,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
-        "IPREVISION": [ { "value": "370957977" } ],
+        "IPREVISION": [ { "value": "370965229" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../stft_ip.gen/sources_1/ip/STFT_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

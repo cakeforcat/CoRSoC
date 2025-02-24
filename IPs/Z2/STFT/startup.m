@@ -1,7 +1,7 @@
 clear all
     
 % Clock domain
-fs = 64e6;
+fs = 50e6;
 
 % Test tone
 f = 16e6;

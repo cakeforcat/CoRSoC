@@ -236,7 +236,7 @@
     "components": {
       "dsp_stream_1": {
         "vlnv": "CoRSoC:VMC:dsp_stream:1.0",
-        "ip_revision": "370958804",
+        "ip_revision": "370963581",
         "xci_name": "dsp_stream_bd_dsp_stream_1_0",
         "xci_path": "ip\\dsp_stream_bd_dsp_stream_1_0\\dsp_stream_bd_dsp_stream_1_0.xci",
         "inst_hier_path": "dsp_stream_1"

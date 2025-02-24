@@ -12,7 +12,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	set DSPFamily {zynq}
 	set DSPPackage {clg400}
 	set DSPSpeed {-1}
-	set FPGAClockPeriod 0.015625
+	set FPGAClockPeriod 0.02
 	set GenerateTestBench 0
 	set HDLLanguage {vhdl}
 	set IPOOCCacheRootPath {C:/Users/andre/AppData/Local/Xilinx/Sysgen/SysgenVivado/win64.o/ip}
@@ -25,7 +25,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	set IP_LifeCycle_Menu {1}
 	set IP_Logo {sysgen_icon_100.png}
 	set IP_Name {STFT}
-	set IP_Revision {370957977}
+	set IP_Revision {370965229}
 	set IP_Socket_IP {0}
 	set IP_Socket_IP_Proj_Path {}
 	set IP_Vendor_Text {CoRSoC}
@@ -49,14 +49,14 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 		{{stft_ip_clock.xdc}}
 		{{stft_ip.xdc}}
 	}
-	set SimPeriod 1.5625e-08
-	set SimTime 0.0048
-	set SimulationTime {5000.01562500 ns}
+	set SimPeriod 2e-08
+	set SimTime 0.006144
+	set SimulationTime {6344.02000000 ns}
 	set SynthStrategyName {Vivado Synthesis Defaults}
 	set SynthesisTool {Vivado}
 	set TargetDir {C:/Users/andre/CoRSoC/IPs/Z2/STFT/netlist/ip/STFT_IP/src}
 	set TopLevelModule {stft_ip}
-	set TopLevelSimulinkHandle 16.0001
+	set TopLevelSimulinkHandle 6.00073
 	set VHDLLib {xil_defaultlib}
 	set TopLevelPortInterface {}
 	dict set TopLevelPortInterface s_axis_tvalid Name {s_axis_tvalid}

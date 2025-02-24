@@ -4,7 +4,7 @@
     "xci_name": "STFT_bd_STFT_1_0",
     "cell_name": "STFT_1",
     "component_reference": "CoRSoC:VMC:STFT:1.0",
-    "ip_revision": "370957977",
+    "ip_revision": "370965229",
     "gen_directory": "../../../../../../stft_ip.gen/sources_1/bd/STFT_bd/ip/STFT_bd_STFT_1_0",
     "parameters": {
       "component_parameters": {
@@ -26,7 +26,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "370957977" } ],
+        "IPREVISION": [ { "value": "370965229" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../stft_ip.gen/sources_1/bd/STFT_bd/ip/STFT_bd_STFT_1_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

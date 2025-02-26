@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
---Date        : Wed Feb 19 16:42:34 2025
+--Date        : Mon Feb 24 14:41:44 2025
 --Host        : DESKTOP-M1FI91A running 64-bit major release  (build 9200)
 --Command     : generate_target dsp_stream_bd.bd
 --Design      : dsp_stream_bd
@@ -15,7 +15,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity dsp_stream_bd is
   port (
     clk : in STD_LOGIC;
-    m_axis_tdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    m_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     m_axis_tlast : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tready : in STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -41,7 +41,7 @@ architecture STRUCTURE of dsp_stream_bd is
     s_axis_tuser : in STD_LOGIC_VECTOR ( 0 to 0 );
     s_axis_tvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
     clk : in STD_LOGIC;
-    m_axis_tdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    m_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     m_axis_tlast : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -49,7 +49,7 @@ architecture STRUCTURE of dsp_stream_bd is
   );
   end component dsp_stream_bd_dsp_stream_1_0;
   signal clk_1 : STD_LOGIC;
-  signal dsp_stream_1_m_axis_TDATA : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal dsp_stream_1_m_axis_TDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal dsp_stream_1_m_axis_TLAST : STD_LOGIC_VECTOR ( 0 to 0 );
   signal dsp_stream_1_m_axis_TREADY : STD_LOGIC_VECTOR ( 0 to 0 );
   signal dsp_stream_1_m_axis_TUSER : STD_LOGIC_VECTOR ( 0 to 0 );
@@ -64,7 +64,7 @@ architecture STRUCTURE of dsp_stream_bd is
   attribute X_INTERFACE_PARAMETER : string;
   attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_BUSIF m_axis:s_axis, CLK_DOMAIN dsp_stream_bd_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0";
   attribute X_INTERFACE_INFO of m_axis_tdata : signal is "xilinx.com:interface:axis:1.0 m_axis TDATA";
-  attribute X_INTERFACE_PARAMETER of m_axis_tdata : signal is "XIL_INTERFACENAME m_axis, CLK_DOMAIN dsp_stream_bd_clk, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 16} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} real {fixed {fractwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 15} signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value true}}}}}}, PHASE 0.0, TDATA_NUM_BYTES 2, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1";
+  attribute X_INTERFACE_PARAMETER of m_axis_tdata : signal is "XIL_INTERFACENAME m_axis, CLK_DOMAIN dsp_stream_bd_clk, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 32} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} real {fixed {fractwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value false}}}}}}, PHASE 0.0, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1";
   attribute X_INTERFACE_INFO of m_axis_tlast : signal is "xilinx.com:interface:axis:1.0 m_axis TLAST";
   attribute X_INTERFACE_INFO of m_axis_tready : signal is "xilinx.com:interface:axis:1.0 m_axis TREADY";
   attribute X_INTERFACE_INFO of m_axis_tuser : signal is "xilinx.com:interface:axis:1.0 m_axis TUSER";
@@ -78,7 +78,7 @@ architecture STRUCTURE of dsp_stream_bd is
 begin
   clk_1 <= clk;
   dsp_stream_1_m_axis_TREADY(0) <= m_axis_tready(0);
-  m_axis_tdata(15 downto 0) <= dsp_stream_1_m_axis_TDATA(15 downto 0);
+  m_axis_tdata(31 downto 0) <= dsp_stream_1_m_axis_TDATA(31 downto 0);
   m_axis_tlast(0) <= dsp_stream_1_m_axis_TLAST(0);
   m_axis_tuser(0) <= dsp_stream_1_m_axis_TUSER(0);
   m_axis_tvalid(0) <= dsp_stream_1_m_axis_TVALID(0);
@@ -90,7 +90,7 @@ begin
 dsp_stream_1: component dsp_stream_bd_dsp_stream_1_0
      port map (
       clk => clk_1,
-      m_axis_tdata(15 downto 0) => dsp_stream_1_m_axis_TDATA(15 downto 0),
+      m_axis_tdata(31 downto 0) => dsp_stream_1_m_axis_TDATA(31 downto 0),
       m_axis_tlast(0) => dsp_stream_1_m_axis_TLAST(0),
       m_axis_tready(0) => dsp_stream_1_m_axis_TREADY(0),
       m_axis_tuser(0) => dsp_stream_1_m_axis_TUSER(0),

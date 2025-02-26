@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
---Date        : Wed Feb 19 16:42:34 2025
+--Date        : Mon Feb 24 14:41:44 2025
 --Host        : DESKTOP-M1FI91A running 64-bit major release  (build 9200)
 --Command     : generate_target dsp_stream_bd_wrapper.bd
 --Design      : dsp_stream_bd_wrapper
@@ -15,7 +15,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity dsp_stream_bd_wrapper is
   port (
     clk : in STD_LOGIC;
-    m_axis_tdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    m_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     m_axis_tlast : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tready : in STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -32,7 +32,7 @@ architecture STRUCTURE of dsp_stream_bd_wrapper is
   component dsp_stream_bd is
   port (
     clk : in STD_LOGIC;
-    m_axis_tdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    m_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     m_axis_tlast : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -48,7 +48,7 @@ begin
 dsp_stream_bd_i: component dsp_stream_bd
      port map (
       clk => clk,
-      m_axis_tdata(15 downto 0) => m_axis_tdata(15 downto 0),
+      m_axis_tdata(31 downto 0) => m_axis_tdata(31 downto 0),
       m_axis_tlast(0) => m_axis_tlast(0),
       m_axis_tready(0) => m_axis_tready(0),
       m_axis_tuser(0) => m_axis_tuser(0),

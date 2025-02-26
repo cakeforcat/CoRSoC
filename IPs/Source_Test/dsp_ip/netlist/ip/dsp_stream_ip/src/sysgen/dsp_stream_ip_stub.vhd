@@ -10,7 +10,7 @@ entity dsp_stream_ip_stub is
     s_axis_tuser : in std_logic_vector( 1-1 downto 0 );
     s_axis_tvalid : in std_logic_vector( 1-1 downto 0 );
     clk : in std_logic;
-    m_axis_tdata : out std_logic_vector( 16-1 downto 0 );
+    m_axis_tdata : out std_logic_vector( 32-1 downto 0 );
     m_axis_tlast : out std_logic_vector( 1-1 downto 0 );
     m_axis_tuser : out std_logic_vector( 1-1 downto 0 );
     m_axis_tvalid : out std_logic_vector( 1-1 downto 0 );

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x1016902386D75678",
+      "boundary_crc": "0x8F8CB049A171A8F7",
       "design_src": "SYSGEN",
       "device": "xczu28dr-ffvg1517-2-e",
       "gen_directory": "../../../../dsp_stream_ip.gen/sources_1/bd/dsp_stream_bd",
@@ -52,8 +52,8 @@
             "value": [
               "xilinx.com:interface:datatypes:1.0 {",
               "TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {}",
-              "maximum {}} value 16} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} real {fixed {fractwidth {attribs {resolve_type immediate dependency {} format",
-              "long minimum {} maximum {}} value 15} signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value true}}}}}",
+              "maximum {}} value 32} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} real {fixed {fractwidth {attribs {resolve_type immediate dependency {} format",
+              "long minimum {} maximum {}} value 0} signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value false}}}}}",
               "}"
             ],
             "value_src": "const_prop"
@@ -63,7 +63,7 @@
             "value_src": "default"
           },
           "TDATA_NUM_BYTES": {
-            "value": "2",
+            "value": "4",
             "value_src": "const_prop"
           },
           "TDEST_WIDTH": {
@@ -83,7 +83,7 @@
           "TDATA": {
             "physical_name": "m_axis_tdata",
             "direction": "O",
-            "left": "15",
+            "left": "31",
             "right": "0"
           },
           "TLAST": {
@@ -236,7 +236,7 @@
     "components": {
       "dsp_stream_1": {
         "vlnv": "CoRSoC:VMC:dsp_stream:1.0",
-        "ip_revision": "370888912",
+        "ip_revision": "371313654",
         "xci_name": "dsp_stream_bd_dsp_stream_1_0",
         "xci_path": "ip\\dsp_stream_bd_dsp_stream_1_0\\dsp_stream_bd_dsp_stream_1_0.xci",
         "inst_hier_path": "dsp_stream_1"

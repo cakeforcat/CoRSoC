@@ -12,7 +12,7 @@ entity dsp_stream_ip_struct is
     s_axis_tvalid : in std_logic_vector( 1-1 downto 0 );
     clk_1 : in std_logic;
     ce_1 : in std_logic;
-    m_axis_tdata : out std_logic_vector( 16-1 downto 0 );
+    m_axis_tdata : out std_logic_vector( 32-1 downto 0 );
     m_axis_tlast : out std_logic_vector( 1-1 downto 0 );
     m_axis_tuser : out std_logic_vector( 1-1 downto 0 );
     m_axis_tvalid : out std_logic_vector( 1-1 downto 0 );
@@ -20,33 +20,36 @@ entity dsp_stream_ip_struct is
   );
 end dsp_stream_ip_struct;
 architecture structural of dsp_stream_ip_struct is 
-  signal convert4_dout_net : std_logic_vector( 1-1 downto 0 );
-  signal counter_op_net : std_logic_vector( 5-1 downto 0 );
-  signal convert5_dout_net : std_logic_vector( 1-1 downto 0 );
-  signal reinterpret1_output_port_net : std_logic_vector( 16-1 downto 0 );
-  signal axi_fifo_m_axis_tlast_net : std_logic_vector( 1-1 downto 0 );
-  signal m_axis_tready_net : std_logic_vector( 1-1 downto 0 );
-  signal s_axis_tdata_net : std_logic_vector( 32-1 downto 0 );
-  signal axi_fifo_m_axis_tvalid_net : std_logic_vector( 1-1 downto 0 );
-  signal convert3_dout_net : std_logic_vector( 1-1 downto 0 );
-  signal axi_fifo_s_axis_tready_net : std_logic_vector( 1-1 downto 0 );
-  signal s_aclk_net : std_logic;
-  signal s_axis_tlast_net : std_logic_vector( 1-1 downto 0 );
+  signal axi_fifo_m_axis_tdata_net : std_logic_vector( 32-1 downto 0 );
   signal s_axis_tuser_net : std_logic_vector( 1-1 downto 0 );
-  signal s_axis_tvalid_net : std_logic_vector( 1-1 downto 0 );
-  signal axi_fifo_m_axis_tuser_net : std_logic_vector( 1-1 downto 0 );
+  signal s_aclk_net : std_logic;
+  signal m_axis_tready_net : std_logic_vector( 1-1 downto 0 );
+  signal axi_fifo_s_axis_tready_net : std_logic_vector( 1-1 downto 0 );
   signal ce_net : std_logic;
-  signal axi_fifo_m_axis_tdata_net : std_logic_vector( 16-1 downto 0 );
-  signal delay2_q_net : std_logic;
-  signal delay3_q_net : std_logic;
+  signal axi_fifo_m_axis_tlast_net : std_logic_vector( 1-1 downto 0 );
+  signal axi_fifo_m_axis_tvalid_net : std_logic_vector( 1-1 downto 0 );
+  signal s_axis_tvalid_net : std_logic_vector( 1-1 downto 0 );
+  signal s_axis_tdata_net : std_logic_vector( 32-1 downto 0 );
+  signal convert3_dout_net : std_logic_vector( 1-1 downto 0 );
+  signal axi_fifo_m_axis_tuser_net : std_logic_vector( 1-1 downto 0 );
+  signal s_axis_tlast_net : std_logic_vector( 1-1 downto 0 );
   signal delay_q_net : std_logic;
-  signal rom_data_net : std_logic_vector( 16-1 downto 0 );
   signal delay4_q_net : std_logic_vector( 1-1 downto 0 );
-  signal convert1_dout_net : std_logic_vector( 16-1 downto 0 );
-  signal reinterpret_output_port_net : std_logic_vector( 16-1 downto 0 );
+  signal concat_y_net : std_logic_vector( 32-1 downto 0 );
+  signal delay3_q_net : std_logic;
   signal convert2_dout_net : std_logic_vector( 1-1 downto 0 );
+  signal counter_op_net : std_logic_vector( 5-1 downto 0 );
+  signal convert4_dout_net : std_logic_vector( 1-1 downto 0 );
+  signal convert5_dout_net : std_logic_vector( 1-1 downto 0 );
+  signal delay2_q_net : std_logic;
+  signal rom_data_net : std_logic_vector( 16-1 downto 0 );
+  signal reinterpret_output_port_net : std_logic_vector( 16-1 downto 0 );
+  signal convert_dout_net : std_logic_vector( 16-1 downto 0 );
+  signal reinterpret2_output_port_net : std_logic_vector( 16-1 downto 0 );
+  signal convert1_dout_net : std_logic_vector( 16-1 downto 0 );
+  signal rom1_data_net : std_logic_vector( 16-1 downto 0 );
 begin
-  m_axis_tdata <= reinterpret1_output_port_net;
+  m_axis_tdata <= axi_fifo_m_axis_tdata_net;
   m_axis_tlast <= axi_fifo_m_axis_tlast_net;
   m_axis_tready_net <= m_axis_tready;
   m_axis_tuser <= convert3_dout_net;
@@ -60,12 +63,12 @@ begin
   ce_net <= ce_1;
   axi_fifo : entity xil_defaultlib.dsp_stream_ip_xlaxis 
   generic map (
-    depth => 256,
-    depth_bits => 9,
+    depth => 1024,
+    depth_bits => 11,
     has_aresetn => 0,
     mem_type => "distributed",
-    tdata_width => 16,
-    tdata_width_net => 16,
+    tdata_width => 32,
+    tdata_width_net => 32,
     tdest_width => 4,
     tid_width => 8,
     tuser_width => 1
@@ -74,7 +77,7 @@ begin
     aresetn => '1',
     m_axis_tready => delay_q_net,
     s_axis_tvalid => delay2_q_net,
-    s_axis_tdata => reinterpret_output_port_net,
+    s_axis_tdata => concat_y_net,
     s_axis_tlast => delay3_q_net,
     s_axis_tuser => convert2_dout_net,
     s_aclk => s_aclk_net,
@@ -84,27 +87,6 @@ begin
     m_axis_tlast => axi_fifo_m_axis_tlast_net(0),
     m_axis_tuser => axi_fifo_m_axis_tuser_net,
     s_axis_tready => axi_fifo_s_axis_tready_net(0)
-  );
-  convert1 : entity xil_defaultlib.dsp_stream_ip_xlconvert 
-  generic map (
-    bool_conversion => 0,
-    din_arith => 2,
-    din_bin_pt => 14,
-    din_width => 16,
-    dout_arith => 2,
-    dout_bin_pt => 15,
-    dout_width => 16,
-    latency => 0,
-    overflow => xlSaturate,
-    quantization => xlTruncate
-  )
-  port map (
-    clr => '0',
-    en => "1",
-    din => rom_data_net,
-    clk => s_aclk_net,
-    ce => ce_net,
-    dout => convert1_dout_net
   );
   convert2 : entity xil_defaultlib.dsp_stream_ip_xlconvert 
   generic map (
@@ -147,6 +129,48 @@ begin
     clk => s_aclk_net,
     ce => ce_net,
     dout => convert3_dout_net
+  );
+  convert4 : entity xil_defaultlib.dsp_stream_ip_xlconvert 
+  generic map (
+    bool_conversion => 0,
+    din_arith => 1,
+    din_bin_pt => 0,
+    din_width => 32,
+    dout_arith => 1,
+    dout_bin_pt => 0,
+    dout_width => 1,
+    latency => 0,
+    overflow => xlSaturate,
+    quantization => xlTruncate
+  )
+  port map (
+    clr => '0',
+    en => "1",
+    din => s_axis_tdata_net,
+    clk => s_aclk_net,
+    ce => ce_net,
+    dout => convert4_dout_net
+  );
+  convert5 : entity xil_defaultlib.dsp_stream_ip_xlconvert 
+  generic map (
+    bool_conversion => 1,
+    din_arith => 1,
+    din_bin_pt => 0,
+    din_width => 1,
+    dout_arith => 1,
+    dout_bin_pt => 0,
+    dout_width => 1,
+    latency => 0,
+    overflow => xlSaturate,
+    quantization => xlTruncate
+  )
+  port map (
+    clr => '0',
+    en => "1",
+    din => convert4_dout_net,
+    clk => s_aclk_net,
+    ce => ce_net,
+    dout => convert5_dout_net
   );
   counter : entity xil_defaultlib.dsp_stream_ip_xlcounter_limit 
   generic map (
@@ -250,26 +274,44 @@ begin
     clk => '0',
     ce => '0',
     clr => '0',
-    input_port => convert1_dout_net,
+    input_port => convert_dout_net,
     output_port => reinterpret_output_port_net
   );
-  reinterpret1 : entity xil_defaultlib.sysgen_reinterpret_f3b73edc2e 
+  rom1 : entity xil_defaultlib.dsp_stream_ip_xlsprom 
+  generic map (
+    c_address_width => 5,
+    c_width => 16,
+    latency => 1,
+    mem_init_file => "xpm_02e579_vivado.mem",
+    mem_size => 512,
+    mem_type => "block",
+    read_reset_val => "0"
+  )
+  port map (
+    en => "1",
+    rst => "0",
+    addr => counter_op_net,
+    clk => s_aclk_net,
+    ce => ce_net,
+    data => rom1_data_net
+  );
+  reinterpret2 : entity xil_defaultlib.sysgen_reinterpret_e545bba2f5 
   port map (
     clk => '0',
     ce => '0',
     clr => '0',
-    input_port => axi_fifo_m_axis_tdata_net,
-    output_port => reinterpret1_output_port_net
+    input_port => convert1_dout_net,
+    output_port => reinterpret2_output_port_net
   );
-  convert4 : entity xil_defaultlib.dsp_stream_ip_xlconvert 
+  convert : entity xil_defaultlib.dsp_stream_ip_xlconvert 
   generic map (
     bool_conversion => 0,
-    din_arith => 1,
-    din_bin_pt => 0,
-    din_width => 32,
-    dout_arith => 1,
-    dout_bin_pt => 0,
-    dout_width => 1,
+    din_arith => 2,
+    din_bin_pt => 14,
+    din_width => 16,
+    dout_arith => 2,
+    dout_bin_pt => 15,
+    dout_width => 16,
     latency => 0,
     overflow => xlSaturate,
     quantization => xlTruncate
@@ -277,20 +319,20 @@ begin
   port map (
     clr => '0',
     en => "1",
-    din => s_axis_tdata_net,
+    din => rom_data_net,
     clk => s_aclk_net,
     ce => ce_net,
-    dout => convert4_dout_net
+    dout => convert_dout_net
   );
-  convert5 : entity xil_defaultlib.dsp_stream_ip_xlconvert 
+  convert1 : entity xil_defaultlib.dsp_stream_ip_xlconvert 
   generic map (
-    bool_conversion => 1,
-    din_arith => 1,
-    din_bin_pt => 0,
-    din_width => 1,
-    dout_arith => 1,
-    dout_bin_pt => 0,
-    dout_width => 1,
+    bool_conversion => 0,
+    din_arith => 2,
+    din_bin_pt => 14,
+    din_width => 16,
+    dout_arith => 2,
+    dout_bin_pt => 15,
+    dout_width => 16,
     latency => 0,
     overflow => xlSaturate,
     quantization => xlTruncate
@@ -298,10 +340,19 @@ begin
   port map (
     clr => '0',
     en => "1",
-    din => convert4_dout_net,
+    din => rom1_data_net,
     clk => s_aclk_net,
     ce => ce_net,
-    dout => convert5_dout_net
+    dout => convert1_dout_net
+  );
+  concat : entity xil_defaultlib.sysgen_concat_3f809e0e63 
+  port map (
+    clk => '0',
+    ce => '0',
+    clr => '0',
+    in0 => reinterpret_output_port_net,
+    in1 => reinterpret2_output_port_net,
+    y => concat_y_net
   );
 end structural;
 -- Generated from Simulink block 
@@ -346,7 +397,7 @@ entity dsp_stream_ip is
     s_axis_tuser : in std_logic_vector( 1-1 downto 0 );
     s_axis_tvalid : in std_logic_vector( 1-1 downto 0 );
     clk : in std_logic;
-    m_axis_tdata : out std_logic_vector( 16-1 downto 0 );
+    m_axis_tdata : out std_logic_vector( 32-1 downto 0 );
     m_axis_tlast : out std_logic_vector( 1-1 downto 0 );
     m_axis_tuser : out std_logic_vector( 1-1 downto 0 );
     m_axis_tvalid : out std_logic_vector( 1-1 downto 0 );
@@ -355,7 +406,7 @@ entity dsp_stream_ip is
 end dsp_stream_ip;
 architecture structural of dsp_stream_ip is 
   attribute core_generation_info : string;
-  attribute core_generation_info of structural : architecture is "dsp_stream_ip,sysgen_core_2024_1,{,compilation=IP Catalog,block_icon_display=Default,family=zynquplusRFSOC,part=xczu28dr,speed=-2-e,package=ffvg1517,synthesis_language=vhdl,hdl_library=xil_defaultlib,synthesis_strategy=Vivado Synthesis Defaults,implementation_strategy=Vivado Implementation Defaults,testbench=0,interface_doc=0,ce_clr=0,clock_period=0.00333333,system_simulink_period=3.33333e-09,waveform_viewer=0,axilite_interface=0,ip_catalog_plugin=0,hwcosim_burst_mode=0,simulation_time=3.33333e-06,axi_fifo=1,convert=5,counter=1,delay=4,reinterpret=2,sprom=1,}";
+  attribute core_generation_info of structural : architecture is "dsp_stream_ip,sysgen_core_2024_1,{,compilation=IP Catalog,block_icon_display=Default,family=zynquplusRFSOC,part=xczu28dr,speed=-2-e,package=ffvg1517,synthesis_language=vhdl,hdl_library=xil_defaultlib,synthesis_strategy=Vivado Synthesis Defaults,implementation_strategy=Vivado Implementation Defaults,testbench=0,interface_doc=0,ce_clr=0,clock_period=0.00333333,system_simulink_period=3.33333e-09,waveform_viewer=0,axilite_interface=0,ip_catalog_plugin=0,hwcosim_burst_mode=0,simulation_time=3.33333e-05,axi_fifo=1,concat=1,convert=6,counter=1,delay=4,reinterpret=2,sprom=2,}";
   signal clk_1_net : std_logic;
   signal ce_1_net : std_logic;
 begin

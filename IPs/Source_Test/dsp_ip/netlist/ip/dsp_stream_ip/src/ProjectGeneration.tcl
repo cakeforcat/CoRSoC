@@ -25,7 +25,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	set IP_LifeCycle_Menu {1}
 	set IP_Logo {sysgen_icon_100.png}
 	set IP_Name {dsp_stream}
-	set IP_Revision {370888912}
+	set IP_Revision {371313654}
 	set IP_Socket_IP {0}
 	set IP_Socket_IP_Proj_Path {}
 	set IP_Vendor_Text {CoRSoC}
@@ -44,19 +44,20 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 		{{xlclockdriver_rd.vhd} -lib {xil_defaultlib}}
 		{{vivado_ip.tcl}}
 		{{xpm_6a4a8c_vivado.mem}}
+		{{xpm_02e579_vivado.mem}}
 		{{dsp_stream_ip_entity_declarations.vhd} -lib {xil_defaultlib}}
 		{{dsp_stream_ip.vhd} -lib {xil_defaultlib}}
 		{{dsp_stream_ip_clock.xdc}}
 		{{dsp_stream_ip.xdc}}
 	}
 	set SimPeriod 3.33333e-09
-	set SimTime 3.33333e-06
-	set SimulationTime {203.33666667 ns}
+	set SimTime 3.33333e-05
+	set SimulationTime {233.33666667 ns}
 	set SynthStrategyName {Vivado Synthesis Defaults}
 	set SynthesisTool {Vivado}
 	set TargetDir {C:/Users/andre/CoRSoC/IPs/Source_Test/dsp_ip/netlist/ip/dsp_stream_ip/src}
 	set TopLevelModule {dsp_stream_ip}
-	set TopLevelSimulinkHandle 83.0035
+	set TopLevelSimulinkHandle 76.0002
 	set VHDLLib {xil_defaultlib}
 	set TopLevelPortInterface {}
 	dict set TopLevelPortInterface s_axis_tvalid Name {s_axis_tvalid}
@@ -135,10 +136,10 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface m_axis_tready Locs {}
 	dict set TopLevelPortInterface m_axis_tready IOStandard {}
 	dict set TopLevelPortInterface m_axis_tdata Name {m_axis_tdata}
-	dict set TopLevelPortInterface m_axis_tdata Type Fix_16_15
-	dict set TopLevelPortInterface m_axis_tdata ArithmeticType xlSigned
-	dict set TopLevelPortInterface m_axis_tdata BinaryPoint 15
-	dict set TopLevelPortInterface m_axis_tdata Width 16
+	dict set TopLevelPortInterface m_axis_tdata Type UFix_32_0
+	dict set TopLevelPortInterface m_axis_tdata ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface m_axis_tdata BinaryPoint 0
+	dict set TopLevelPortInterface m_axis_tdata Width 32
 	dict set TopLevelPortInterface m_axis_tdata DatFile {dsp_stream_dsp_stream_ip_m_axis_tdata.dat}
 	dict set TopLevelPortInterface m_axis_tdata IconText {m_axis_tdata}
 	dict set TopLevelPortInterface m_axis_tdata Direction out

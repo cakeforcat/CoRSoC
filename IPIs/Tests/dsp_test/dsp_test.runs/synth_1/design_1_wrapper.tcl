@@ -57,8 +57,7 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 2
-set_param bd.open.in_stealth_mode 2
-set_msg_config -id {Common 17-41} -limit 10000000
+set_param bd.open.in_stealth_mode 3
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xczu28dr-ffvg1517-2-e
 
@@ -70,63 +69,46 @@ set_property webtalk.parent_dir C:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_te
 set_property parent.project_path C:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
-set_property target_language VHDL [current_project]
-set_property ip_repo_paths c:/Users/andre/CoRSoC/IPs/Source_Test/dsp_ip/netlist/ip [current_project]
+set_property target_language Verilog [current_project]
+set_property ip_repo_paths {
+  c:/Users/andre/CoRSoC/IPs/Source_Test/ram_re_ip/netlist/ip
+  c:/Users/andre/CoRSoC/IPs/Source_Test/ram_im_ip/netlist/ip
+} [current_project]
 update_ip_catalog
 set_property ip_output_repo c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib C:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd
+read_verilog -library xil_defaultlib C:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v
 add_files C:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.srcs/sources_1/bd/design_1/design_1.bd
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_xbar_0/design_1_xbar_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_dma_0/design_1_axi_dma_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_dma_0/design_1_axi_dma_0_clocks.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_dma_0/design_1_axi_dma_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_1/bd_afc3_psr_aclk_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_1/bd_afc3_psr_aclk_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_2/bd_afc3_arsw_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_3/bd_afc3_rsw_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_4/bd_afc3_awsw_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_5/bd_afc3_wsw_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_6/bd_afc3_bsw_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_10/bd_afc3_s00a2s_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_11/bd_afc3_sawn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_11/bd_afc3_sawn_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_12/bd_afc3_swn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_12/bd_afc3_swn_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_13/bd_afc3_sbn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_13/bd_afc3_sbn_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_17/bd_afc3_s01a2s_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_18/bd_afc3_sarn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_18/bd_afc3_sarn_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_19/bd_afc3_srn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_19/bd_afc3_srn_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_20/bd_afc3_m00s2a_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_21/bd_afc3_m00arn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_21/bd_afc3_m00arn_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_22/bd_afc3_m00rn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_22/bd_afc3_m00rn_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_23/bd_afc3_m00awn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_23/bd_afc3_m00awn_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_24/bd_afc3_m00wn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_24/bd_afc3_m00wn_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_25/bd_afc3_m00bn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_25/bd_afc3_m00bn_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_5/bd_afc3_s00a2s_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_6/bd_afc3_sawn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_6/bd_afc3_sawn_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_7/bd_afc3_swn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_7/bd_afc3_swn_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_8/bd_afc3_sbn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_8/bd_afc3_sbn_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_9/bd_afc3_m00s2a_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axi_smc_0/smartconnect.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_rst_ps8_0_96M_0/design_1_rst_ps8_0_96M_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_rst_ps8_0_96M_0/design_1_rst_ps8_0_96M_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_rst_ps8_0_96M_0/design_1_rst_ps8_0_96M_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_dsp_stream_0_1/constrs/dsp_stream_ip.xdc]
-set_property used_in_synthesis false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_system_ila_0_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_system_ila_0_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_system_ila_0_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_system_ila_0_0/bd_0/ip/ip_0/bd_f60c_ila_lib_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_system_ila_0_0/bd_0/bd_f60c_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_system_ila_0_0/design_1_system_ila_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_axis_data_fifo_0_0/design_1_axis_data_fifo_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_ram_re_0_1/constrs/ram_re_ip.xdc]
+set_property used_in_synthesis false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_auto_pc_0/design_1_auto_pc_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/ip/design_1_s00_mmu_0/design_1_s00_mmu_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all C:/Users/andre/CoRSoC/IPIs/Tests/dsp_test/dsp_test.gen/sources_1/bd/design_1/design_1_ooc.xdc]
 
 OPTRACE "Adding files" END { }

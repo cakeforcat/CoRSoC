@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "xlconstant_v1_1_9_xlconstant,Vivado 2024.1" *)
 (* CHECK_LICENSE_TYPE = "bd_afc3_one_0,xlconstant_v1_1_9_xlconstant,{}" *)
-(* CORE_GENERATION_INFO = "bd_afc3_one_0,xlconstant_v1_1_9_xlconstant,{x_ipProduct=Vivado 2024.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlconstant,x_ipVersion=1.1,x_ipCoreRevision=9,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,CONST_WIDTH=1,CONST_VAL=0x1}" *)
+(* CORE_GENERATION_INFO = "bd_afc3_one_0,xlconstant_v1_1_9_xlconstant,{x_ipProduct=Vivado 2024.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlconstant,x_ipVersion=1.1,x_ipCoreRevision=9,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,CONST_WIDTH=1,CONST_VAL=0x1}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_afc3_one_0 (
   dout

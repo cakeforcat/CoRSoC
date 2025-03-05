@@ -1,0 +1,85 @@
+Programmed ZCU111, with core that outputs 13 values of a cos wave, using ACXI LITE as a control for the counter into the ram. Core connected to 1024 depth FIFO, which connects to DMA. This code keeps outputting the same data, for every iteration, 18 values, and I dont know why. This is what I'm trying to figure out at the moment.
+
+# Python NumPy & PNQY library & ability to plot
+import numpy as np 
+from pynq import allocate, Overlay, MMIO
+import matplotlib.pyplot as plt 
+import time
+
+# Download bistream & parse HWH for IPI block diagram
+ol = Overlay("design_1024.bit") # hwh is parsed here
+
+# Interrogate HWH & display information about design
+print(f"IP blocks: {ol.ip_dict.keys()}")
+print(f"\nram_re: {ol.ip_dict['ram_re_0']}")
+
+# Get name of ram_re
+ram_re = ol.ip_dict['ram_re_0']['fullpath']
+print(f"\nram_re name: {ram_re}")      
+
+# Get base address of ram_re
+print(f"\nram_re address: {int(hex(ol.ip_dict['ram_re_0']['phys_addr']),16)}")
+print(f"ram_re address hex: {hex(ol.ip_dict['ram_re_0']['phys_addr'])}")
+ram_re_addr = 0xa0010000
+
+# Get address range of ram_re
+print(f"\nram_re address range: {int(hex(ol.ip_dict['ram_re_0']['addr_range']),16)}")
+print(f"ram_re address range hex: {hex(ol.ip_dict['ram_re_0']['addr_range'])}")
+ram_re_addr_range = 0x10000
+
+# Create MMIO object to interact with AXI Lite interface of ram_re
+ram_re_mmio = MMIO(ram_re_addr, ram_re_addr_range)
+print(f"\nram_re_mmio: {ram_re_mmio}")
+
+#print("===== AXI-LITE =====\n\n")
+input_data = 1
+address_offset = 0x0 # Must be multiple of 4
+ram_re_mmio.write(address_offset, input_data)
+time.sleep(0.1)
+print(f"Data sent to ram_re: {ram_re_mmio.read(address_offset)}")
+
+#print("\n\n===== DMA =====\n\n")
+# Get the DMA instance
+dma = ol.axi_dma 
+
+plt.subplots(figsize=(12,10))
+for i in range(10):
+    if i == 7:
+        input_data = 0
+        address_offset = 0x0 # Must be multiple of 4
+        ram_re_mmio.write(address_offset, input_data)
+        time.sleep(0.1)
+        print(f"Data sent to ram_re: {ram_re_mmio.read(address_offset)} after iter {i}")
+
+    # Allocate memory for DMA transfer
+    output_buffer = allocate(shape=(50,), dtype=np.uint16)
+
+    # Start DMA transfer
+    dma.recvchannel.transfer(output_buffer)
+    dma.recvchannel.wait()
+
+    # Adapt DMA output
+    result = output_buffer.astype(np.int16)
+    
+    if i == 1:
+        temp_output_buffer_1 = output_buffer
+        temp_result_1 = result
+    if i == 8:
+        temp_output_buffer_8 = output_buffer
+        temp_result_8 = result
+        
+    # Plot data
+    plt.subplot(5,2,i+1)
+    plt.plot(result, label="dsp_RAM")
+    plt.xlabel("Sample Index [n]")
+    plt.ylabel("Magnitude")
+    plt.title(f"Output Buffer Plot {i}")
+    plt.grid(True)
+plt.tight_layout()    
+plt.show()
+
+#print(f"DMA output of iter {i}:\n {output_buffer}")
+print(f"\ndma_re data of iter 1:\n {temp_result_1}")
+print(f"\ndma_re data of iter 8:\n {temp_result_8}")
+
+

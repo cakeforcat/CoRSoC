@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Mar  5 16:58:40 2025" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Mar  6 11:05:26 2025" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" DEVICE="xczu28dr" NAME="design_1" PACKAGE="ffvg1517" SPEEDGRADE="-2"/>
 
@@ -1800,7 +1800,7 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arsize"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="S00_AXI_aruser" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_S00_AXI_aruser">
+        <PORT DIR="I" NAME="S00_AXI_aruser" SIGIS="undef" SIGNAME="axi_interconnect_0_S00_AXI_aruser">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_aruser"/>
           </CONNECTIONS>
@@ -1860,7 +1860,7 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awsize"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="S00_AXI_awuser" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_S00_AXI_awuser">
+        <PORT DIR="I" NAME="S00_AXI_awuser" SIGIS="undef" SIGNAME="axi_interconnect_0_S00_AXI_awuser">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awuser"/>
           </CONNECTIONS>
@@ -2478,9 +2478,14 @@
     </MODULE>
     <MODULE COREREVISION="372098306" FULLNAME="/ram_re_0" HWVERSION="1.0" INSTANCE="ram_re_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="ram_re" VLNV="CoRSoC:VMC:ram_re:1.0">
       <DOCUMENTS/>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="ram_re_ip_s_axi" NAME="reg0" RANGE="0x10000" USAGE="register"/>
+      </ADDRESSBLOCKS>
       <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_ram_re_0_1"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_ram_re_0_2"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+        <PARAMETER NAME="C_RAM_RE_IP_S_AXI_BASEADDR" VALUE="0xA0010000"/>
+        <PARAMETER NAME="C_RAM_RE_IP_S_AXI_HIGHADDR" VALUE="0xA001FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT CLKFREQUENCY="96968727" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
@@ -4915,9 +4920,11 @@
       </BUSINTERFACES>
       <MEMORYMAP>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA000FFFF" INSTANCE="axi_dma" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM0_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="reg0" BASENAME="C_RAM_RE_IP_S_AXI_BASEADDR" BASEVALUE="0xA0010000" HIGHNAME="C_RAM_RE_IP_S_AXI_HIGHADDR" HIGHVALUE="0xA001FFFF" INSTANCE="ram_re_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM0_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="ram_re_ip_s_axi"/>
       </MEMORYMAP>
       <PERIPHERALS>
         <PERIPHERAL INSTANCE="axi_dma"/>
+        <PERIPHERAL INSTANCE="ram_re_0"/>
       </PERIPHERALS>
     </MODULE>
   </MODULES>

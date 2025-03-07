@@ -1,0 +1,1 @@
+Single channel energy detector

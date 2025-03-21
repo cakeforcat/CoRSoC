@@ -1,0 +1,27 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.576255",
+   "Default View_TopLeft":"-477,-193",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace port m_axis -pg 1 -lvl 3 -x 860 -y 240 -defaultsOSRD
+preplace port port-id_clk -pg 1 -lvl 0 -x -100 -y 520 -defaultsOSRD
+preplace portBus s_axis_im_tvalid -pg 1 -lvl 0 -x -100 -y 40 -defaultsOSRD
+preplace portBus s_axis_re_tvalid -pg 1 -lvl 0 -x -100 -y 10 -defaultsOSRD
+preplace portBus Din -pg 1 -lvl 0 -x -100 -y 400 -defaultsOSRD
+preplace portBus Din1 -pg 1 -lvl 0 -x -100 -y 170 -defaultsOSRD
+preplace inst dec_ssr_re_input -pg 1 -lvl 1 -x 130 -y 400 -defaultsOSRD
+preplace inst dec_ssr_im_input -pg 1 -lvl 1 -x 130 -y 170 -defaultsOSRD
+preplace inst Decimator_SSR_0 -pg 1 -lvl 2 -x 630 -y 250 -defaultsOSRD
+preplace netloc Din_1 1 0 1 NJ 400
+preplace netloc usp_rf_data_converter_0_m01_axis_tdata 1 0 1 NJ 170
+preplace netloc usp_rf_data_converter_0_clk_adc0 1 0 2 NJ 520 250
+preplace netloc usp_rf_data_converter_0_m00_axis_tvalid 1 0 2 NJ 10 250
+preplace netloc usp_rf_data_converter_0_m01_axis_tvalid 1 0 2 NJ 40 240
+preplace netloc Decimator_SSR_1_m_axis 1 2 1 N 240
+levelinfo -pg 1 -100 130 630 860
+pagesize -pg 1 -db -bbox -sgen -280 -160 950 1000
+"
+}
+0

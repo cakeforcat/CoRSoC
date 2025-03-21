@@ -1,0 +1,89 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Fri Mar  7 13:43:29 2025
+# Process ID: 12112
+# Current directory: C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src
+# Command line: vivado.exe -mode batch -source ProjectGeneration.tcl -notrace
+# Log file: C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/vivado.log
+# Journal file: C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src\vivado.jou
+# Running On        :DESKTOP-A4M58OC
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz
+# CPU Frequency     :3192 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :17133 MB
+# Swap memory       :27216 MB
+# Total Virtual     :44349 MB
+# Available Virtual :9669 MB
+#-----------------------------------------------------------
+source ProjectGeneration.tcl -notrace
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog'
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 507.352 ; gain = 202.676
+WARNING: [Coretcl 2-176] No IPs found
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/XilinxAMD/Vivado/2024.1/data/ip'.
+WARNING: [IP_Flow 19-4832] The IP name 'energydetector_cordic_v6_0_i0' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+WARNING: [Vivado 12-3523] Attempt to change 'Component_Name' from 'energydetector_cordic_v6_0_i0' to 'energydetector_cordic_v6_0_i0' is not allowed and is ignored.
+WARNING: [IP_Flow 19-4832] The IP name 'energydetector_c_counter_binary_v12_0_i0' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+WARNING: [Vivado 12-3523] Attempt to change 'Component_Name' from 'energydetector_c_counter_binary_v12_0_i0' to 'energydetector_c_counter_binary_v12_0_i0' is not allowed and is ignored.
+WARNING: [IP_Flow 19-4832] The IP name 'energydetector_div_gen_v5_1_i0' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+WARNING: [Vivado 12-3523] Attempt to change 'Component_Name' from 'energydetector_div_gen_v5_1_i0' to 'energydetector_div_gen_v5_1_i0' is not allowed and is ignored.
+WARNING: [IP_Flow 19-4832] The IP name 'energydetector_mult_gen_v12_0_i0' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+WARNING: [Vivado 12-3523] Attempt to change 'Component_Name' from 'energydetector_mult_gen_v12_0_i0' to 'energydetector_mult_gen_v12_0_i0' is not allowed and is ignored.
+WARNING: [IP_Flow 19-4832] The IP name 'energydetector_mult_gen_v12_0_i1' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+WARNING: [Vivado 12-3523] Attempt to change 'Component_Name' from 'energydetector_mult_gen_v12_0_i1' to 'energydetector_mult_gen_v12_0_i1' is not allowed and is ignored.
+WARNING: [IP_Flow 19-4832] The IP name 'energydetector_xbip_multadd_v3_0_i0' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+WARNING: [Vivado 12-3523] Attempt to change 'Component_Name' from 'energydetector_xbip_multadd_v3_0_i0' to 'energydetector_xbip_multadd_v3_0_i0' is not allowed and is ignored.
+WARNING: [IP_Flow 19-3374] An attempt to modify the value of disabled parameter 'c_ce_overrides_sclr' from '0' to '1' has been ignored for IP 'energydetector_xbip_multadd_v3_0_i0'
+WARNING: [IP_Flow 19-4832] The IP name 'energydetector_dist_mem_gen_i0' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+WARNING: [Vivado 12-3523] Attempt to change 'Component_Name' from 'energydetector_dist_mem_gen_i0' to 'energydetector_dist_mem_gen_i0' is not allowed and is ignored.
+WARNING: [IP_Flow 19-3374] An attempt to modify the value of disabled parameter 'ce_overrides' from 'ce_overrides_sync_controls' to 'sync_controls_overrides_ce' has been ignored for IP 'energydetector_dist_mem_gen_i0'
+IP Repository Located at : D:/XilinxAMD/Vivado/2024.1/data/ip
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog'
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/XilinxAMD/Vivado/2024.1/data/ip'.
+Adding File c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.srcs/sources_1/ip/energydetector_c_counter_binary_v12_0_i0/energydetector_c_counter_binary_v12_0_i0.xci
+Adding File c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.srcs/sources_1/ip/energydetector_cordic_v6_0_i0/energydetector_cordic_v6_0_i0.xci
+Adding File c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.srcs/sources_1/ip/energydetector_dist_mem_gen_i0/energydetector_dist_mem_gen_i0.xci
+Adding File c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.srcs/sources_1/ip/energydetector_div_gen_v5_1_i0/energydetector_div_gen_v5_1_i0.xci
+Adding File c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.srcs/sources_1/ip/energydetector_mult_gen_v12_0_i0/energydetector_mult_gen_v12_0_i0.xci
+Adding File c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.srcs/sources_1/ip/energydetector_mult_gen_v12_0_i1/energydetector_mult_gen_v12_0_i1.xci
+Adding File c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.srcs/sources_1/ip/energydetector_xbip_multadd_v3_0_i0/energydetector_xbip_multadd_v3_0_i0.xci
+Adding File C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/sysgen/energydetector.xdc
+Adding File C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/sysgen/energydetector_dist_mem_gen_i0_vivado.coe
+INFO: [IP_Flow 19-5107] Inferred bus interface 'm_axis' of definition 'xilinx.com:interface:axis:1.0' (from TCL Argument).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axis' of definition 'xilinx.com:interface:axis:1.0' (from TCL Argument).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'clk' of definition 'xilinx.com:signal:clock:1.0' (from TCL Argument).
+INFO: [IP_Flow 19-4728] Bus Interface 'clk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'm_axis'.
+WARNING: [IP_Flow 19-11770] Clock interface 'clk' has no FREQ_HZ parameter.
+INFO: [IP_Flow 19-2181] Payment is not required for this core.
+WARNING: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository 'c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip' may become invalid. A better location for the repository would be in a path adjacent to the project. (Current project location is 'c:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog'.)
+0
+Wrote  : <C:\Users\jojok\Desktop\university\Project\netlistED\ip\EnergyDetector\src\ip_catalog\energydetector.srcs\sources_1\bd\EnergyDetector_bd\EnergyDetector_bd.bd> 
+WARNING: [BD 5-670] It is required to provide a frequency value for a user created input clock port. Please use the <-freq_hz $freq_val> argument of the create_bd_port command. ie create_bd_port -dir I -type clk -freq_hz 100000000 clkin
+INFO: [BD 41-759] The input pins (listed below) are either not connected or do not have a source port, and they don't have a tie-off specified. These pins are tied-off to all 0's to avoid error in Implementation flow.
+Please check your design and connect them as needed: 
+/EnergyDetector_1/s_axis_tvalid
+
+Wrote  : <C:\Users\jojok\Desktop\university\Project\netlistED\ip\EnergyDetector\src\ip_catalog\energydetector.srcs\sources_1\bd\EnergyDetector_bd\EnergyDetector_bd.bd> 
+CRITICAL WARNING: [filemgmt 20-1702] Unable to set property on the file: C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.gen/sources_1/bd/EnergyDetector_bd/synth/EnergyDetector_bd.vhd
+File is managed as part of sub-design (IP, Block Design, DSP Design, etc.) file: C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.srcs/sources_1/bd/EnergyDetector_bd/EnergyDetector_bd.bd
+CRITICAL WARNING: [filemgmt 20-1702] Unable to set property on the file: C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.gen/sources_1/bd/EnergyDetector_bd/sim/EnergyDetector_bd.vhd
+File is managed as part of sub-design (IP, Block Design, DSP Design, etc.) file: C:/Users/jojok/Desktop/university/Project/netlistED/ip/EnergyDetector/src/ip_catalog/energydetector.srcs/sources_1/bd/EnergyDetector_bd/EnergyDetector_bd.bd
+update_compile_order: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 837.070 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Fri Mar  7 13:44:10 2025...

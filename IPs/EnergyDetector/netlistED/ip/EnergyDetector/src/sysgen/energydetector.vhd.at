@@ -1,0 +1,137 @@
+{
+  'Line_100' => {
+    'CodeInstance' => 'energydetector_struct/convert',
+    'Instance' => 'convert',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Convert'
+  },
+  'Line_121' => {
+    'CodeInstance' => 'energydetector_struct/counter1',
+    'Instance' => 'counter1',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Counter1'
+  },
+  'Line_140' => {
+    'CodeInstance' => 'energydetector_struct/data',
+    'Instance' => 'data',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Data'
+  },
+  'Line_151' => {
+    'CodeInstance' => 'energydetector_struct/delay11',
+    'Instance' => 'delay11',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Delay11'
+  },
+  'Line_166' => {
+    'CodeInstance' => 'energydetector_struct/delay12',
+    'Instance' => 'delay12',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Delay12'
+  },
+  'Line_181' => {
+    'CodeInstance' => 'energydetector_struct/divide',
+    'Instance' => 'divide',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Divide'
+  },
+  'Line_191' => {
+    'CodeInstance' => 'energydetector_struct/imaginary1',
+    'Instance' => 'imaginary1',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Imaginary1'
+  },
+  'Line_202' => {
+    'CodeInstance' => 'energydetector_struct/mult',
+    'Instance' => 'mult',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Mult'
+  },
+  'Line_239' => {
+    'CodeInstance' => 'energydetector_struct/mult1',
+    'Instance' => 'mult1',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Mult1'
+  },
+  'Line_276' => {
+    'CodeInstance' => 'energydetector_struct/multadd',
+    'Instance' => 'multadd',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/MultAdd'
+  },
+  'Line_307' => {
+    'CodeInstance' => 'energydetector_struct/real1',
+    'Instance' => 'real1',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Real1'
+  },
+  'Line_318' => {
+    'CodeInstance' => 'energydetector_struct/reinterpret1',
+    'Instance' => 'reinterpret1',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Reinterpret1'
+  },
+  'Line_326' => {
+    'CodeInstance' => 'energydetector_struct/reinterpret2',
+    'Instance' => 'reinterpret2',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Reinterpret2'
+  },
+  'Line_334' => {
+    'CodeInstance' => 'energydetector_struct/reinterpret7',
+    'Instance' => 'reinterpret7',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Reinterpret7'
+  },
+  'Line_342' => {
+    'CodeInstance' => 'energydetector_struct/relational',
+    'Instance' => 'relational',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Relational'
+  },
+  'Line_352' => {
+    'CodeInstance' => 'energydetector_struct/relational2',
+    'Instance' => 'relational2',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Relational2'
+  },
+  'Line_361' => {
+    'CodeInstance' => 'energydetector_struct/single_port_ram',
+    'Instance' => 'single_port_ram',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Single Port RAM'
+  },
+  'Line_379' => {
+    'CodeInstance' => 'energydetector_struct/write',
+    'Instance' => 'write',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Write'
+  },
+  'Line_390' => {
+    'CodeInstance' => 'energydetector_struct/delay1',
+    'Instance' => 'delay1',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Delay1'
+  },
+  'Line_422' => {
+    'CodeInstance' => 'energydetector_default_clock_driver/clockdriver',
+    'Instance' => 'clockdriver',
+    'SimulinkInstance' => ''
+  },
+  'Line_458' => {
+    'CodeInstance' => 'energydetector_default_clock_driver',
+    'Instance' => 'energydetector_default_clock_driver',
+    'SimulinkInstance' => ''
+  },
+  'Line_466' => {
+    'CodeInstance' => 'energydetector_struct',
+    'Instance' => 'energydetector_struct',
+    'SimulinkInstance' => 'EnergyDetector'
+  },
+  'Line_61' => {
+    'CodeInstance' => 'energydetector_struct/accumulator',
+    'Instance' => 'accumulator',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Accumulator'
+  },
+  'Line_70' => {
+    'CodeInstance' => 'energydetector_struct/cordic_6_0',
+    'Instance' => 'cordic_6_0',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/CORDIC 6.0'
+  },
+  'Line_79' => {
+    'CodeInstance' => 'energydetector_struct/constant_x0',
+    'Instance' => 'constant_x0',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Constant'
+  },
+  'Line_86' => {
+    'CodeInstance' => 'energydetector_struct/constant2',
+    'Instance' => 'constant2',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Constant2'
+  },
+  'Line_93' => {
+    'CodeInstance' => 'energydetector_struct/constant4',
+    'Instance' => 'constant4',
+    'SimulinkInstance' => 'EnergyDetect/EnergyDetector/Constant4'
+  }
+}

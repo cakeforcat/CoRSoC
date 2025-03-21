@@ -1,3 +1,5 @@
+clear all
+
 Fclk = 64e6;
 SSRin = 8;
 Fp  = (1/8)*1;        % passband-edge normalized frequency
@@ -9,4 +11,4 @@ Rst = 10^(-Ast/20);
 
 W = firgr('minorder',[0 Fp Fst 1], [1 1 0 0],[Rp,Rst]);
 
-fvtool(W)
+% fvtool(W)

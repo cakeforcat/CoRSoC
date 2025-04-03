@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/cakef/Documents/GitHub/CoRSoC/manims/media/videos/main/1080p144/partial_movie_files/MyScene/3842667589_3339626412_223132457.mp4'
+file 'file:C:/Users/cakef/Documents/GitHub/CoRSoC/manims/media/videos/main/1080p144/partial_movie_files/MyScene/903247057_2557814198_4035883698.mp4'
+file 'file:C:/Users/cakef/Documents/GitHub/CoRSoC/manims/media/videos/main/1080p144/partial_movie_files/MyScene/903247057_106071137_2708697504.mp4'
+file 'file:C:/Users/cakef/Documents/GitHub/CoRSoC/manims/media/videos/main/1080p144/partial_movie_files/MyScene/903247057_3519517006_2708697504.mp4'
+file 'file:C:/Users/cakef/Documents/GitHub/CoRSoC/manims/media/videos/main/1080p144/partial_movie_files/MyScene/903247057_2408024828_2342971185.mp4'

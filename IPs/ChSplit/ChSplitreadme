@@ -1,0 +1,1 @@
+A filtering IP designed to take in an IQ stream, seperate them into four channels and 8 seperate IQ inputs for sending to the traditional cognitive blocks (ED, MF)

@@ -23,21 +23,94 @@ class MyScene(Scene):
         self.wait(1)
         self.clear()
 
-        data=Tex(
-            "01","00","10","11","00","01","10","11",
+        # data=Tex(
+        #     "01","00","10","11","00","01","10","11",
+        # )
+        # framebox = SurroundingRectangle(data[-1], buff = .1)
+        # self.play(Write(data))
+        # self.wait(1)
+        # self.play(Create(framebox))
+        # self.wait(1)
+        # # shift text by one box to the right and fade out last box
+        # for i in range(len(data)-1):
+        #     self.play(data.animate.shift(data[i].get))
+        #     self.wait(0.5)
+        #     self.play(FadeOut(data[-1-i]))
+        #     self.wait(0.5)
+        # self.play(FadeOut(framebox))
+
+        ax = Axes(
+            x_range=[-9, 9, 2],
+            y_range=[0, 1],
+            x_axis_config={
+                "numbers_to_include": [-6, -2, 2, 6]
+            }
         )
-        framebox = SurroundingRectangle(data[-1], buff = .1)
+
+        rng = np.random.default_rng(seed=2025)
+
+        def channel_func(f, fc, bw, beta=0.2):
+            # were gonna base it off of a raised cosine filter
+            if np.abs(f - fc) <= (1 - beta) * bw/2:
+                return 1
+            elif (1 - beta) * bw/2 <= np.abs(f - fc) <= (1 + beta) * bw/2:
+                return 1/2 * (1 + np.cos(np.pi / (bw * beta) * (np.abs(f - fc) - (1 - beta) * bw/2)))
+            else:
+                return 0
 
 
-        self.play(Write(data))
-        self.wait(1)
-        self.play(Create(framebox))
-        self.wait(1)
-        # shift text by one box to the right and fade out last box
-        for i in range(len(data)-1):
-            self.play(data.animate.shift(RIGHT*2))
-            self.wait(0.5)
-            self.play(FadeOut(data[-1-i]))
-            self.wait(0.5)
-        self.play(FadeOut(framebox))
+        ch0 = ax.plot(
+            lambda t: channel_func(t, -6, 3.75)*0.8,
+            color=BLUE,
+        )
+        ch1 = ax.plot(
+            lambda t: channel_func(t, -2, 3.75)*0.8,
+            color=BLUE,
+        )
+        ch2 = ax.plot(
+            lambda t: channel_func(t, 2, 3.75)*0.8,
+            color=BLUE,
+        )
+        ch3 = ax.plot(
+            lambda t: channel_func(t, 6, 3.75)*0.8,
+            color=BLUE,
+        )
+
+        pu = ax.plot(
+            lambda t: channel_func(t, 4.5, 5)*0.6,
+            color=RED,
+        )
+
+        pu_n = ax.plot(
+            lambda t: channel_func(t, 4.5, 5)*0.6 + rng.random() * 0.08 + 0.1,
+            color=PINK,
+        )
+
+        pu_ch0_n = ax.plot(
+            lambda t: channel_func(t, -6, 3.75)*0.8 + rng.random() * 0.08 + 0.1 + channel_func(t, 4.5, 5)*0.6,
+            color=PINK,
+        )
+
+        noise = ax.plot(
+            lambda t: rng.random() * 0.08 + 0.1,
+            # x_range=[-4, 4],
+            color=GREEN,
+        )#.move_to([0, 1, 0])
+
+        self.add(ax)
+        self.wait(2)
+        self.play(Create(noise, run_time=2))
+        self.wait(2)
+        self.play(Create(ch2, run_time=3))
+        self.wait(2)
+        self.play(Create(pu, run_time=3))
+        self.wait(2)
+        # remove pu, ch0, and noise, and add pu_n
+        self.play(FadeOut(pu), FadeOut(ch2), FadeOut(noise))
+        self.play(Create(pu_n, run_time=3))
+        self.wait(2)
+        # remove pu_n and add pu_ch0_n
+        self.play(FadeOut(pu_n))
+        self.play(Create(pu_ch0_n, run_time=3))
+        self.wait(2)
 

@@ -1,0 +1,42 @@
+{
+  'Line_112' => {
+    'CodeInstance' => 'finn_convert_struct/expression',
+    'Instance' => 'expression',
+    'SimulinkInstance' => 'FINNconvert/FINN_convert/Expression'
+  },
+  'Line_138' => {
+    'CodeInstance' => 'finn_convert_default_clock_driver/clockdriver',
+    'Instance' => 'clockdriver',
+    'SimulinkInstance' => ''
+  },
+  'Line_176' => {
+    'CodeInstance' => 'finn_convert_default_clock_driver',
+    'Instance' => 'finn_convert_default_clock_driver',
+    'SimulinkInstance' => ''
+  },
+  'Line_184' => {
+    'CodeInstance' => 'finn_convert_struct',
+    'Instance' => 'finn_convert_struct',
+    'SimulinkInstance' => 'FINN_convert'
+  },
+  'Line_46' => {
+    'CodeInstance' => 'finn_convert_struct/concat',
+    'Instance' => 'concat',
+    'SimulinkInstance' => 'FINNconvert/FINN_convert/Concat'
+  },
+  'Line_55' => {
+    'CodeInstance' => 'finn_convert_struct/convert',
+    'Instance' => 'convert',
+    'SimulinkInstance' => 'FINNconvert/FINN_convert/Convert'
+  },
+  'Line_76' => {
+    'CodeInstance' => 'finn_convert_struct/convert1',
+    'Instance' => 'convert1',
+    'SimulinkInstance' => 'FINNconvert/FINN_convert/Convert1'
+  },
+  'Line_97' => {
+    'CodeInstance' => 'finn_convert_struct/delay',
+    'Instance' => 'delay',
+    'SimulinkInstance' => 'FINNconvert/FINN_convert/Delay'
+  }
+}

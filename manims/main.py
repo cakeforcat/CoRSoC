@@ -45,7 +45,26 @@ class MyScene(Scene):
             x_axis_config={
                 "numbers_to_include": [-6, -2, 2, 6]
             }
+        ).shift(UP*0.5)
+
+        x_label = ax.get_x_axis_label(
+            Tex("Frequency (MHz)").scale(0.65), edge=DOWN, direction=DOWN, buff=0.5
         )
+
+        line0 = ax.get_vertical_line(ax.coords_to_point(-8, 1), line_config={"dashed_ratio": 0.7})
+        ch0_label = Tex("Channel 0", font_size=24, color=BLUE).move_to(ax.c2p(-6, 0.9))
+        line1 = ax.get_vertical_line(ax.coords_to_point(-4, 1), line_config={"dashed_ratio": 0.7})
+        ch1_label = Tex("Channel 1", font_size=24, color=BLUE).move_to(ax.c2p(-2, 0.9))
+        line2 = ax.get_vertical_line(ax.coords_to_point(4, 1), line_config={"dashed_ratio": 0.7})
+        ch2_label = Tex("Channel 2", font_size=24, color=BLUE).move_to(ax.c2p(2, 0.9))
+        line3 = ax.get_vertical_line(ax.coords_to_point(8, 1), line_config={"dashed_ratio": 0.7})
+        ch3_label = Tex("Channel 3", font_size=24, color=BLUE).move_to(ax.c2p(6, 0.9))
+
+        pu_label = Tex("Other user", font_size=24, color=RED).move_to(ax.c2p(4.5, 0.65)).set_z_index(5)
+        ex_label = Tex("potential \n transmission", font_size=24, color=BLUE).move_to(ax.c2p(2, 0.9))
+        noise_label = Tex("noise floor", font_size=24, color=GREEN).move_to(ax.c2p(-6, 0.25))
+        sense_label = Tex("sense and choose best channel", font_size=50, color=YELLOW).move_to(ax.c2p(0, 0.65)).set_z_index(5)
+        final_label = Tex("Collision-less transmission", font_size=50, color=YELLOW).move_to(ax.c2p(0, 0.65)).set_z_index(5)
 
         rng = np.random.default_rng(seed=2025)
 
@@ -97,20 +116,28 @@ class MyScene(Scene):
             color=GREEN,
         )#.move_to([0, 1, 0])
 
-        self.add(ax)
+
+        self.play(FadeIn(ax, x_label))
         self.wait(2)
         self.play(Create(noise, run_time=2))
+        self.wait(1)
+        self.play(FadeIn(ch2))
         self.wait(2)
-        self.play(Create(ch2, run_time=3))
+        self.play(FadeIn(pu))
         self.wait(2)
-        self.play(Create(pu, run_time=3))
+        self.play(FadeIn(pu_label, ex_label, noise_label))
         self.wait(2)
         # remove pu, ch0, and noise, and add pu_n
-        self.play(FadeOut(pu), FadeOut(ch2), FadeOut(noise))
+        self.play(FadeOut(pu, ch2, noise, pu_label, ex_label, noise_label))
         self.play(Create(pu_n, run_time=3))
         self.wait(2)
-        # remove pu_n and add pu_ch0_n
-        self.play(FadeOut(pu_n))
+        self.play(FadeIn(line0, line1, line2, line3))
+        self.play(FadeIn(ch0_label, ch1_label, ch2_label, ch3_label))
+        self.wait(1)
+        self.play(FadeIn(sense_label))
+        self.wait(1)
+        self.play(FadeOut(line0, line1, line2, line3, sense_label, pu_n))
         self.play(Create(pu_ch0_n, run_time=3))
+        self.play(FadeIn(final_label))
         self.wait(2)
 

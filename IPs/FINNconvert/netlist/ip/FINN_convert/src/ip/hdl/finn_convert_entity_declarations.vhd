@@ -244,82 +244,6 @@ use xil_defaultlib.conv_pkg.all;
 
 library IEEE;
 use IEEE.std_logic_1164.all;
-library xil_defaultlib;
-use xil_defaultlib.conv_pkg.all;
-
-
-entity finn_convert_xldelay is
-   generic(width        : integer := -1;
-           latency      : integer := -1;
-           reg_retiming : integer :=  0;
-           reset        : integer :=  0);
-   port(d       : in std_logic_vector (width-1 downto 0);
-        ce      : in std_logic;
-        clk     : in std_logic;
-        en      : in std_logic;
-        rst     : in std_logic;
-        q       : out std_logic_vector (width-1 downto 0));
-
-end finn_convert_xldelay;
-
-architecture behavior of finn_convert_xldelay is
-   component synth_reg
-      generic (width       : integer;
-               latency     : integer);
-      port (i       : in std_logic_vector(width-1 downto 0);
-            ce      : in std_logic;
-            clr     : in std_logic;
-            clk     : in std_logic;
-            o       : out std_logic_vector(width-1 downto 0));
-   end component; -- end component synth_reg
-
-   component synth_reg_reg
-      generic (width       : integer;
-               latency     : integer);
-      port (i       : in std_logic_vector(width-1 downto 0);
-            ce      : in std_logic;
-            clr     : in std_logic;
-            clk     : in std_logic;
-            o       : out std_logic_vector(width-1 downto 0));
-   end component;
-
-   signal internal_ce  : std_logic;
-
-begin
-   internal_ce  <= ce and en;
-
-   srl_delay: if ((reg_retiming = 0) and (reset = 0)) or (latency < 1) generate
-     synth_reg_srl_inst : synth_reg
-       generic map (
-         width   => width,
-         latency => latency)
-       port map (
-         i   => d,
-         ce  => internal_ce,
-         clr => '0',
-         clk => clk,
-         o   => q);
-   end generate srl_delay;
-
-   reg_delay: if ((reg_retiming = 1) or (reset = 1)) and (latency >= 1) generate
-     synth_reg_reg_inst : synth_reg_reg
-       generic map (
-         width   => width,
-         latency => latency)
-       port map (
-         i   => d,
-         ce  => internal_ce,
-         clr => rst,
-         clk => clk,
-         o   => q);
-   end generate reg_delay;
-end architecture behavior;
-
-library xil_defaultlib;
-use xil_defaultlib.conv_pkg.all;
-
-library IEEE;
-use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 entity sysgen_expr_5b8aa52045 is
   port (
@@ -359,5 +283,32 @@ begin
   pipe_11_18_front_din <= fulldout_5_2_bit;
   pipe_11_18_push_front_pop_back_en <= '1';
   dout <= boolean_to_vector(pipe_11_18_back);
+end behavior;
+
+library xil_defaultlib;
+use xil_defaultlib.conv_pkg.all;
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+entity sysgen_concat_9e94cbc6c9 is
+  port (
+    in0 : in std_logic_vector((16 - 1) downto 0);
+    in1 : in std_logic_vector((16 - 1) downto 0);
+    y : out std_logic_vector((32 - 1) downto 0);
+    clk : in std_logic;
+    ce : in std_logic;
+    clr : in std_logic);
+end sysgen_concat_9e94cbc6c9;
+architecture behavior of sysgen_concat_9e94cbc6c9
+is
+  signal in0_1_23: unsigned((16 - 1) downto 0);
+  signal in1_1_27: unsigned((16 - 1) downto 0);
+  signal y_2_1_concat: unsigned((32 - 1) downto 0);
+begin
+  in0_1_23 <= std_logic_vector_to_unsigned(in0);
+  in1_1_27 <= std_logic_vector_to_unsigned(in1);
+  y_2_1_concat <= std_logic_vector_to_unsigned(unsigned_to_std_logic_vector(in0_1_23) & unsigned_to_std_logic_vector(in1_1_27));
+  y <= unsigned_to_std_logic_vector(y_2_1_concat);
 end behavior;
 

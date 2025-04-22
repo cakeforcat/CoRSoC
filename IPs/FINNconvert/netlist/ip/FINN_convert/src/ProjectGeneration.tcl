@@ -29,7 +29,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	set IP_LifeCycle_Menu {1}
 	set IP_Logo {sysgen_icon_100.png}
 	set IP_Name {FINNconvert}
-	set IP_Revision {375727108}
+	set IP_Revision {376224744}
 	set IP_Socket_IP {0}
 	set IP_Socket_IP_Proj_Path {}
 	set IP_Vendor_Text {CoRSoC}
@@ -51,16 +51,31 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 		{{finn_convert_clock.xdc}}
 		{{finn_convert.xdc}}
 	}
-	set SimPeriod 7.8125e-09
-	set SimTime 3.90625e-08
+	set SimPeriod 6.25e-08
+	set SimTime 3.125e-07
 	set SimulationTime {230.00000000 ns}
 	set SynthStrategyName {Vivado Synthesis Defaults}
 	set SynthesisTool {Vivado}
 	set TargetDir {C:/Users/cakef/Documents/GitHub/CoRSoC/IPs/FINNconvert/netlist/ip/FINN_convert/src}
 	set TopLevelModule {finn_convert}
-	set TopLevelSimulinkHandle 5.00598
+	set TopLevelSimulinkHandle 5.00012
 	set VHDLLib {xil_defaultlib}
 	set TopLevelPortInterface {}
+	dict set TopLevelPortInterface m_full_axis_tready Name {m_full_axis_tready}
+	dict set TopLevelPortInterface m_full_axis_tready Type Bool
+	dict set TopLevelPortInterface m_full_axis_tready ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface m_full_axis_tready BinaryPoint 0
+	dict set TopLevelPortInterface m_full_axis_tready Width 1
+	dict set TopLevelPortInterface m_full_axis_tready DatFile {finnconvert_finn_convert_m_full_axis_tready.dat}
+	dict set TopLevelPortInterface m_full_axis_tready IconText {m_full_axis_tready}
+	dict set TopLevelPortInterface m_full_axis_tready Direction in
+	dict set TopLevelPortInterface m_full_axis_tready Period 1
+	dict set TopLevelPortInterface m_full_axis_tready Interface 0
+	dict set TopLevelPortInterface m_full_axis_tready InterfaceName {}
+	dict set TopLevelPortInterface m_full_axis_tready InterfaceString {DATA}
+	dict set TopLevelPortInterface m_full_axis_tready ClockDomain {finn_convert}
+	dict set TopLevelPortInterface m_full_axis_tready Locs {}
+	dict set TopLevelPortInterface m_full_axis_tready IOStandard {}
 	dict set TopLevelPortInterface s_q_axis_tvalid Name {s_q_axis_tvalid}
 	dict set TopLevelPortInterface s_q_axis_tvalid Type Bool
 	dict set TopLevelPortInterface s_q_axis_tvalid ArithmeticType xlUnsigned
@@ -69,7 +84,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface s_q_axis_tvalid DatFile {finnconvert_finn_convert_s_q_axis_tvalid.dat}
 	dict set TopLevelPortInterface s_q_axis_tvalid IconText {s_Q_axis_tvalid}
 	dict set TopLevelPortInterface s_q_axis_tvalid Direction in
-	dict set TopLevelPortInterface s_q_axis_tvalid Period 8
+	dict set TopLevelPortInterface s_q_axis_tvalid Period 1
 	dict set TopLevelPortInterface s_q_axis_tvalid Interface 0
 	dict set TopLevelPortInterface s_q_axis_tvalid InterfaceName {}
 	dict set TopLevelPortInterface s_q_axis_tvalid InterfaceString {DATA}
@@ -84,7 +99,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface s_q_axis_tdata DatFile {finnconvert_finn_convert_s_q_axis_tdata.dat}
 	dict set TopLevelPortInterface s_q_axis_tdata IconText {s_Q_axis_tdata}
 	dict set TopLevelPortInterface s_q_axis_tdata Direction in
-	dict set TopLevelPortInterface s_q_axis_tdata Period 8
+	dict set TopLevelPortInterface s_q_axis_tdata Period 1
 	dict set TopLevelPortInterface s_q_axis_tdata Interface 0
 	dict set TopLevelPortInterface s_q_axis_tdata InterfaceName {}
 	dict set TopLevelPortInterface s_q_axis_tdata InterfaceString {DATA}
@@ -99,7 +114,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface s_i_axis_tvalid DatFile {finnconvert_finn_convert_s_i_axis_tvalid.dat}
 	dict set TopLevelPortInterface s_i_axis_tvalid IconText {s_I_axis_tvalid}
 	dict set TopLevelPortInterface s_i_axis_tvalid Direction in
-	dict set TopLevelPortInterface s_i_axis_tvalid Period 8
+	dict set TopLevelPortInterface s_i_axis_tvalid Period 1
 	dict set TopLevelPortInterface s_i_axis_tvalid Interface 0
 	dict set TopLevelPortInterface s_i_axis_tvalid InterfaceName {}
 	dict set TopLevelPortInterface s_i_axis_tvalid InterfaceString {DATA}
@@ -114,7 +129,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface s_i_axis_tdata DatFile {finnconvert_finn_convert_s_i_axis_tdata.dat}
 	dict set TopLevelPortInterface s_i_axis_tdata IconText {s_I_axis_tdata}
 	dict set TopLevelPortInterface s_i_axis_tdata Direction in
-	dict set TopLevelPortInterface s_i_axis_tdata Period 8
+	dict set TopLevelPortInterface s_i_axis_tdata Period 1
 	dict set TopLevelPortInterface s_i_axis_tdata Interface 0
 	dict set TopLevelPortInterface s_i_axis_tdata InterfaceName {}
 	dict set TopLevelPortInterface s_i_axis_tdata InterfaceString {DATA}
@@ -129,7 +144,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface m_axis_tready DatFile {finnconvert_finn_convert_m_axis_tready.dat}
 	dict set TopLevelPortInterface m_axis_tready IconText {m_axis_tready}
 	dict set TopLevelPortInterface m_axis_tready Direction in
-	dict set TopLevelPortInterface m_axis_tready Period 8
+	dict set TopLevelPortInterface m_axis_tready Period 1
 	dict set TopLevelPortInterface m_axis_tready Interface 0
 	dict set TopLevelPortInterface m_axis_tready InterfaceName {}
 	dict set TopLevelPortInterface m_axis_tready InterfaceString {DATA}
@@ -144,7 +159,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface m_axis_tdata DatFile {finnconvert_finn_convert_m_axis_tdata.dat}
 	dict set TopLevelPortInterface m_axis_tdata IconText {m_axis_tdata}
 	dict set TopLevelPortInterface m_axis_tdata Direction out
-	dict set TopLevelPortInterface m_axis_tdata Period 8
+	dict set TopLevelPortInterface m_axis_tdata Period 1
 	dict set TopLevelPortInterface m_axis_tdata Interface 0
 	dict set TopLevelPortInterface m_axis_tdata InterfaceName {}
 	dict set TopLevelPortInterface m_axis_tdata InterfaceString {DATA}
@@ -159,7 +174,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface m_axis_tvalid DatFile {finnconvert_finn_convert_m_axis_tvalid.dat}
 	dict set TopLevelPortInterface m_axis_tvalid IconText {m_axis_tvalid}
 	dict set TopLevelPortInterface m_axis_tvalid Direction out
-	dict set TopLevelPortInterface m_axis_tvalid Period 8
+	dict set TopLevelPortInterface m_axis_tvalid Period 1
 	dict set TopLevelPortInterface m_axis_tvalid Interface 0
 	dict set TopLevelPortInterface m_axis_tvalid InterfaceName {}
 	dict set TopLevelPortInterface m_axis_tvalid InterfaceString {DATA}
@@ -174,7 +189,7 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface s_i_axis_tready DatFile {finnconvert_finn_convert_s_i_axis_tready.dat}
 	dict set TopLevelPortInterface s_i_axis_tready IconText {s_I_axis_tready}
 	dict set TopLevelPortInterface s_i_axis_tready Direction out
-	dict set TopLevelPortInterface s_i_axis_tready Period 8
+	dict set TopLevelPortInterface s_i_axis_tready Period 1
 	dict set TopLevelPortInterface s_i_axis_tready Interface 0
 	dict set TopLevelPortInterface s_i_axis_tready InterfaceName {}
 	dict set TopLevelPortInterface s_i_axis_tready InterfaceString {DATA}
@@ -189,13 +204,43 @@ namespace eval ::xilinx::dsp::planaheaddriver {
 	dict set TopLevelPortInterface s_q_axis_tready DatFile {finnconvert_finn_convert_s_q_axis_tready.dat}
 	dict set TopLevelPortInterface s_q_axis_tready IconText {s_Q_axis_tready}
 	dict set TopLevelPortInterface s_q_axis_tready Direction out
-	dict set TopLevelPortInterface s_q_axis_tready Period 8
+	dict set TopLevelPortInterface s_q_axis_tready Period 1
 	dict set TopLevelPortInterface s_q_axis_tready Interface 0
 	dict set TopLevelPortInterface s_q_axis_tready InterfaceName {}
 	dict set TopLevelPortInterface s_q_axis_tready InterfaceString {DATA}
 	dict set TopLevelPortInterface s_q_axis_tready ClockDomain {finn_convert}
 	dict set TopLevelPortInterface s_q_axis_tready Locs {}
 	dict set TopLevelPortInterface s_q_axis_tready IOStandard {}
+	dict set TopLevelPortInterface m_full_axis_tdata Name {m_full_axis_tdata}
+	dict set TopLevelPortInterface m_full_axis_tdata Type UFix_32_0
+	dict set TopLevelPortInterface m_full_axis_tdata ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface m_full_axis_tdata BinaryPoint 0
+	dict set TopLevelPortInterface m_full_axis_tdata Width 32
+	dict set TopLevelPortInterface m_full_axis_tdata DatFile {finnconvert_finn_convert_m_full_axis_tdata.dat}
+	dict set TopLevelPortInterface m_full_axis_tdata IconText {m_full_axis_tdata}
+	dict set TopLevelPortInterface m_full_axis_tdata Direction out
+	dict set TopLevelPortInterface m_full_axis_tdata Period 1
+	dict set TopLevelPortInterface m_full_axis_tdata Interface 0
+	dict set TopLevelPortInterface m_full_axis_tdata InterfaceName {}
+	dict set TopLevelPortInterface m_full_axis_tdata InterfaceString {DATA}
+	dict set TopLevelPortInterface m_full_axis_tdata ClockDomain {finn_convert}
+	dict set TopLevelPortInterface m_full_axis_tdata Locs {}
+	dict set TopLevelPortInterface m_full_axis_tdata IOStandard {}
+	dict set TopLevelPortInterface m_full_axis_tvalid Name {m_full_axis_tvalid}
+	dict set TopLevelPortInterface m_full_axis_tvalid Type Bool
+	dict set TopLevelPortInterface m_full_axis_tvalid ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface m_full_axis_tvalid BinaryPoint 0
+	dict set TopLevelPortInterface m_full_axis_tvalid Width 1
+	dict set TopLevelPortInterface m_full_axis_tvalid DatFile {finnconvert_finn_convert_m_full_axis_tvalid.dat}
+	dict set TopLevelPortInterface m_full_axis_tvalid IconText {m_full_axis_tvalid}
+	dict set TopLevelPortInterface m_full_axis_tvalid Direction out
+	dict set TopLevelPortInterface m_full_axis_tvalid Period 1
+	dict set TopLevelPortInterface m_full_axis_tvalid Interface 0
+	dict set TopLevelPortInterface m_full_axis_tvalid InterfaceName {}
+	dict set TopLevelPortInterface m_full_axis_tvalid InterfaceString {DATA}
+	dict set TopLevelPortInterface m_full_axis_tvalid ClockDomain {finn_convert}
+	dict set TopLevelPortInterface m_full_axis_tvalid Locs {}
+	dict set TopLevelPortInterface m_full_axis_tvalid IOStandard {}
 	dict set TopLevelPortInterface clk Name {clk}
 	dict set TopLevelPortInterface clk Type -
 	dict set TopLevelPortInterface clk ArithmeticType xlUnsigned

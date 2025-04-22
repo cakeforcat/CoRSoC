@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
---Date        : Wed Apr 16 16:38:50 2025
+--Date        : Tue Apr 22 10:53:17 2025
 --Host        : Laptopiszcze running 64-bit major release  (build 9200)
 --Command     : generate_target FINNconvert_bd_wrapper.bd
 --Design      : FINNconvert_bd_wrapper
@@ -18,6 +18,9 @@ entity FINNconvert_bd_wrapper is
     m_axis_tdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
     m_axis_tready : in STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
+    m_full_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_full_axis_tready : in STD_LOGIC_VECTOR ( 0 to 0 );
+    m_full_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
     s_i_axis_tdata : in STD_LOGIC_VECTOR ( 15 downto 0 );
     s_i_axis_tready : out STD_LOGIC_VECTOR ( 0 to 0 );
     s_i_axis_tvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -34,6 +37,9 @@ architecture STRUCTURE of FINNconvert_bd_wrapper is
     m_axis_tdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
     m_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tready : in STD_LOGIC_VECTOR ( 0 to 0 );
+    m_full_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_full_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
+    m_full_axis_tready : in STD_LOGIC_VECTOR ( 0 to 0 );
     s_i_axis_tdata : in STD_LOGIC_VECTOR ( 15 downto 0 );
     s_i_axis_tvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
     s_i_axis_tready : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -49,6 +55,9 @@ FINNconvert_bd_i: component FINNconvert_bd
       m_axis_tdata(15 downto 0) => m_axis_tdata(15 downto 0),
       m_axis_tready(0) => m_axis_tready(0),
       m_axis_tvalid(0) => m_axis_tvalid(0),
+      m_full_axis_tdata(31 downto 0) => m_full_axis_tdata(31 downto 0),
+      m_full_axis_tready(0) => m_full_axis_tready(0),
+      m_full_axis_tvalid(0) => m_full_axis_tvalid(0),
       s_i_axis_tdata(15 downto 0) => s_i_axis_tdata(15 downto 0),
       s_i_axis_tready(0) => s_i_axis_tready(0),
       s_i_axis_tvalid(0) => s_i_axis_tvalid(0),

@@ -1,0 +1,52 @@
+{
+  'Line_108' => {
+    'CodeInstance' => 'tlast_counter_1024_struct/logical',
+    'Instance' => 'logical',
+    'SimulinkInstance' => 'tlast_counter/tlast_counter_1024/Logical'
+  },
+  'Line_117' => {
+    'CodeInstance' => 'tlast_counter_1024_struct/relational',
+    'Instance' => 'relational',
+    'SimulinkInstance' => 'tlast_counter/tlast_counter_1024/Relational'
+  },
+  'Line_143' => {
+    'CodeInstance' => 'tlast_counter_1024_default_clock_driver/clockdriver',
+    'Instance' => 'clockdriver',
+    'SimulinkInstance' => ''
+  },
+  'Line_179' => {
+    'CodeInstance' => 'tlast_counter_1024_default_clock_driver',
+    'Instance' => 'tlast_counter_1024_default_clock_driver',
+    'SimulinkInstance' => ''
+  },
+  'Line_187' => {
+    'CodeInstance' => 'tlast_counter_1024_struct',
+    'Instance' => 'tlast_counter_1024_struct',
+    'SimulinkInstance' => 'tlast_counter_1024'
+  },
+  'Line_42' => {
+    'CodeInstance' => 'tlast_counter_1024_struct/constant_x0',
+    'Instance' => 'constant_x0',
+    'SimulinkInstance' => 'tlast_counter/tlast_counter_1024/Constant'
+  },
+  'Line_49' => {
+    'CodeInstance' => 'tlast_counter_1024_struct/counter',
+    'Instance' => 'counter',
+    'SimulinkInstance' => 'tlast_counter/tlast_counter_1024/Counter'
+  },
+  'Line_63' => {
+    'CodeInstance' => 'tlast_counter_1024_struct/delay',
+    'Instance' => 'delay',
+    'SimulinkInstance' => 'tlast_counter/tlast_counter_1024/Delay'
+  },
+  'Line_78' => {
+    'CodeInstance' => 'tlast_counter_1024_struct/delay1',
+    'Instance' => 'delay1',
+    'SimulinkInstance' => 'tlast_counter/tlast_counter_1024/Delay1'
+  },
+  'Line_93' => {
+    'CodeInstance' => 'tlast_counter_1024_struct/delay2',
+    'Instance' => 'delay2',
+    'SimulinkInstance' => 'tlast_counter/tlast_counter_1024/Delay2'
+  }
+}

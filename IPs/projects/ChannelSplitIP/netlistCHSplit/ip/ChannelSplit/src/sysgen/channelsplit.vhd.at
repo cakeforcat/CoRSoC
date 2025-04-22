@@ -1,0 +1,322 @@
+{
+  'Line_1011' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_demultiplexer1',
+    'Instance' => 'time_division_demultiplexer1',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Demultiplexer1'
+  },
+  'Line_1027' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_demultiplexer2',
+    'Instance' => 'time_division_demultiplexer2',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Demultiplexer2'
+  },
+  'Line_1043' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_demultiplexer3',
+    'Instance' => 'time_division_demultiplexer3',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Demultiplexer3'
+  },
+  'Line_1059' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_demultiplexer4',
+    'Instance' => 'time_division_demultiplexer4',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Demultiplexer4'
+  },
+  'Line_1075' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_demultiplexer5',
+    'Instance' => 'time_division_demultiplexer5',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Demultiplexer5'
+  },
+  'Line_1091' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_demultiplexer6',
+    'Instance' => 'time_division_demultiplexer6',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Demultiplexer6'
+  },
+  'Line_1107' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_demultiplexer7',
+    'Instance' => 'time_division_demultiplexer7',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Demultiplexer7'
+  },
+  'Line_1123' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_multiplexer',
+    'Instance' => 'time_division_multiplexer',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Multiplexer'
+  },
+  'Line_1138' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_multiplexer1',
+    'Instance' => 'time_division_multiplexer1',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Multiplexer1'
+  },
+  'Line_1153' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_multiplexer2',
+    'Instance' => 'time_division_multiplexer2',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Multiplexer2'
+  },
+  'Line_1168' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_multiplexer3',
+    'Instance' => 'time_division_multiplexer3',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Multiplexer3'
+  },
+  'Line_1202' => {
+    'CodeInstance' => 'channelsplit_default_clock_driver/clockdriver_x0',
+    'Instance' => 'clockdriver_x0',
+    'SimulinkInstance' => ''
+  },
+  'Line_1214' => {
+    'CodeInstance' => 'channelsplit_default_clock_driver/clockdriver',
+    'Instance' => 'clockdriver',
+    'SimulinkInstance' => ''
+  },
+  'Line_1261' => {
+    'CodeInstance' => 'channelsplit_default_clock_driver',
+    'Instance' => 'channelsplit_default_clock_driver',
+    'SimulinkInstance' => ''
+  },
+  'Line_1271' => {
+    'CodeInstance' => 'channelsplit_struct',
+    'Instance' => 'channelsplit_struct',
+    'SimulinkInstance' => 'ChannelSplit'
+  },
+  'Line_169' => {
+    'CodeInstance' => 'channelsplit_struct/addsub',
+    'Instance' => 'addsub',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/AddSub'
+  },
+  'Line_200' => {
+    'CodeInstance' => 'channelsplit_struct/addsub1',
+    'Instance' => 'addsub1',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/AddSub1'
+  },
+  'Line_231' => {
+    'CodeInstance' => 'channelsplit_struct/addsub2',
+    'Instance' => 'addsub2',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/AddSub2'
+  },
+  'Line_262' => {
+    'CodeInstance' => 'channelsplit_struct/addsub3',
+    'Instance' => 'addsub3',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/AddSub3'
+  },
+  'Line_293' => {
+    'CodeInstance' => 'channelsplit_struct/addsub4',
+    'Instance' => 'addsub4',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/AddSub4'
+  },
+  'Line_324' => {
+    'CodeInstance' => 'channelsplit_struct/addsub5',
+    'Instance' => 'addsub5',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/AddSub5'
+  },
+  'Line_355' => {
+    'CodeInstance' => 'channelsplit_struct/addsub6',
+    'Instance' => 'addsub6',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/AddSub6'
+  },
+  'Line_386' => {
+    'CodeInstance' => 'channelsplit_struct/addsub7',
+    'Instance' => 'addsub7',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/AddSub7'
+  },
+  'Line_417' => {
+    'CodeInstance' => 'channelsplit_struct/constant12',
+    'Instance' => 'constant12',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Constant12'
+  },
+  'Line_424' => {
+    'CodeInstance' => 'channelsplit_struct/constant16',
+    'Instance' => 'constant16',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Constant16'
+  },
+  'Line_431' => {
+    'CodeInstance' => 'channelsplit_struct/constant5',
+    'Instance' => 'constant5',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Constant5'
+  },
+  'Line_438' => {
+    'CodeInstance' => 'channelsplit_struct/constant8',
+    'Instance' => 'constant8',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Constant8'
+  },
+  'Line_445' => {
+    'CodeInstance' => 'channelsplit_struct/convert',
+    'Instance' => 'convert',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Convert'
+  },
+  'Line_466' => {
+    'CodeInstance' => 'channelsplit_struct/convert1',
+    'Instance' => 'convert1',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Convert1'
+  },
+  'Line_487' => {
+    'CodeInstance' => 'channelsplit_struct/convert2',
+    'Instance' => 'convert2',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Convert2'
+  },
+  'Line_508' => {
+    'CodeInstance' => 'channelsplit_struct/convert3',
+    'Instance' => 'convert3',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Convert3'
+  },
+  'Line_529' => {
+    'CodeInstance' => 'channelsplit_struct/convert4',
+    'Instance' => 'convert4',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Convert4'
+  },
+  'Line_550' => {
+    'CodeInstance' => 'channelsplit_struct/convert5',
+    'Instance' => 'convert5',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Convert5'
+  },
+  'Line_571' => {
+    'CodeInstance' => 'channelsplit_struct/convert6',
+    'Instance' => 'convert6',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Convert6'
+  },
+  'Line_592' => {
+    'CodeInstance' => 'channelsplit_struct/convert7',
+    'Instance' => 'convert7',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Convert7'
+  },
+  'Line_613' => {
+    'CodeInstance' => 'channelsplit_struct/counter',
+    'Instance' => 'counter',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Counter'
+  },
+  'Line_620' => {
+    'CodeInstance' => 'channelsplit_struct/counter2',
+    'Instance' => 'counter2',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Counter2'
+  },
+  'Line_627' => {
+    'CodeInstance' => 'channelsplit_struct/counter4',
+    'Instance' => 'counter4',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Counter4'
+  },
+  'Line_634' => {
+    'CodeInstance' => 'channelsplit_struct/counter6',
+    'Instance' => 'counter6',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Counter6'
+  },
+  'Line_641' => {
+    'CodeInstance' => 'channelsplit_struct/delay1',
+    'Instance' => 'delay1',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay1'
+  },
+  'Line_656' => {
+    'CodeInstance' => 'channelsplit_struct/delay11',
+    'Instance' => 'delay11',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay11'
+  },
+  'Line_671' => {
+    'CodeInstance' => 'channelsplit_struct/delay12',
+    'Instance' => 'delay12',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay12'
+  },
+  'Line_686' => {
+    'CodeInstance' => 'channelsplit_struct/delay15',
+    'Instance' => 'delay15',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay15'
+  },
+  'Line_701' => {
+    'CodeInstance' => 'channelsplit_struct/delay16',
+    'Instance' => 'delay16',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay16'
+  },
+  'Line_716' => {
+    'CodeInstance' => 'channelsplit_struct/delay20',
+    'Instance' => 'delay20',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay20'
+  },
+  'Line_731' => {
+    'CodeInstance' => 'channelsplit_struct/delay3',
+    'Instance' => 'delay3',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay3'
+  },
+  'Line_746' => {
+    'CodeInstance' => 'channelsplit_struct/delay4',
+    'Instance' => 'delay4',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay4'
+  },
+  'Line_761' => {
+    'CodeInstance' => 'channelsplit_struct/delay8',
+    'Instance' => 'delay8',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay8'
+  },
+  'Line_776' => {
+    'CodeInstance' => 'channelsplit_struct/delay9',
+    'Instance' => 'delay9',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Delay9'
+  },
+  'Line_791' => {
+    'CodeInstance' => 'channelsplit_struct/fir_compiler_7_1',
+    'Instance' => 'fir_compiler_7_1',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/FIR Compiler 7.1'
+  },
+  'Line_810' => {
+    'CodeInstance' => 'channelsplit_struct/fir_compiler_7_2',
+    'Instance' => 'fir_compiler_7_2',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/FIR Compiler 7.2'
+  },
+  'Line_829' => {
+    'CodeInstance' => 'channelsplit_struct/fir_compiler_7_3',
+    'Instance' => 'fir_compiler_7_3',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/FIR Compiler 7.3'
+  },
+  'Line_848' => {
+    'CodeInstance' => 'channelsplit_struct/fir_compiler_7_4',
+    'Instance' => 'fir_compiler_7_4',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/FIR Compiler 7.4'
+  },
+  'Line_867' => {
+    'CodeInstance' => 'channelsplit_struct/fir_compiler_7_5',
+    'Instance' => 'fir_compiler_7_5',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/FIR Compiler 7.5'
+  },
+  'Line_886' => {
+    'CodeInstance' => 'channelsplit_struct/fir_compiler_7_6',
+    'Instance' => 'fir_compiler_7_6',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/FIR Compiler 7.6'
+  },
+  'Line_905' => {
+    'CodeInstance' => 'channelsplit_struct/fir_compiler_7_7',
+    'Instance' => 'fir_compiler_7_7',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/FIR Compiler 7.7'
+  },
+  'Line_924' => {
+    'CodeInstance' => 'channelsplit_struct/fir_compiler_7_8',
+    'Instance' => 'fir_compiler_7_8',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/FIR Compiler 7.8'
+  },
+  'Line_943' => {
+    'CodeInstance' => 'channelsplit_struct/reinterpret1',
+    'Instance' => 'reinterpret1',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Reinterpret1'
+  },
+  'Line_951' => {
+    'CodeInstance' => 'channelsplit_struct/reinterpret7',
+    'Instance' => 'reinterpret7',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Reinterpret7'
+  },
+  'Line_959' => {
+    'CodeInstance' => 'channelsplit_struct/relational1',
+    'Instance' => 'relational1',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Relational1'
+  },
+  'Line_968' => {
+    'CodeInstance' => 'channelsplit_struct/relational10',
+    'Instance' => 'relational10',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Relational10'
+  },
+  'Line_977' => {
+    'CodeInstance' => 'channelsplit_struct/relational4',
+    'Instance' => 'relational4',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Relational4'
+  },
+  'Line_986' => {
+    'CodeInstance' => 'channelsplit_struct/relational7',
+    'Instance' => 'relational7',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Relational7'
+  },
+  'Line_995' => {
+    'CodeInstance' => 'channelsplit_struct/time_division_demultiplexer',
+    'Instance' => 'time_division_demultiplexer',
+    'SimulinkInstance' => 'ChannelSplit/ChannelSplit/Time Division Demultiplexer'
+  }
+}

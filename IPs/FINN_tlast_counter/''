@@ -1,0 +1,13 @@
+INFO-XMC-1008: Starting generation of target: HDL at 11:09:45 ...
+ERROR-XMC-3040: License checkout for Model Composer failed. Cannot perform code generation. 
+A license was searched using:
+ XILINXD_LICENSE_FILE = 2100@xilinx.license.eee.strath.ac.uk
+ Environment variable LM_LICENSE_FILE is not set.
+ License search path: C:\Users\cakef\AppData\Roaming\XilinxLicense;C:\.Xilinx;2100@xilinx.license.eee.strath.ac.uk;C:\Xilinx\Vivado\2024.1\data\ipcore_licenses
+
+INFO-XMC-1008: Starting generation of target: HDL at 11:15:03 ...
+INFO-XMC-1009: Finished generation of target: HDL in 2.96 seconds
+INFO-XMC-1008: Starting generation of target: HDL at 11:28:24 ...
+INFO-XMC-1009: Finished generation of target: HDL in 3.00 seconds
+INFO-XMC-1008: Starting generation of target: HDL at 11:35:28 ...
+INFO-XMC-1009: Finished generation of target: HDL in 2.95 seconds

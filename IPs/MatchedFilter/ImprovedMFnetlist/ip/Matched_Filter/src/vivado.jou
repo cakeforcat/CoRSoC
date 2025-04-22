@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Thu Apr  3 23:35:54 2025
+# Process ID: 1696
+# Current directory: C:/Users/jojok/Desktop/university/Project/ImprovedMFnetlist/ip/Matched_Filter/src
+# Command line: vivado.exe -mode batch -source ProjectGeneration.tcl -notrace
+# Log file: C:/Users/jojok/Desktop/university/Project/ImprovedMFnetlist/ip/Matched_Filter/src/vivado.log
+# Journal file: C:/Users/jojok/Desktop/university/Project/ImprovedMFnetlist/ip/Matched_Filter/src\vivado.jou
+# Running On        :DESKTOP-A4M58OC
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz
+# CPU Frequency     :3192 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :17133 MB
+# Swap memory       :28991 MB
+# Total Virtual     :46124 MB
+# Available Virtual :20841 MB
+#-----------------------------------------------------------
+source ProjectGeneration.tcl -notrace

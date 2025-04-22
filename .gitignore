@@ -138,4 +138,8 @@ codegen/
 
 # Octave session info
 octave-workspace
+
+# Training Dataset
+*.npz
+
 manims/media

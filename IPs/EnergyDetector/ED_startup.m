@@ -1,15 +1,14 @@
-f_signal = 0.25*16e6;        
 fs = 16e6;             
-t_duration = 500/fs;     
 
-t = 0:1/fs:t_duration-1/fs;
-t_series = 0:1/fs:(3*t_duration)-1/fs;
+Qh_noise = [zeros(1, 256), imag(samples1111_20_2(1024:1536)), zeros(1, 512)];
+Ih_noise = [zeros(1, 256), real(samples1111_20_2(1024:1536)), zeros(1, 512)];
 
-I_h = 0.4*cos(2*pi*f_signal*t);  % In-phase component
-Q_h = 0.4*sin(2*pi*f_signal*t);  % Quadrature component
+x = filter(exp_W1, 1, samples1000_0_1(1:1024));
+X = fftshift(fft(x(1:1024)));         % Shift zero frequency to center
+f = (-1024/2:1024/2-1)*(fs/1024);      % Frequency vector from -8 MHz to 8 MHz
 
-Ih_padded = [zeros(1, 500), I_h, zeros(1, 500)];  
-Qh_padded = [zeros(1, 500), Q_h, zeros( 1, 500)];
-
-Ih_noise = awgn(Ih_padded, 15);
-Qh_noise = awgn(Qh_padded, 15);
+plot(f/1e6, abs(X))           % Convert frequency to MHz for plot
+xlabel('Frequency (MHz)')
+ylabel('|X(f)|')
+title('FFT of Signal')
+grid on

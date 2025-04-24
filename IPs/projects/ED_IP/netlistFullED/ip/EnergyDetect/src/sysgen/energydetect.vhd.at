@@ -1,0 +1,277 @@
+{
+  'Line_114' => {
+    'CodeInstance' => 'energydetect_struct/accumulator',
+    'Instance' => 'accumulator',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Accumulator'
+  },
+  'Line_123' => {
+    'CodeInstance' => 'energydetect_struct/accumulator1',
+    'Instance' => 'accumulator1',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Accumulator1'
+  },
+  'Line_132' => {
+    'CodeInstance' => 'energydetect_struct/accumulator2',
+    'Instance' => 'accumulator2',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Accumulator2'
+  },
+  'Line_141' => {
+    'CodeInstance' => 'energydetect_struct/accumulator3',
+    'Instance' => 'accumulator3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Accumulator3'
+  },
+  'Line_150' => {
+    'CodeInstance' => 'energydetect_struct/concat',
+    'Instance' => 'concat',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Concat'
+  },
+  'Line_161' => {
+    'CodeInstance' => 'energydetect_struct/constant_x0',
+    'Instance' => 'constant_x0',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Constant'
+  },
+  'Line_168' => {
+    'CodeInstance' => 'energydetect_struct/constant1',
+    'Instance' => 'constant1',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Constant1'
+  },
+  'Line_175' => {
+    'CodeInstance' => 'energydetect_struct/constant10',
+    'Instance' => 'constant10',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Constant10'
+  },
+  'Line_182' => {
+    'CodeInstance' => 'energydetect_struct/constant11',
+    'Instance' => 'constant11',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Constant11'
+  },
+  'Line_189' => {
+    'CodeInstance' => 'energydetect_struct/constant2',
+    'Instance' => 'constant2',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Constant2'
+  },
+  'Line_196' => {
+    'CodeInstance' => 'energydetect_struct/constant3',
+    'Instance' => 'constant3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Constant3'
+  },
+  'Line_203' => {
+    'CodeInstance' => 'energydetect_struct/constant6',
+    'Instance' => 'constant6',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Constant6'
+  },
+  'Line_210' => {
+    'CodeInstance' => 'energydetect_struct/constant7',
+    'Instance' => 'constant7',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Constant7'
+  },
+  'Line_217' => {
+    'CodeInstance' => 'energydetect_struct/constant9',
+    'Instance' => 'constant9',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Constant9'
+  },
+  'Line_224' => {
+    'CodeInstance' => 'energydetect_struct/convert1',
+    'Instance' => 'convert1',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Convert1'
+  },
+  'Line_245' => {
+    'CodeInstance' => 'energydetect_struct/counter1',
+    'Instance' => 'counter1',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Counter1'
+  },
+  'Line_264' => {
+    'CodeInstance' => 'energydetect_struct/counter2',
+    'Instance' => 'counter2',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Counter2'
+  },
+  'Line_283' => {
+    'CodeInstance' => 'energydetect_struct/counter3',
+    'Instance' => 'counter3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Counter3'
+  },
+  'Line_302' => {
+    'CodeInstance' => 'energydetect_struct/counter4',
+    'Instance' => 'counter4',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Counter4'
+  },
+  'Line_321' => {
+    'CodeInstance' => 'energydetect_struct/data3',
+    'Instance' => 'data3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Data3'
+  },
+  'Line_332' => {
+    'CodeInstance' => 'energydetect_struct/delay1',
+    'Instance' => 'delay1',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Delay1'
+  },
+  'Line_347' => {
+    'CodeInstance' => 'energydetect_struct/delay11',
+    'Instance' => 'delay11',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Delay11'
+  },
+  'Line_362' => {
+    'CodeInstance' => 'energydetect_struct/delay12',
+    'Instance' => 'delay12',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Delay12'
+  },
+  'Line_377' => {
+    'CodeInstance' => 'energydetect_struct/delay2',
+    'Instance' => 'delay2',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Delay2'
+  },
+  'Line_392' => {
+    'CodeInstance' => 'energydetect_struct/delay3',
+    'Instance' => 'delay3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Delay3'
+  },
+  'Line_407' => {
+    'CodeInstance' => 'energydetect_struct/delay4',
+    'Instance' => 'delay4',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Delay4'
+  },
+  'Line_422' => {
+    'CodeInstance' => 'energydetect_struct/delay5',
+    'Instance' => 'delay5',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Delay5'
+  },
+  'Line_437' => {
+    'CodeInstance' => 'energydetect_struct/delay6',
+    'Instance' => 'delay6',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Delay6'
+  },
+  'Line_452' => {
+    'CodeInstance' => 'energydetect_struct/divide',
+    'Instance' => 'divide',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Divide'
+  },
+  'Line_462' => {
+    'CodeInstance' => 'energydetect_struct/divide1',
+    'Instance' => 'divide1',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Divide1'
+  },
+  'Line_472' => {
+    'CodeInstance' => 'energydetect_struct/divide2',
+    'Instance' => 'divide2',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Divide2'
+  },
+  'Line_482' => {
+    'CodeInstance' => 'energydetect_struct/divide3',
+    'Instance' => 'divide3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Divide3'
+  },
+  'Line_492' => {
+    'CodeInstance' => 'energydetect_struct/mult',
+    'Instance' => 'mult',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Mult'
+  },
+  'Line_529' => {
+    'CodeInstance' => 'energydetect_struct/mult1',
+    'Instance' => 'mult1',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Mult1'
+  },
+  'Line_566' => {
+    'CodeInstance' => 'energydetect_struct/mult2',
+    'Instance' => 'mult2',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Mult2'
+  },
+  'Line_603' => {
+    'CodeInstance' => 'energydetect_struct/mult3',
+    'Instance' => 'mult3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Mult3'
+  },
+  'Line_640' => {
+    'CodeInstance' => 'energydetect_struct/multadd',
+    'Instance' => 'multadd',
+    'SimulinkInstance' => 'FullED/EnergyDetect/MultAdd'
+  },
+  'Line_671' => {
+    'CodeInstance' => 'energydetect_struct/multadd1',
+    'Instance' => 'multadd1',
+    'SimulinkInstance' => 'FullED/EnergyDetect/MultAdd1'
+  },
+  'Line_702' => {
+    'CodeInstance' => 'energydetect_struct/multadd2',
+    'Instance' => 'multadd2',
+    'SimulinkInstance' => 'FullED/EnergyDetect/MultAdd2'
+  },
+  'Line_733' => {
+    'CodeInstance' => 'energydetect_struct/multadd3',
+    'Instance' => 'multadd3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/MultAdd3'
+  },
+  'Line_764' => {
+    'CodeInstance' => 'energydetect_struct/reinterpret11',
+    'Instance' => 'reinterpret11',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Reinterpret11'
+  },
+  'Line_772' => {
+    'CodeInstance' => 'energydetect_struct/relational',
+    'Instance' => 'relational',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Relational'
+  },
+  'Line_782' => {
+    'CodeInstance' => 'energydetect_struct/relational1',
+    'Instance' => 'relational1',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Relational1'
+  },
+  'Line_792' => {
+    'CodeInstance' => 'energydetect_struct/relational2',
+    'Instance' => 'relational2',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Relational2'
+  },
+  'Line_801' => {
+    'CodeInstance' => 'energydetect_struct/relational3',
+    'Instance' => 'relational3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Relational3'
+  },
+  'Line_810' => {
+    'CodeInstance' => 'energydetect_struct/relational4',
+    'Instance' => 'relational4',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Relational4'
+  },
+  'Line_820' => {
+    'CodeInstance' => 'energydetect_struct/relational5',
+    'Instance' => 'relational5',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Relational5'
+  },
+  'Line_829' => {
+    'CodeInstance' => 'energydetect_struct/relational6',
+    'Instance' => 'relational6',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Relational6'
+  },
+  'Line_839' => {
+    'CodeInstance' => 'energydetect_struct/relational7',
+    'Instance' => 'relational7',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Relational7'
+  },
+  'Line_848' => {
+    'CodeInstance' => 'energydetect_struct/single_port_ram3',
+    'Instance' => 'single_port_ram3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Single Port RAM3'
+  },
+  'Line_866' => {
+    'CodeInstance' => 'energydetect_struct/write3',
+    'Instance' => 'write3',
+    'SimulinkInstance' => 'FullED/EnergyDetect/Write3'
+  },
+  'Line_896' => {
+    'CodeInstance' => 'energydetect_default_clock_driver/clockdriver_x0',
+    'Instance' => 'clockdriver_x0',
+    'SimulinkInstance' => ''
+  },
+  'Line_908' => {
+    'CodeInstance' => 'energydetect_default_clock_driver/clockdriver',
+    'Instance' => 'clockdriver',
+    'SimulinkInstance' => ''
+  },
+  'Line_953' => {
+    'CodeInstance' => 'energydetect_default_clock_driver',
+    'Instance' => 'energydetect_default_clock_driver',
+    'SimulinkInstance' => ''
+  },
+  'Line_963' => {
+    'CodeInstance' => 'energydetect_struct',
+    'Instance' => 'energydetect_struct',
+    'SimulinkInstance' => 'EnergyDetect'
+  }
+}

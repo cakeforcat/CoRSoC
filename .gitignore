@@ -141,3 +141,5 @@ octave-workspace
 
 # Training Dataset
 *.npz
+
+manims/media

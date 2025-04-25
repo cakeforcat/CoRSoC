@@ -4,7 +4,7 @@ clear all
 fclk = 64e6; % fs
 
 % Define filter specifications
-Dec_rate = 2; % Decimation rate
+Dec_rate = 4; % Decimation rate
 Fp  = (1/Dec_rate)*1; % Passband-edge normalized frequency (F passed)
 Fst = (1/Dec_rate)*1.2; % Stopband-edge normalized frequency (F atten)
 Ap = 0.5; % Passband ripple (dB) (Allowable variation)

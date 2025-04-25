@@ -1,0 +1,105 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xD2AF32C6E0E64624",
+      "design_src": "SYSGEN",
+      "device": "xczu28dr-ffvg1517-2-e",
+      "gen_directory": "../../../../constant_x0.gen/sources_1/bd/Constant_Stream_bd",
+      "name": "Constant_Stream_bd",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "Constant_Stream_1": ""
+    },
+    "ports": {
+      "clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "Constant_Stream_bd_clk",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "constant_in_nan": {
+        "type": "data",
+        "direction": "I",
+        "left": "0",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "constant_out": {
+        "type": "data",
+        "direction": "O",
+        "left": "31",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": [
+              "xilinx.com:interface:datatypes:1.0 {",
+              "DATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {}",
+              "maximum {}} value 32} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} real {fixed {fractwidth {attribs {resolve_type immediate dependency {} format",
+              "long minimum {} maximum {}} value 14} signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value false}}}}}",
+              "}"
+            ],
+            "value_src": "const_prop"
+          }
+        }
+      }
+    },
+    "components": {
+      "Constant_Stream_1": {
+        "vlnv": "CoRSoC:VMC:Constant_Stream:1.0",
+        "ip_revision": "374596754",
+        "xci_name": "Constant_Stream_bd_Constant_Stream_1_0",
+        "xci_path": "ip\\Constant_Stream_bd_Constant_Stream_1_0\\Constant_Stream_bd_Constant_Stream_1_0.xci",
+        "inst_hier_path": "Constant_Stream_1"
+      }
+    },
+    "nets": {
+      "Constant_Stream_1_constant_out": {
+        "ports": [
+          "Constant_Stream_1/constant_out",
+          "constant_out"
+        ]
+      },
+      "clk_1": {
+        "ports": [
+          "clk",
+          "Constant_Stream_1/clk"
+        ]
+      },
+      "constant_in_nan_1": {
+        "ports": [
+          "constant_in_nan",
+          "Constant_Stream_1/constant_in_nan"
+        ]
+      }
+    }
+  }
+}

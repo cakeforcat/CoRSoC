@@ -27,3 +27,7 @@ A test stimulus was created to aid testing of IP cores (located in /IPs/Test/ram
 
 ### CNN
 A NN was implemented directly in the PL for spectrum sensingusing Brevitas and FINN. A model was originally designed with full precision, with intention apply post training quantization. While this was unsuccesful work done attempting this is shown in PTQ. Quantization aware training however was succesful and its work is in QAT. Three models were developed with Brevitas. Two small ones capable of running on a PYNQ-Z2, and one larger one with the original optimal design to be used as part of the larger CR.
+
+
+# Dependencies
+The project utlised the StrathSDR `qpsk_rfsoc` project for baseband modulation. The forked version: [`qpsk_rfsoc`](https://github.com/cakeforcat/rfsoc_qpsk)

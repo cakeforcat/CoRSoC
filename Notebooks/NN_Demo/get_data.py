@@ -20,7 +20,7 @@ def get_mlp_data():
 
     filtered_files.remove('.ipynb_checkpoints')
 
-    factor = 1
+    factor = 2
     noFiles = len(filtered_files)
 
     arr = np.ndarray((int(7800*noFiles/factor),1,128*factor*2), float)

@@ -1,0 +1,47 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.634464",
+   "Default View_TopLeft":"470,-413",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x 170 -y 10 -defaultsOSRD
+preplace inst axi_interconnect_0 -pg 1 -lvl 2 -x 700 -y 50 -defaultsOSRD
+preplace inst axis_combiner_0 -pg 1 -lvl 4 -x 1460 -y 20 -defaultsOSRD
+preplace inst proc_sys_reset_100M -pg 1 -lvl 1 -x 170 -y 210 -defaultsOSRD
+preplace inst fir_compiler_0 -pg 1 -lvl 5 -x 1780 -y 40 -defaultsOSRD
+preplace inst axis_subset_converter_0 -pg 1 -lvl 6 -x 2080 -y 60 -defaultsOSRD
+preplace inst axis_data_fifo_0 -pg 1 -lvl 7 -x 2370 -y 90 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 170 -y 390 -defaultsOSRD
+preplace inst proc_sys_reset_50M -pg 1 -lvl 2 -x 700 -y 400 -defaultsOSRD
+preplace inst axi_dma -pg 1 -lvl 8 -x 2690 -y 120 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 9 -x 3000 -y 120 -defaultsOSRD
+preplace inst ram_re_0 -pg 1 -lvl 3 -x 1090 -y -30 -defaultsOSRD
+preplace inst ram_im_0 -pg 1 -lvl 3 -x 1090 -y 130 -defaultsOSRD
+preplace netloc S00_ARESETN_1 1 1 6 520 210 910 230 1290 110 1630 130 1930 150 2230
+preplace netloc clk_wiz_0_clk_out1 1 0 9 -120 110 460 250 N 250 1300 200 N 200 N 200 2250 180 2500 10 2860
+preplace netloc clk_wiz_0_locked 1 1 1 520 400n
+preplace netloc proc_sys_reset_0_interconnect_aresetn 1 1 1 510 -10n
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 8 530 300 870J 300 1310 210 N 210 N 210 N 210 2520 20 2850
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 7 -130 100 490 -110 890 240 1280 120 1640 120 1920 140 2240
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 2 -120 310 470
+preplace netloc axi_dma_M_AXI_S2MM 1 8 1 N 100
+preplace netloc axi_interconnect_0_M00_AXI 1 2 1 900 -50n
+preplace netloc axi_interconnect_0_M01_AXI 1 2 1 900 50n
+preplace netloc axi_interconnect_0_M02_AXI 1 2 6 870 220 N 220 N 220 N 220 N 220 2530
+preplace netloc axi_smc_M00_AXI 1 0 10 -120 -120 NJ -120 NJ -120 N -120 N -120 N -120 N -120 N -120 N -120 3130
+preplace netloc axis_combiner_0_M_AXIS 1 4 1 N 20
+preplace netloc axis_data_fifo_0_M_AXIS 1 7 1 2510 90n
+preplace netloc axis_subset_converter_0_M_AXIS 1 6 1 N 60
+preplace netloc fir_compiler_0_M_AXIS_DATA 1 5 1 N 40
+preplace netloc ram_im_0_m_axis 1 3 1 1270 10n
+preplace netloc ram_re_0_m_axis 1 3 1 1270 -30n
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 500 -50n
+levelinfo -pg 1 -160 170 700 1090 1460 1780 2080 2370 2690 3000 3400
+pagesize -pg 1 -db -bbox -sgen -280 -560 3550 570
+"
+}
+{
+   "da_axi4_cnt":"2",
+   "da_axi4_s2mm_cnt":"1"
+}

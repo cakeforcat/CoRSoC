@@ -1,8 +1,0 @@
-OPTION psf_version = 2.1;
-BEGIN driver ram_im_ip
- OPTION supported_peripherals = (ram_im_ip_v1_0);
- OPTION driver_state = ACTIVE;
- OPTION copyfiles = all;
- OPTION name = ram_im_ip;
- OPTION version = 1.0;
-END driver

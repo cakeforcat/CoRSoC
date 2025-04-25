@@ -1,0 +1,8 @@
+OPTION psf_version = 2.1;
+BEGIN driver constant_ip
+ OPTION supported_peripherals = (constant_ip_v1_0);
+ OPTION driver_state = ACTIVE;
+ OPTION copyfiles = all;
+ OPTION name = constant_ip;
+ OPTION version = 1.0;
+END driver
